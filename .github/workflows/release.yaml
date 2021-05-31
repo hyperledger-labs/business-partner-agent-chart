@@ -28,3 +28,6 @@ jobs:
         uses: helm/chart-releaser-action@v1.2.1
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with:
+          charts_dir: charts
+          charts_repo_url: https://github.com/hyperledger-labs/business-partner-agent-chart/ 
