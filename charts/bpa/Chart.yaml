@@ -11,9 +11,11 @@ sources: ["https://github.com/hyperledger-labs/business-partner-agent/tree/maste
 engine: gotpl
 maintainers:
   - email: Frank.Bernhardt@bosch.com
-    name: Frank Bernhardt
+    name: frank-bee
+    url: https://github.com/frank-bee
   - email: jason.syrotuck@nttdata.com
-    name: Jason Syrotuck
+    name: Jsyro
+    url: https://github.com/Jsyro
 dependencies:
   - name: postgresql
     version: 10.3.13
