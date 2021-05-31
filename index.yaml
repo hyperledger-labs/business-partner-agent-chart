@@ -1,0 +1,28 @@
+apiVersion: v1
+entries:
+  bpa:
+  - apiVersion: v2
+    appVersion: 0.1.0-alpha10
+    created: "2021-05-31T10:27:15.666344206Z"
+    dependencies:
+    - condition: persistence.deployPostgres
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 10.3.13
+    description: The Business Partner Agent allows to manage and exchange master data
+      between organizations.
+    digest: 9ca60486232c5638e30e0e194813281c7b57d68fa30de4f91b2cae0a87686fd6
+    home: https://github.com/hyperledger-labs/business-partner-agent/tree/master/charts/bpa
+    maintainers:
+    - email: Frank.Bernhardt@bosch.com
+      name: Frank Bernhardt
+    - email: jason.syrotuck@nttdata.com
+      name: Jason Syrotuck
+    name: bpa
+    sources:
+    - https://github.com/hyperledger-labs/business-partner-agent/tree/master/charts/bpa
+    type: application
+    urls:
+    - https://github.com/hyperledger-labs/business-partner-agent-chart/releases/download/bpa-0.3.0-alpha01/bpa-0.3.0-alpha01.tgz
+    version: 0.3.0-alpha01
+generated: "2021-05-31T10:27:15.666684508Z"
