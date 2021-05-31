@@ -9,7 +9,7 @@ It will also create the default ingress routes.
 ## TL;DR
 
 ```sh
-helm repo add bpa https://hyperledger-labs.github.io/business-partner-agent/
+helm repo add bpa https://labs.hyperledger.org/business-partner-agent-chart/
 helm repo update
 helm upgrade \
 	--set global.ingressSuffix=.example.com \
@@ -42,7 +42,7 @@ The following steps have to be done only once.
 To install the chart with the release name `bpa` and generated ingress as subdomains of `example.com` in the namespace `mynamespace`
 
 ```sh
-helm repo add bpa https://hyperledger-labs.github.io/business-partner-agent/
+helm repo add bpa https://labs.hyperledger.org/business-partner-agent-chart/
 helm repo update
 helm upgrade \
 	--set global.ingressSuffix=.example.com \
