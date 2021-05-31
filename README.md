@@ -1,4 +1,4 @@
-# bpa
+# Business Partner Agent Chart
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
