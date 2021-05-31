@@ -6,7 +6,7 @@ global:
   nameOverride: ""
   fullnameOverride: ""
 
-  #Define domain suffix  and allow auto-generated hostpaths
+  # Define domain suffix  and allow auto-generated hostpaths
   ## define <service>.ingress.hosts.host to override
   ingressSuffix: .example.com
 
@@ -166,7 +166,7 @@ acapy:
   agentName: ca-aca-py
 
   # The agent seed, 32 characters. Will be generated if not defined here
-  #agentSeed: ""
+  # agentSeed: ""
 
   readOnlyMode: false
 
