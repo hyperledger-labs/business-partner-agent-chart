@@ -12,7 +12,16 @@
                     "type": "object"
                 },
                 "agentName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Agent name. It's helpful to set it in the as <DID>:<Human readable label>, e.g. did:sov:idu:XnEKP3WieQhNP7ugjV5r36:mybpa",
+                    "form": true
+                },
+                "agentSeed": {
+                    "type": "string",
+                    "description": "The agent seed. Will be generated if not defined here.",
+                    "minLength": 32,
+                    "maxLength": 32,
+                    "form": true
                 },
                 "fullnameOverride": {
                     "type": "string"
@@ -196,14 +205,23 @@
                     "properties": {
                         "bootstrap": {
                             "type": "object",
+                            "description": "The administrator credentials.",
                             "properties": {
                                 "password": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "form": true
                                 },
                                 "username": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "form": true
                                 }
-                            }
+                            },
+                            "form": true
+                        },
+                        "name": {
+                            "description": "Name shown in the frontend.",
+                            "type": "string",
+                            "form": true
                         },
                         "creddef": {
                             "type": "object",
@@ -236,9 +254,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "name": {
-                            "type": "string"
                         },
                         "privacy": {
                             "type": "object",
