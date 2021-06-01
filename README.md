@@ -1,5 +1,7 @@
 # Business Partner Agent Chart
 
+[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/business-partner-agent)](https://artifacthub.io/packages/search?repo=business-partner-agent)
+
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
 This chart will install a business partner agent (bpa-core & bpa-acapy) and Postgres.
