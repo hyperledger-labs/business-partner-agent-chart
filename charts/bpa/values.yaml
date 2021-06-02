@@ -52,10 +52,10 @@ bpa:
     creddef:
       revocationRegistrySize: 3000
     imprint:
-      url:
+      url: ""
     privacy:
       policy:
-        url:
+        url: ""
 
   imagePullSecrets: []
 
