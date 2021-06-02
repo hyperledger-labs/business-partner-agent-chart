@@ -3,7 +3,7 @@ name: bpa
 description: The Business Partner Agent allows to manage and exchange master data between organizations.
 type: application
 
-version: 0.3.0
+version: 0.4.0-alpha01
 appVersion: 0.1.0-alpha10
 
 home: "https://github.com/hyperledger-labs/business-partner-agent-chart"
@@ -13,6 +13,9 @@ maintainers:
   - email: Frank.Bernhardt@bosch.com
     name: frank-bee
     url: https://github.com/frank-bee
+  - email: jsherman@parcsystems.ca
+    name: parc-jason
+    url: https://github.com/parc-jason
   - email: jason.syrotuck@nttdata.com
     name: Jsyro
     url: https://github.com/Jsyro

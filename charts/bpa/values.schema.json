@@ -66,6 +66,45 @@
                 "nodeSelector": {
                     "type": "object"
                 },
+                "openshift": {
+                    "type": "object",
+                    "properties": {
+                        "route": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "path": {
+                                    "type": "string"
+                                },
+                                "targetPort": {
+                                    "type": "string"
+                                },
+                                "timeout": {
+                                    "type": "string"
+                                },
+                                "tls": {
+                                    "type": "object",
+                                    "properties": {
+                                        "enabled": {
+                                            "type": "boolean"
+                                        },
+                                        "insecureEdgeTerminationPolicy": {
+                                            "type": "string"
+                                        },
+                                        "termination": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "wildcardPolicy": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
                 "podAnnotations": {
                     "type": "object"
                 },
@@ -97,6 +136,56 @@
                         },
                         "type": {
                             "type": "string"
+                        }
+                    }
+                },
+                "staticArgs": {
+                    "type": "object",
+                    "properties": {
+                        "autoAcceptInvites": {
+                            "type": "boolean"
+                        },
+                        "autoAcceptRequests": {
+                            "type": "boolean"
+                        },
+                        "autoPingConnection": {
+                            "type": "boolean"
+                        },
+                        "autoProvision": {
+                            "type": "boolean"
+                        },
+                        "autoRespondCredentialOffer": {
+                            "type": "boolean"
+                        },
+                        "autoRespondCredentialProposal": {
+                            "type": "boolean"
+                        },
+                        "autoRespondCredentialRequest": {
+                            "type": "boolean"
+                        },
+                        "autoRespondMessages": {
+                            "type": "boolean"
+                        },
+                        "autoRespondPresentationProposal": {
+                            "type": "boolean"
+                        },
+                        "autoRespondPresentationRequest": {
+                            "type": "boolean"
+                        },
+                        "autoStoreCredential": {
+                            "type": "boolean"
+                        },
+                        "autoVerifyPresentation": {
+                            "type": "boolean"
+                        },
+                        "logLevel": {
+                            "type": "string"
+                        },
+                        "monitorPing": {
+                            "type": "boolean"
+                        },
+                        "publicInvites": {
+                            "type": "boolean"
                         }
                     }
                 },
@@ -142,11 +231,40 @@
                                 }
                             }
                         },
+                        "did": {
+                            "type": "object",
+                            "properties": {
+                                "prefix": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "imprint": {
+                            "type": "object",
+                            "properties": {
+                                "url": {
+                                    "type": "null"
+                                }
+                            }
+                        },
                         "ledger": {
                             "type": "object",
                             "properties": {
                                 "browser": {
                                     "type": "string"
+                                }
+                            }
+                        },
+                        "privacy": {
+                            "type": "object",
+                            "properties": {
+                                "policy": {
+                                    "type": "object",
+                                    "properties": {
+                                        "url": {
+                                            "type": "null"
+                                        }
+                                    }
                                 }
                             }
                         },
@@ -157,6 +275,9 @@
                                     "type": "string"
                                 }
                             }
+                        },
+                        "scheme": {
+                            "type": "string"
                         },
                         "security": {
                             "type": "object",
@@ -212,6 +333,45 @@
                 },
                 "nodeSelector": {
                     "type": "object"
+                },
+                "openshift": {
+                    "type": "object",
+                    "properties": {
+                        "route": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "path": {
+                                    "type": "string"
+                                },
+                                "targetPort": {
+                                    "type": "string"
+                                },
+                                "timeout": {
+                                    "type": "string"
+                                },
+                                "tls": {
+                                    "type": "object",
+                                    "properties": {
+                                        "enabled": {
+                                            "type": "boolean"
+                                        },
+                                        "insecureEdgeTerminationPolicy": {
+                                            "type": "string"
+                                        },
+                                        "termination": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "wildcardPolicy": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
                 },
                 "podAnnotations": {
                     "type": "object"
@@ -277,9 +437,54 @@
                 }
             }
         },
+        "keycloak": {
+            "type": "object",
+            "properties": {
+                "clientId": {
+                    "type": "string"
+                },
+                "clientSecret": {
+                    "type": "string"
+                },
+                "config": {
+                    "type": "object",
+                    "properties": {
+                        "endsessionUrl": {
+                            "type": "string"
+                        },
+                        "issuer": {
+                            "type": "string"
+                        },
+                        "nameKey": {
+                            "type": "string"
+                        },
+                        "redirectUri": {
+                            "type": "string"
+                        },
+                        "rolesName": {
+                            "type": "string"
+                        },
+                        "scopes": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
         "postgresql": {
             "type": "object",
             "properties": {
+                "containerSecurityContext": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
                 "image": {
                     "type": "object",
                     "properties": {
@@ -305,6 +510,14 @@
                 "postgresqlUsername": {
                     "type": "string"
                 },
+                "securityContext": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
                 "service": {
                     "type": "object",
                     "properties": {
@@ -312,6 +525,75 @@
                             "type": "integer"
                         }
                     }
+                }
+            }
+        },
+        "schemas": {
+            "type": "object",
+            "properties": {
+                "config": {
+                    "type": "object",
+                    "properties": {
+                        "bank-account": {
+                            "type": "object",
+                            "properties": {
+                                "defaultAttributeName": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "type": "string"
+                                },
+                                "label": {
+                                    "type": "string"
+                                },
+                                "restrictions": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "issuerDid": {
+                                                "type": "string"
+                                            },
+                                            "label": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "commercial-register": {
+                            "type": "object",
+                            "properties": {
+                                "defaultAttributeName": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "type": "string"
+                                },
+                                "label": {
+                                    "type": "string"
+                                },
+                                "restrictions": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "issuerDid": {
+                                                "type": "string"
+                                            },
+                                            "label": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
                 }
             }
         }
