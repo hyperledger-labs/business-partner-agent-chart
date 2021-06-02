@@ -243,7 +243,7 @@
                             "type": "object",
                             "properties": {
                                 "url": {
-                                    "type": "null"
+                                    "type": "string"
                                 }
                             }
                         },
@@ -262,7 +262,7 @@
                                     "type": "object",
                                     "properties": {
                                         "url": {
-                                            "type": "null"
+                                            "type": "string"
                                         }
                                     }
                                 }
