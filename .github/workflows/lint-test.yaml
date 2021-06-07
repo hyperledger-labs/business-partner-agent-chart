@@ -35,8 +35,11 @@ jobs:
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
           fi
+          
       - name: Run chart-testing (lint)
-        run: ct lint --config ct.yaml
+        run: ct lint --config ct.yaml --print-config
+        env:
+          CT_LINT_CONF: lintconf.yaml        
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.1.0
