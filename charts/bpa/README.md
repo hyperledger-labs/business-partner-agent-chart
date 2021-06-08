@@ -68,41 +68,58 @@ To do so, create a secret in the same namespace named `<helm release>-acapy` and
 Create a yaml file.
 ```yaml
 cat <<EOT >> values-mybpa.yaml
+acapy:
+  agentName: did:sov:idu:1234:agentname
+  agentSeed: 12345678912345678912345678900011
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+bpa:
+  config:
+    bootstrap:
+      password: changeme
+      username: admin
+    did:
+      prefix: 'did:sov:idu:'
+    ledger:
+      browser: https://explorer.idu.network
+    name: My BPA
+    resolver:
+      url: https://resolver.stage.economyofthings.io
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
 global:
   ingressSuffix: .example.com
-bpa:
-    config:
-      name: My BPA
-      bootstrap:
-        username: alice
-        password: changeme
-      ledger:
-        browser: https://explorer.idu.network
-      did:
-        prefix: "did:sov:idu:"
-      schemas:
-        bank-account:
-          id: "UmZ25DANwS6ngGWB4ye4tN:2:BankAccount:0.1"
-          label: "Bank Account"
-          defaultAttributeName: "iban"
-          restrictions:
-            - issuerDid: "did:sov:idu:UmZ25DANwS6ngGWB4ye4tN"
-              label: "Demo Bank"
-        commercial-register:
-          id: "R6WR6n7CQVDjvvmwofHK6S:2:commercialregister:0.1"
-          label: "Commercial Register"
-          defaultAttributeName: "companyName"
-          restrictions:
-            - issuerDid: "did:sov:idu:R6WR6n7CQVDjvvmwofHK6S"
-              label: "Commercial Register"
-acapy:
-  agentName: mybpa
-
 postgresql:
   persistence:
     enabled: true
-    storageClass: default
     size: 1Gi
+    storageClass: default
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+schemas:
+  config:
+    bank-account:
+      defaultAttributeName: iban
+      id: UmZ25DANwS6ngGWB4ye4tN:2:BankAccount:0.1
+      label: Bank Account
+      restrictions:
+      - issuerDid: did:sov:idu:UmZ25DANwS6ngGWB4ye4tN
+        label: Demo Bank
+    commercial-register:
+      defaultAttributeName: companyName
+      id: R6WR6n7CQVDjvvmwofHK6S:2:commercialregister:0.1
+      label: Commercial Register
+      restrictions:
+      - issuerDid: did:sov:idu:R6WR6n7CQVDjvvmwofHK6S
+        label: Commercial Register
+  enabled: true
+
 EOT
 ```
 
