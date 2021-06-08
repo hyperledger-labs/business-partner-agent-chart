@@ -13,7 +13,7 @@ helm repo add bpa https://labs.hyperledger.org/business-partner-agent-chart/
 helm repo update
 helm upgrade \
 	--set global.ingressSuffix=.example.com \
-   	mybpa bpa/bpa -i -n mynamespace --devel
+   	mybpa bpa/bpa -i -n mynamespace
 ```
 
 ## The Chart
