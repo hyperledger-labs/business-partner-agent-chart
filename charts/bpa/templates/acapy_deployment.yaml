@@ -80,6 +80,12 @@ spec:
               port: 8031
             initialDelaySeconds: 45
             periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /status/ready
+              port: 8031
+            initialDelaySeconds: 20
+            periodSeconds: 10    
           volumeMounts:
           - name: config
             mountPath: "/home/indy/acapy-static-args.yml"

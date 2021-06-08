@@ -36,7 +36,7 @@ spec:
               protocol: TCP
           readinessProbe:
             httpGet:
-              path: /user/signin
+              path: /health
               port: 8080
             initialDelaySeconds: 20
             periodSeconds: 10  
