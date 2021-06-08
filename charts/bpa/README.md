@@ -13,7 +13,7 @@ helm repo add bpa https://labs.hyperledger.org/business-partner-agent-chart/
 helm repo update
 helm upgrade \
 	--set global.ingressSuffix=.example.com \
-   	mybpa bpa/bpa -i -n mynamespace --devel
+   	mybpa bpa/bpa -i -n mynamespace
 ```
 
 ## Introduction
@@ -46,7 +46,7 @@ helm repo add bpa https://labs.hyperledger.org/business-partner-agent-chart/
 helm repo update
 helm upgrade \
 	--set global.ingressSuffix=.example.com \
-   	mybpa bpa/bpa -i -n mynamespace --devel
+   	mybpa bpa/bpa -i -n mynamespace
 ```
 
 Get the generated application URL by running `kubectl`
@@ -111,7 +111,7 @@ Install the chart with the release name `mybpa`, in the namespace `mynamespace`.
 ```sh
 helm upgrade \
 	--values values-mybpa.yaml \
-   	mybpa bpa/bpa -i -n mynamespace --devel
+   	mybpa bpa/bpa -i -n mynamespace
 ```
 #### Install multiple bpa instances
 
@@ -135,7 +135,7 @@ Install the chart
 ```sh
 helm upgrade \
 	--values values-mybpa.yaml \
-   	mybpa bpa/bpa -i -n mynamespace --devel
+   	mybpa bpa/bpa -i -n mynamespace
 ```
 
 ## Uninstalling the Chart
