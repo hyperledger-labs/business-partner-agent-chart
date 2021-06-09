@@ -52,7 +52,7 @@ spec:
                 -Dbpa.pg.password=$(POSTGRES_PASSWORD)
                 -Dmicronaut.config.files={{ include "bpa.config.files" . }}
             {{- include "bpa.application.configmap.env.vars" . | nindent 10}}
-            {{- include "bpa.keycloak.configmap.env.vars" . | nindent 10}}
+            {{- include "bpa.keycloak.configmap.env.vars" . | nindent 12}}
           {{- include "bpa.schemas.volume.mount" . | nindent 10}}
           resources:
             {{- toYaml .Values.bpa.resources | nindent 12 }}
