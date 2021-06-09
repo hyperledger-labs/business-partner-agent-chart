@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "bpa.fullname" . }}:{{ .Values.bpa.service.port }}']
+      args: ['{{ include "bpa.fullname" . }}:{{ .Values.bpa.service.port }}/user/signin']
   restartPolicy: Never
