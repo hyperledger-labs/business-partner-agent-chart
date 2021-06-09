@@ -275,12 +275,12 @@ If Keycloak is enabled, add the client id and secret from the keycloak secret to
 
 {{/*
 If Keycloak is enabled, mount the keycloak config map as env vars
+We don't need envFrom because we always load application configmap...
 */}}
 {{- define "bpa.keycloak.configmap.env.vars" -}}
 {{- if (.Values.keycloak.enabled) -}}
-envFrom:
-  - configMapRef:
-      name: {{ template "bpa.fullname" . }}-keycloak
+- configMapRef:
+    name: {{ template "bpa.fullname" . }}-keycloak
 {{- end -}}
 {{- end -}}
 
