@@ -45,12 +45,12 @@ jobs:
           CT_LINT_CONF: lintconf.yaml 
 
       ## Runs Helm-Docs Script
-      - name: Run docs-testing (helm-docs)
-        uses: buttahtoast/helm-release-action@master
-        with:
-          charts: "${{ steps.list-changed.outputs.changed_charts }}"
-          version: v2.0.1
-        if: steps.list-changed.outputs.changed == 'true'  
+      #- name: Run docs-testing (helm-docs)
+      #  uses: buttahtoast/helm-release-action@master
+      #  with:
+      #    charts: "${{ steps.list-changed.outputs.changed_charts }}"
+      #    version: v2.0.1
+      #  if: steps.list-changed.outputs.changed == 'true'  
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.1.0
