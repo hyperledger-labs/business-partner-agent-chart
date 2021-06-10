@@ -13,7 +13,7 @@ global:
     # -- If true, the Postgres chart is deployed
     deployPostgres: true
 
-  # -- The used ledger. Will be used for default values. Any of: bosch-test, idu.    
+  # -- The used ledger. Will be used for default values. Any of: bosch-test, idu.
   ledger: bosch-test
 
 bpa:
@@ -46,8 +46,8 @@ bpa:
     web:
       only: false
     did:
-       prefixOverride: ""
-       value: ""
+      prefixOverride: ""
+      value: ""
     creddef:
       revocationRegistrySize: 3000
     imprint:
@@ -222,7 +222,7 @@ acapy:
         termination: edge
       wildcardPolicy: None
 
-  resources: 
+  resources:
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -289,4 +289,4 @@ postgresql:
   resources:
     requests:
       cpu: 100m
-      memory: 256Mi    
+      memory: 256Mi
