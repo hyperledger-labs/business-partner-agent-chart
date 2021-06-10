@@ -24,7 +24,10 @@ Find the chart source and further documentation in subfolder [./charts/bpa](./ch
 
 See [Issues labled with `Infrastructure`](https://github.com/hyperledger-labs/business-partner-agent/issues?q=is%3Aissue+is%3Aopen+label%3Ainfrastructure) and [Publishing docu](https://github.com/hyperledger-labs/business-partner-agent/blob/master/PUBLISHING.md) in our [main repository](https://github.com/hyperledger-labs/business-partner-agent/).
 
-### Local linting / testing
+### Locally run docu-gen / linting / testing
+
+Docu-gen:
+`docker run --rm --volume "$(pwd):/helm-docs" -u $(id -u) jnorwood/helm-docs:latest`
 
 Lint:
 `docker run -it --rm --name ct --volume $(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config ct.yaml"`
