@@ -36,7 +36,7 @@ Create a default fully qualified bpa name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "bpa.fullname" -}}
-{{ template "global.fullname" . }}-{{ .Values.bpa.name }}
+{{ template "global.fullname" . }}-bpa
 {{- end -}}
 
 {{/*
@@ -44,7 +44,7 @@ Create a default fully qualified acapy name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "acapy.fullname" -}}
-{{ template "global.fullname" . }}-{{ .Values.acapy.name }}
+{{ template "global.fullname" . }}-acapy
 {{- end -}}
 
 {{/*
@@ -162,6 +162,26 @@ Return seed
 {{- end -}}
 
 {{/*
+Return didPrefix
+*/}}
+{{- define "acapy.didPrefix" -}}
+{{- get (dict "bosch-test" "did:sov:iil:" "idu" "did:sov:idu:") .Values.global.ledger -}}
+{{- end -}}
+
+{{/*
+Return acapy label
+*/}}
+{{- define "acapy.label" -}}
+{{- if .Values.acapy.labelOverride }}
+    {{- .Values.acapy.labelOverride }}
+{{- else if .Values.bpa.config.did.value }}
+    {{- printf "%s%s:%s" (include "acapy.didPrefix" .) .Values.bpa.config.did.value .Release.Name -}}   
+{{ else }} 
+    {{- .Release.Name }}     
+{{- end -}}
+{{- end -}}
+
+{{/*
 Create a default fully qualified app name for the postgres requirement.
 */}}
 {{- define "global.postgresql.fullname" -}}
@@ -237,20 +257,6 @@ Return JAVA_OPTS -Dmicronaut.config.files
     classpath:application.yml,classpath:security-keycloak.yml
 {{- else -}}
     classpath:application.yml
-{{- end -}}
-{{- end -}}
-
-{{/*
-Return a configuration map value for imprint  and privacy policy urls
-*/}}
-{{- define "bpa.imprint.and.privacy.url" -}}
-{{- if (and .Values.bpa.config.imprint.url .Values.bpa.config.privacy.policy.url) -}}
-   {{- printf "BPA_IMPRINT_URL: %s" (.Values.bpa.config.imprint.url) | indent 2 -}}
-   {{- printf "BPA_PRIVACY_POLICY_URL: %s" (.Values.bpa.config.privacy.policy.url) | nindent 2 -}}
-{{ else if .Values.bpa.config.imprint.url }}
-   {{- printf "BPA_IMPRINT_URL: %s" (.Values.bpa.config.imprint.url) | indent 2 -}}
-{{ else if .Values.bpa.config.privacy.policy.url }}
-   {{- printf "BPA_PRIVACY_POLICY_URL: %s" (.Values.bpa.config.privacy.policy.url) | indent 2 -}}
 {{- end -}}
 {{- end -}}
 

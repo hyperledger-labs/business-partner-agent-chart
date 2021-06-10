@@ -6,17 +6,17 @@ global:
   nameOverride: ""
   fullnameOverride: ""
 
-  # Define domain suffix  and allow auto-generated hostpaths
-  ## define <service>.ingress.hosts.host to override
+  # -- Domain suffix to be used for default hostpaths in ingress
   ingressSuffix: .example.com
 
   persistence:
     # -- If true, the Postgres chart is deployed
     deployPostgres: true
 
-bpa:
-  name: bpacore
+  # -- The used ledger. Will be used for default values. Any of: bosch-test, idu.    
+  ledger: bosch-test
 
+bpa:
   image:
     repository: ghcr.io/hyperledger-labs/business-partner-agent
     pullPolicy: IfNotPresent
@@ -24,15 +24,13 @@ bpa:
     tag: ""
 
   serviceAccount:
-    # Specifies whether a service account should be created
+    # -- Specifies whether a service account should be created
     create: true
-    # Annotations to add to the service account
+    # -- Annotations to add to the service account
     annotations: {}
-    # The name of the service account to use.
-    # If not set and create is true, a name is generated using the fullname template
+    # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
     name: ""
 
-  # -- application config (remark: all new configuration values will sit here, the other ones can be migrated step by step)
   config:
     security:
       enabled: true
@@ -40,22 +38,24 @@ bpa:
       username: admin
       password: changeme
     resolver:
-      url: https://resolver.stage.economyofthings.io
+      urlOverride: ""
     ledger:
-      browser: https://indy-test.bosch-digital.de
+      browserUrlOverride: ""
     name: Business Partner Agent
     scheme: https
     web:
       only: false
     did:
-      prefix: "did:sov:iil:"
+       prefixOverride: ""
+       value: ""
     creddef:
       revocationRegistrySize: 3000
     imprint:
-      url: ""
-    privacy:
-      policy:
-        url: ""
+      enabled: true
+      urlOverwrite: ""
+    privacyPolicy:
+      enabled: true
+      urlOverwrite: ""
 
   imagePullSecrets: []
 
@@ -102,7 +102,7 @@ bpa:
         termination: edge
       wildcardPolicy: None
 
-  resources: {}
+  resources:
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -113,6 +113,9 @@ bpa:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
 
   nodeSelector: {}
 
@@ -136,25 +139,23 @@ keycloak:
 
 schemas:
   enabled: true
-  config:
-    bank-account:
-      id: "M6Mbe3qx7vB4wpZF4sBRjt:2:bank_account:1.0"
-      label: "Bank Account"
-      defaultAttributeName: "iban"
-      restrictions:
-        - issuerDid: "${bpa.did.prefix}M6Mbe3qx7vB4wpZF4sBRjt"
-          label: "Demo Bank"
-    commercial-register:
-      id: "5mwQSWnRePrZ3oF67C4KqD:2:commercialregister:1.0"
-      label: "Commercial Register"
-      defaultAttributeName: "companyName"
-      restrictions:
-        - issuerDid: "${bpa.did.prefix}5mwQSWnRePrZ3oF67C4KqD"
-          label: "Commercial Register"
+  config: {}
+#    bank-account:
+#      id: "M6Mbe3qx7vB4wpZF4sBRjt:2:bank_account:1.0"
+#      label: "Bank Account"
+#      defaultAttributeName: "iban"
+#      restrictions:
+#        - issuerDid: "${bpa.did.prefix}M6Mbe3qx7vB4wpZF4sBRjt"
+#          label: "Demo Bank"
+#    commercial-register:
+#      id: "5mwQSWnRePrZ3oF67C4KqD:2:commercialregister:1.0"
+#      label: "Commercial Register"
+#      defaultAttributeName: "companyName"
+#      restrictions:
+#        - issuerDid: "${bpa.did.prefix}5mwQSWnRePrZ3oF67C4KqD"
+#          label: "Commercial Register"
 
 acapy:
-  name: acapy
-
   image:
     repository: bcgovimages/aries-cloudagent
     pullPolicy: IfNotPresent
@@ -163,7 +164,9 @@ acapy:
 
   adminURLApiKey: 2f9729eef0be49608c1cffd49ee3cc4a
 
-  agentName: ca-aca-py
+  agentSeed: ""
+
+  labelOverride: ""
 
   # The agent seed, 32 characters. Will be generated if not defined here
   # agentSeed: ""
@@ -219,7 +222,7 @@ acapy:
         termination: edge
       wildcardPolicy: None
 
-  resources: {}
+  resources: 
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -230,6 +233,9 @@ acapy:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
 
   nodeSelector: {}
 
@@ -280,3 +286,7 @@ postgresql:
     enabled: true
   containerSecurityContext:
     enabled: true
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi    

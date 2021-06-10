@@ -11,17 +11,8 @@
                 "affinity": {
                     "type": "object"
                 },
-                "agentName": {
-                    "type": "string",
-                    "description": "Agent name. It's helpful to set it in the as <DID>:<Human readable label>, e.g. did:sov:idu:XnEKP3WieQhNP7ugjV5r36:mybpa",
-                    "form": true
-                },
                 "agentSeed": {
-                    "type": "string",
-                    "description": "The agent seed. Will be generated if not defined here.",
-                    "minLength": 32,
-                    "maxLength": 32,
-                    "form": true
+                    "type": "string"
                 },
                 "fullnameOverride": {
                     "type": "string"
@@ -57,7 +48,7 @@
                         }
                     }
                 },
-                "name": {
+                "labelOverride": {
                     "type": "string"
                 },
                 "nameOverride": {
@@ -115,7 +106,20 @@
                     "type": "boolean"
                 },
                 "resources": {
-                    "type": "object"
+                    "type": "object",
+                    "properties": {
+                        "requests": {
+                            "type": "object",
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
                 },
                 "securityContext": {
                     "type": "object",
@@ -234,15 +238,23 @@
                         "did": {
                             "type": "object",
                             "properties": {
-                                "prefix": {
+                                "prefixOverride": {
                                     "type": "string"
+                                },
+                                "value": {
+                                    "description": "The DID, without ledger prefix.",
+                                    "type": "string",
+                                    "form": true
                                 }
                             }
                         },
                         "imprint": {
                             "type": "object",
                             "properties": {
-                                "url": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "urlOverwrite": {
                                     "type": "string"
                                 }
                             }
@@ -250,28 +262,26 @@
                         "ledger": {
                             "type": "object",
                             "properties": {
-                                "browser": {
+                                "browserUrlOverride": {
                                     "type": "string"
                                 }
                             }
                         },
-                        "privacy": {
+                        "privacyPolicy": {
                             "type": "object",
                             "properties": {
-                                "policy": {
-                                    "type": "object",
-                                    "properties": {
-                                        "url": {
-                                            "type": "string"
-                                        }
-                                    }
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "urlOverwrite": {
+                                    "type": "string"
                                 }
                             }
                         },
                         "resolver": {
                             "type": "object",
                             "properties": {
-                                "url": {
+                                "urlOverride": {
                                     "type": "string"
                                 }
                             }
@@ -328,9 +338,6 @@
                         }
                     }
                 },
-                "name": {
-                    "type": "string"
-                },
                 "nodeSelector": {
                     "type": "object"
                 },
@@ -380,7 +387,20 @@
                     "type": "object"
                 },
                 "resources": {
-                    "type": "object"
+                    "type": "object",
+                    "properties": {
+                        "requests": {
+                            "type": "object",
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
                 },
                 "securityContext": {
                     "type": "object"
@@ -423,6 +443,11 @@
                 },
                 "ingressSuffix": {
                     "type": "string"
+                },
+                "ledger": {
+                    "type": "string",
+                    "pattern": "^(bosch-test|idu)$",
+                    "form": true
                 },
                 "nameOverride": {
                     "type": "string"
@@ -510,6 +535,22 @@
                 "postgresqlUsername": {
                     "type": "string"
                 },
+                "resources": {
+                    "type": "object",
+                    "properties": {
+                        "requests": {
+                            "type": "object",
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
                 "securityContext": {
                     "type": "object",
                     "properties": {
@@ -532,65 +573,7 @@
             "type": "object",
             "properties": {
                 "config": {
-                    "type": "object",
-                    "properties": {
-                        "bank-account": {
-                            "type": "object",
-                            "properties": {
-                                "defaultAttributeName": {
-                                    "type": "string"
-                                },
-                                "id": {
-                                    "type": "string"
-                                },
-                                "label": {
-                                    "type": "string"
-                                },
-                                "restrictions": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "issuerDid": {
-                                                "type": "string"
-                                            },
-                                            "label": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "commercial-register": {
-                            "type": "object",
-                            "properties": {
-                                "defaultAttributeName": {
-                                    "type": "string"
-                                },
-                                "id": {
-                                    "type": "string"
-                                },
-                                "label": {
-                                    "type": "string"
-                                },
-                                "restrictions": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "issuerDid": {
-                                                "type": "string"
-                                            },
-                                            "label": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    "type": "object"
                 },
                 "enabled": {
                     "type": "boolean"
