@@ -26,21 +26,21 @@ spec:
       securityContext:
         {{- toYaml .Values.acapy.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Values.acapy.name }}
+        - name: acapy
           securityContext:
             {{- toYaml .Values.acapy.securityContext | nindent 12 }}
           image: "{{ .Values.acapy.image.repository }}:{{ .Values.acapy.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.acapy.image.pullPolicy }}
           args: [
            "-c",
-           "curl -d '{\"seed\":\"$(WALLET_SEED)\", \"role\":\"TRUST_ANCHOR\", \"alias\":\"{{ include "bpa.fullname" . }}\"}' -X POST {{ .Values.bpa.config.ledger.browserUrlOverride }}/register; \
+           "curl -d '{\"seed\":\"$(WALLET_SEED)\", \"role\":\"TRUST_ANCHOR\", \"alias\":\"{{ include "bpa.fullname" . }}\"}' -X POST {{ include "bpa.ledgerBrowser" . }}/register; \
            sleep 15; \
            aca-py start \
            --auto-provision \
            --arg-file acapy-static-args.yml \
            --inbound-transport http '0.0.0.0' {{ .Values.acapy.service.httpPort }} \
            --webhook-url http://{{ include "bpa.fullname" . }}:{{ .Values.bpa.service.port }}/log \
-           --genesis-url '{{ .Values.bpa.config.ledger.browserUrlOverride }}/genesis' \
+           --genesis-url '{{ include "bpa.ledgerBrowser" . }}/genesis' \
            --endpoint https://{{ include "acapy.host" . }} \
            --wallet-storage-type 'postgres_storage' \
            --wallet-name 'mywallet' \

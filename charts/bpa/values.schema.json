@@ -252,7 +252,9 @@
                             "type": "object",
                             "properties": {
                                 "enabled": {
-                                    "type": "boolean"
+                                    "type": "boolean",
+                                    "description": "Show link to imprint page in frontend",
+                                    "form": true
                                 },
                                 "urlOverwrite": {
                                     "type": "string"
@@ -271,7 +273,9 @@
                             "type": "object",
                             "properties": {
                                 "enabled": {
-                                    "type": "boolean"
+                                    "type": "boolean",
+                                    "description": "Show link to privacy policy page in frontend",
+                                    "form": true
                                 },
                                 "urlOverwrite": {
                                     "type": "string"

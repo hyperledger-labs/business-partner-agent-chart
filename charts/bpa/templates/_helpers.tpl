@@ -36,7 +36,7 @@ Create a default fully qualified bpa name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "bpa.fullname" -}}
-{{ template "global.fullname" . }}-bpa
+{{ template "global.fullname" . }}-core
 {{- end -}}
 
 {{/*
@@ -63,7 +63,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector bpa labels
 */}}
 {{- define "bpa.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "global.fullname" . }}-{{ .Values.bpa.name }}
+app.kubernetes.io/name: {{ include "global.fullname" . }}-core
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
@@ -90,6 +90,14 @@ generate hosts if not overriden
 {{- end }}
 
 {{/*
+generate ledger browser url
+*/}}
+{{- define "bpa.ledgerBrowser" -}}
+{{- $ledgerBrowser := dict "bosch-test" "https://indy-test.bosch-digital.de" "idu" "https://explorer.idu.network" -}}
+{{ .Values.bpa.config.ledger.browserUrlOverride | default ( get $ledgerBrowser .Values.global.ledger ) }}
+{{- end }}
+
+{{/*
 Common acapy labels
 */}}
 {{- define "acapy.labels" -}}
@@ -105,7 +113,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector acapy labels
 */}}
 {{- define "acapy.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "global.fullname" . }}-{{ .Values.acapy.name }}
+app.kubernetes.io/name: {{ include "global.fullname" . }}-acapy
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 

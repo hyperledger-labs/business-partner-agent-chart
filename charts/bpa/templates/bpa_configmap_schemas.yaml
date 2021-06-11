@@ -9,9 +9,9 @@ data:
   schemas.yaml: |-
     bpa:
       schemas:
-{{ if .Values.schemas.config }}
+{{- if .Values.schemas.config }}
 {{ toYaml .Values.schemas.config | indent 8 }}
-{{ else if eq .Values.global.ledger "idu" }}
+{{- else if eq .Values.global.ledger "idu" -}}
         bank-account:
           defaultAttributeName: "iban"
           id: "UmZ25DANwS6ngGWB4ye4tN:2:BankAccount:0.1"
@@ -26,7 +26,7 @@ data:
           restrictions:
           - issuerDid: "${bpa.did.prefix}R6WR6n7CQVDjvvmwofHK6S"
             label: "Commercial Register"
-{{ else }}
+{{- else -}}
         bank-account:
           id: "M6Mbe3qx7vB4wpZF4sBRjt:2:bank_account:1.0"
           label: "Bank Account"
@@ -41,6 +41,5 @@ data:
           restrictions:
             - issuerDid: "${bpa.did.prefix}5mwQSWnRePrZ3oF67C4KqD"
               label: "Commercial Register"
-{{ end }}      
-
+{{- end -}}      
 {{- end -}}

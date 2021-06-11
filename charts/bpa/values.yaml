@@ -38,7 +38,7 @@ bpa:
       username: admin
       password: changeme
     resolver:
-      urlOverride: ""
+      urlOverride: "https://resolver.stage.economyofthings.io"
     ledger:
       browserUrlOverride: ""
     name: Business Partner Agent
@@ -51,10 +51,10 @@ bpa:
     creddef:
       revocationRegistrySize: 3000
     imprint:
-      enabled: true
+      enabled: false
       urlOverwrite: ""
     privacyPolicy:
-      enabled: true
+      enabled: false
       urlOverwrite: ""
 
   imagePullSecrets: []
