@@ -22,12 +22,19 @@ Find the chart source and further documentation in subfolder [./charts/bpa](./ch
 
 ## Chart development
 
-See [Issues labled with `Infrastructure`](https://github.com/hyperledger-labs/business-partner-agent/issues?q=is%3Aissue+is%3Aopen+label%3Ainfrastructure) and [Publishing docu](https://github.com/hyperledger-labs/business-partner-agent/blob/master/PUBLISHING.md) in our [main repository](https://github.com/hyperledger-labs/business-partner-agent/).
+See [Issues labled with `helm`](https://github.com/hyperledger-labs/business-partner-agent/labels/helm) and [Publishing docu](https://github.com/hyperledger-labs/business-partner-agent/blob/master/PUBLISHING.md) in our [main repository](https://github.com/hyperledger-labs/business-partner-agent/).
 
-### Locally run docu-gen / linting / testing
+### Locally run docu-gen 
 
-Docu-gen:
+Run helm-docs before you create a PR to update the README.md:
 `docker run --rm --volume "$(pwd):/helm-docs" -u $(id -u) jnorwood/helm-docs:latest`
+
+### Locally run linting / testing
 
 Lint:
 `docker run -it --rm --name ct --volume $(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config ct.yaml"`
+
+Test:
+Install ct locally and configure your cluster with kubectl.
+The following call will create an ephemeral namespace, install the char with default values and run the helm tests.
+`ct install --config ct.yaml --all`
