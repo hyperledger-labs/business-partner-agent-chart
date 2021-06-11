@@ -14,6 +14,7 @@
                 "agentSeed": {
                     "type": "string",
                     "description": "The agent's seed",
+                    "title": "Seed",
                     "form": true
                 },
                 "fullnameOverride": {
@@ -212,6 +213,7 @@
                         "bootstrap": {
                             "type": "object",
                             "description": "The administrator credentials.",
+                            "title": "Login Credentials",
                             "properties": {
                                 "password": {
                                     "type": "string",
@@ -225,7 +227,8 @@
                             "form": true
                         },
                         "name": {
-                            "description": "Name shown in the frontend.",
+                            "description": "Human readable name shown in the frontend (may container whitespaces and so on).",
+                            "title": "Business Partner Name",
                             "type": "string",
                             "form": true
                         },
@@ -245,6 +248,7 @@
                                 },
                                 "value": {
                                     "description": "The DID, without ledger prefix.",
+                                    "title": "DID",
                                     "type": "string",
                                     "form": true
                                 }
@@ -255,7 +259,8 @@
                             "properties": {
                                 "enabled": {
                                     "type": "boolean",
-                                    "description": "Show link to imprint page in frontend",
+                                    "description": "Check to show link to imprint page in frontend",
+                                    "title": "Show Imprint page?",
                                     "form": true
                                 },
                                 "urlOverwrite": {
@@ -276,7 +281,8 @@
                             "properties": {
                                 "enabled": {
                                     "type": "boolean",
-                                    "description": "Show link to privacy policy page in frontend",
+                                    "description": "If checked, show link to privacy policy page in frontend",
+                                    "title": "Show policy page?",
                                     "form": true
                                 },
                                 "urlOverwrite": {
@@ -452,7 +458,9 @@
                 },
                 "ledger": {
                     "type": "string",
-                    "pattern": "^(bosch-test|idu)$",
+                    "enum": ["idu", "bosch-test"],
+                    "description": "The ledger to be configured",
+                    "title": "Ledger",
                     "form": true
                 },
                 "nameOverride": {
@@ -528,8 +536,9 @@
                     "type": "object",
                     "properties": {
                         "enabled": {
-                            "description": "Enable data persistance",
+                            "description": "Check to enable data persistance (recommended)",
                             "type": "boolean",
+                            "title": "Persist data?",
                             "form": true
                         }
                     }

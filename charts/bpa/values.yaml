@@ -46,6 +46,7 @@ bpa:
     web:
       only: false
     did:
+      # -- Will be otherwise calculated based on global.ledger config
       prefixOverride: ""
       value: ""
     creddef:
