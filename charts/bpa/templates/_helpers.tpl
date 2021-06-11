@@ -261,10 +261,14 @@ Create environment variables for database configuration.
 Return JAVA_OPTS -Dmicronaut.config.files
 */}}
 {{- define "bpa.config.files" -}}
-{{- if .Values.keycloak.enabled -}}
+{{- if and .Values.keycloak.enabled .Values.schemas.enabled -}}
+    classpath:application.yml,/home/indy/schemas.yml,classpath:security-keycloak.yml
+{{- else if .Values.keycloak.enabled  -}}
     classpath:application.yml,classpath:security-keycloak.yml
+{{- else if .Values.schemas.enabled -}}
+    classpath:application.yml,/home/indy/schemas.yml
 {{- else -}}
-    classpath:application.yml
+    classpath:application.yml    
 {{- end -}}
 {{- end -}}
 
@@ -311,7 +315,7 @@ volumes:
     configMap:
       name: {{ template "bpa.fullname" . }}-schemas
       items:
-      - key: "schemas.yaml"
+      - key: "schemas.yml"
         path: "schemas.yml"
 {{- end -}}
 {{- end -}}

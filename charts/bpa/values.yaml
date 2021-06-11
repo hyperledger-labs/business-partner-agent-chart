@@ -7,7 +7,7 @@ global:
   fullnameOverride: ""
 
   # -- Domain suffix to be used for default hostpaths in ingress
-  ingressSuffix: .example.com
+  ingressSuffix: .stage.economyofthings.io 
 
   persistence:
     # -- If true, the Postgres chart is deployed
@@ -38,10 +38,10 @@ bpa:
       username: admin
       password: changeme
     resolver:
-      urlOverride: "https://resolver.stage.economyofthings.io"
+      url: "{{ printf \"https://resolver%s\" .Values.global.ingressSuffix }}"
     ledger:
       browserUrlOverride: ""
-    name: Business Partner Agent
+    name: "{{ .Release.Name }}' Business Partner Agent"
     scheme: https
     web:
       only: false
@@ -52,10 +52,10 @@ bpa:
       revocationRegistrySize: 3000
     imprint:
       enabled: false
-      urlOverwrite: ""
+      url: "{{ printf \"https://bpa%s/\" .Values.global.ingressSuffix }}"
     privacyPolicy:
       enabled: false
-      urlOverwrite: ""
+      url: "{{ printf \"https://bpa%s/privacyPolicy\" .Values.global.ingressSuffix }}"
 
   imagePullSecrets: []
 
@@ -164,12 +164,11 @@ acapy:
 
   adminURLApiKey: 2f9729eef0be49608c1cffd49ee3cc4a
 
+
+  # The agent seed, 32 characters. Will be generated if not defined here
   agentSeed: ""
 
   labelOverride: ""
-
-  # The agent seed, 32 characters. Will be generated if not defined here
-  # agentSeed: ""
 
   readOnlyMode: false
 
@@ -276,9 +275,12 @@ postgresql:
 
   # --  Persistent Volume Storage configuration. ref: https://kubernetes.io/docs/user-guide/persistent-volumes
   persistence:
+    enabled: true
+    size: 1Gi
+    storageClass: default
 
     # -- Enable PostgreSQL persistence using Persistent Volume Claims.
-    enabled: false
+    #enabled: false
   image:
     tag: 12
   # -- add securityContext (fsGroup, runAsUser). These need to be false for Openshift 4
