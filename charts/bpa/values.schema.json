@@ -12,7 +12,9 @@
                     "type": "object"
                 },
                 "agentSeed": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The agent's seed",
+                    "form": true
                 },
                 "fullnameOverride": {
                     "type": "string"
