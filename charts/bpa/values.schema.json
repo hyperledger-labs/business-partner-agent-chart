@@ -526,7 +526,9 @@
                     "type": "object",
                     "properties": {
                         "enabled": {
-                            "type": "boolean"
+                            "description": "Enable data persistance",
+                            "type": "boolean",
+                            "form": true
                         }
                     }
                 },

@@ -7,7 +7,7 @@ global:
   fullnameOverride: ""
 
   # -- Domain suffix to be used for default hostpaths in ingress
-  ingressSuffix: .stage.economyofthings.io 
+  ingressSuffix: .stage.economyofthings.io
 
   persistence:
     # -- If true, the Postgres chart is deployed
@@ -275,12 +275,11 @@ postgresql:
 
   # --  Persistent Volume Storage configuration. ref: https://kubernetes.io/docs/user-guide/persistent-volumes
   persistence:
-    enabled: true
-    size: 1Gi
-    storageClass: default
 
     # -- Enable PostgreSQL persistence using Persistent Volume Claims.
-    #enabled: false
+    enabled: false
+    size: 1Gi
+    storageClass: default
   image:
     tag: 12
   # -- add securityContext (fsGroup, runAsUser). These need to be false for Openshift 4
