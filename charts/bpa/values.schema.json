@@ -215,12 +215,14 @@
                             "description": "The administrator credentials.",
                             "title": "Login Credentials",
                             "properties": {
-                                "password": {
-                                    "type": "string",
-                                    "form": true
-                                },
                                 "username": {
                                     "type": "string",
+                                    "title": "Username",
+                                    "form": true
+                                }, 
+                                "password": {
+                                    "type": "string",
+                                    "title": "Password",
                                     "form": true
                                 }
                             },
