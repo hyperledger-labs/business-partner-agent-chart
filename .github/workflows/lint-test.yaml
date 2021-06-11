@@ -1,3 +1,4 @@
+
 name: Lint and Test Charts
 
 on: pull_request
@@ -28,29 +29,18 @@ jobs:
         with:
           version: v3.3.0
 
-      - name: List changed charts
+      - name: Run chart-testing (list-changed)
         id: list-changed
         run: |
-          ## If executed with debug this won't work anymore.
-          changed=$(ct --config ./ct.yaml list-changed)
-          charts=$(echo "$changed" | tr '\n' ' ' | xargs)
+          changed=$(ct list-changed --config ct.yaml)
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
-            echo "::set-output name=changed_charts::$charts"
           fi
           
       - name: Run chart-testing (lint)
         run: ct lint --config ct.yaml --print-config
         env:
-          CT_LINT_CONF: lintconf.yaml 
-
-      ## Runs Helm-Docs Script
-      #- name: Run docs-testing (helm-docs)
-      #  uses: buttahtoast/helm-release-action@master
-      #  with:
-      #    charts: "${{ steps.list-changed.outputs.changed_charts }}"
-      #    version: v2.0.1
-      #  if: steps.list-changed.outputs.changed == 'true'  
+          CT_LINT_CONF: lintconf.yaml        
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.1.0
