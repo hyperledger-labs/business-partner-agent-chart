@@ -1,0 +1,11 @@
+image:
+  file: .gitpod.Dockerfile
+
+# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - init: echo 'init script' # runs during prebuild
+    command: echo 'start script'
+  - name: Install pre-commit hooks
+    command: >
+      pre-commit install --install-hooks
+      && printf "\n \n \n Please close this window
