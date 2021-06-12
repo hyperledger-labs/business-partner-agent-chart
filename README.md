@@ -37,14 +37,15 @@ docker run --rm --volume "$(pwd):/helm-docs" -u $(id -u) jnorwood/helm-docs:late
 
 ### Linting
 
-On your local machine run
+In the gitpod workspace or on your local machine run
 ```
 docker run -it --rm --name ct --volume $(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config ct.yaml"
 ```
 
 ### Testing
 
-Install ct locally and configure your cluster with kubectl.
+Install `ct` locally (in the gitpod workspace it is installed already).
+Configure `kubectl` to work with a cluster (you need a cluster).
 The following call will create an ephemeral namespace, install the chart with default values and run the helm tests.
 ```
 ct install --config ct.yaml --all
