@@ -46,4 +46,6 @@ docker run -it --rm --name ct --volume $(pwd):/data quay.io/helmpack/chart-testi
 
 Install ct locally and configure your cluster with kubectl.
 The following call will create an ephemeral namespace, install the chart with default values and run the helm tests.
-`ct install --config ct.yaml --all`
+```
+ct install --config ct.yaml --all
+```
