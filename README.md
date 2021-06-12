@@ -44,8 +44,10 @@ docker run -it --rm --name ct --volume $(pwd):/data quay.io/helmpack/chart-testi
 
 ### Testing
 
+Prerequisite: k8s cluster, you can used `kind` or so to install a local cluster.
+
 Install `ct` locally (in the gitpod workspace it is installed already).
-Configure `kubectl` to work with a cluster (you need a cluster).
+Configure `kubectl` to work with a cluster (in the gitpod workspace add a context to the kubeconfig or use an existing one).
 The following call will create an ephemeral namespace, install the chart with default values and run the helm tests.
 ```
 ct install --config ct.yaml --all
