@@ -25,23 +25,25 @@ Find the chart source and further documentation in subfolder [./charts/bpa](./ch
 
 See [Issues labled with `helm`](https://github.com/hyperledger-labs/business-partner-agent/labels/helm) and [Publishing docu](https://github.com/hyperledger-labs/business-partner-agent/blob/master/PUBLISHING.md) in our [main repository](https://github.com/hyperledger-labs/business-partner-agent/).
 
-### Locally run docu-gen 
+### Generate chart docu
 
-Run helm-docs before you create a PR to update the README.md:
-````
+Locally run docu-gen
+The tool helm-docs parses metadata from charts and generates a number of sub-templates that can be referenced in a template file `README.md.gotmpl`.
+
+If you work in a our gitpod workspace, helm-docs runs automatically if the templates have changed via pre-commit-hook.
+On you local machine you could run
+```
 docker run --rm --volume "$(pwd):/helm-docs" -u $(id -u) jnorwood/helm-docs:latest
 ```
 
-Ideally run the docu generation as pre-commit-hook, see [here](https://github.com/norwoodj/helm-docs#usage).
+### Linting
 
-### Locally run linting / testing
-
-Lint:
 ```
 docker run -it --rm --name ct --volume $(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config ct.yaml"
 ```
 
-Test:
+### Testing
+
 Install ct locally and configure your cluster with kubectl.
 The following call will create an ephemeral namespace, install the chart with default values and run the helm tests.
 `ct install --config ct.yaml --all`
