@@ -27,17 +27,17 @@ See [Issues labled with `helm`](https://github.com/hyperledger-labs/business-par
 
 ### Generate chart docu
 
-Locally run docu-gen
 The tool helm-docs parses metadata from charts and generates a number of sub-templates that can be referenced in a template file `README.md.gotmpl`.
 
 If you work in a our gitpod workspace, helm-docs runs automatically if the templates have changed via pre-commit-hook.
-On you local machine you could run
+On your local machine run
 ```
 docker run --rm --volume "$(pwd):/helm-docs" -u $(id -u) jnorwood/helm-docs:latest
 ```
 
 ### Linting
 
+On your local machine run
 ```
 docker run -it --rm --name ct --volume $(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config ct.yaml"
 ```
