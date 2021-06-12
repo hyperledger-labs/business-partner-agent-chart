@@ -1,4 +1,8 @@
-# Business Partner Agent
+# bpa
+
+The Business Partner Agent allows to manage and exchange master data between organizations.
+
+![Version: 0.5.0-alpha01](https://img.shields.io/badge/Version-0.5.0--alpha01-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-86b02ee6](https://img.shields.io/badge/AppVersion-sha--86b02ee6-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -31,7 +35,7 @@ Ingress routes are generated and activated, allowing the agent to communicate wi
 - If activating Ingress (with is the default!):
   - Ingress controller installed
   - Cert-manager (TLS required/assumed for both endpoint: public profile and acapy)
-  - DNS records pointing to your routes
+  - DNS records pointing to your routes 
 
 ## Initial preparation
 
@@ -143,7 +147,7 @@ With minikube you would
 Install and run minikube (see also minikube [documentation](https://minikube.sigs.k8s.io/docs/start/))
 ```sh
  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
- sudo install minikube-linux-amd64 /usr/local/bin/minikube
+ sudo install minikube-linux-amd64 /usr/local/bin/minikube 
  minikube start --vm-driver=docker
 
 ```
@@ -179,7 +183,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 |-----|------|---------|-------------|
 | acapy.adminURLApiKey | string | `"2f9729eef0be49608c1cffd49ee3cc4a"` |  |
 | acapy.affinity | object | `{}` |  |
-| acapy.agentName | string | `"ca-aca-py"` |  |
+| acapy.agentSeed | string | `""` |  |
 | acapy.fullnameOverride | string | `""` |  |
 | acapy.image.pullPolicy | string | `"IfNotPresent"` |  |
 | acapy.image.repository | string | `"bcgovimages/aries-cloudagent"` |  |
@@ -188,23 +192,58 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.ingress.annotations | object | `{}` |  |
 | acapy.ingress.enabled | bool | `true` |  |
 | acapy.ingress.tls | list | `[]` |  |
-| acapy.name | string | `"acapy"` |  |
+| acapy.labelOverride | string | `""` |  |
 | acapy.nameOverride | string | `""` |  |
 | acapy.nodeSelector | object | `{}` |  |
-| acapy.openshift.route.enabled | bool | `false` | Set to true and acapy.ingress.enabled to false to use Openshift route templates |
-| acapy.openshift.route | object | `{"enabled": false, "path": "/", "targetPort": "http", "timeout": "30s", "tls": { "enabled": true, "insecureEdgeTerminationPolicy": "None", "termination": "edge" }, "wildcardPolicy": "None" }` | Configuration for the route, https/tls is optional |
+| acapy.openshift.route.enabled | bool | `false` |  |
+| acapy.openshift.route.path | string | `"/"` |  |
+| acapy.openshift.route.targetPort | string | `"http"` |  |
+| acapy.openshift.route.timeout | string | `"30s"` |  |
+| acapy.openshift.route.tls.enabled | bool | `true` |  |
+| acapy.openshift.route.tls.insecureEdgeTerminationPolicy | string | `"None"` |  |
+| acapy.openshift.route.tls.termination | string | `"edge"` |  |
+| acapy.openshift.route.wildcardPolicy | string | `"None"` |  |
 | acapy.podAnnotations | object | `{}` |  |
 | acapy.podSecurityContext | object | `{}` |  |
 | acapy.readOnlyMode | bool | `false` |  |
-| acapy.resources | object | `{}` |  |
+| acapy.resources.requests.cpu | string | `"100m"` |  |
+| acapy.resources.requests.memory | string | `"256Mi"` |  |
 | acapy.securityContext.runAsUser | int | `1001` |  |
 | acapy.service.adminPort | int | `8031` |  |
 | acapy.service.httpPort | int | `8030` |  |
 | acapy.service.type | string | `"ClusterIP"` |  |
-| acapy.staticArgs | object | `{"autoAcceptInvites": true, "autoAcceptRequests": true, "autoRespondMessages": true, "autoRespondCredentialProposal": true, "autoRespondCredentialOffer": true, "autoRespondCredentialRequest": true, "autoRespondPresentationProposal": true, "autoRespondPresentationRequest": true, "autoStoreCredential": true, "autoVerifyPresentation": true, "autoPingConnection": true, "autoProvision": true, "monitorPing": true, "publicInvites": true, "logLevel": "info" }` | Set all the arguments for the acapy agent   |
+| acapy.staticArgs.autoAcceptInvites | bool | `true` |  |
+| acapy.staticArgs.autoAcceptRequests | bool | `true` |  |
+| acapy.staticArgs.autoPingConnection | bool | `true` |  |
+| acapy.staticArgs.autoProvision | bool | `true` |  |
+| acapy.staticArgs.autoRespondCredentialOffer | bool | `true` |  |
+| acapy.staticArgs.autoRespondCredentialProposal | bool | `true` |  |
+| acapy.staticArgs.autoRespondCredentialRequest | bool | `true` |  |
+| acapy.staticArgs.autoRespondMessages | bool | `true` |  |
+| acapy.staticArgs.autoRespondPresentationProposal | bool | `true` |  |
+| acapy.staticArgs.autoRespondPresentationRequest | bool | `true` |  |
+| acapy.staticArgs.autoStoreCredential | bool | `true` |  |
+| acapy.staticArgs.autoVerifyPresentation | bool | `true` |  |
+| acapy.staticArgs.logLevel | string | `"info"` |  |
+| acapy.staticArgs.monitorPing | bool | `true` |  |
+| acapy.staticArgs.publicInvites | bool | `true` |  |
 | acapy.tolerations | list | `[]` |  |
 | bpa.affinity | object | `{}` |  |
-| bpa.config | object | `{"bootstrap":{"password":"changeme","username":"admin"},"creddef":{"revocationRegistrySize":3000},"ledger":{"browser":"https://indy-test.bosch-digital.de"},"name":"Business Partner Agent","resolver":{"url":"https://resolver.stage.economyofthings.io"},"security":{"enabled":true},"web":{"only":false}}` | application config (remark: all new configuration values will sit here, the other ones can be migrated step by step) |
+| bpa.config.bootstrap.password | string | `"changeme"` |  |
+| bpa.config.bootstrap.username | string | `"admin"` |  |
+| bpa.config.creddef.revocationRegistrySize | int | `3000` |  |
+| bpa.config.did.prefixOverride | string | `""` |  |
+| bpa.config.did.value | string | `""` |  |
+| bpa.config.imprint.enabled | bool | `true` |  |
+| bpa.config.imprint.urlOverwrite | string | `""` |  |
+| bpa.config.ledger.browserUrlOverride | string | `""` |  |
+| bpa.config.name | string | `"Business Partner Agent"` |  |
+| bpa.config.privacyPolicy.enabled | bool | `true` |  |
+| bpa.config.privacyPolicy.urlOverwrite | string | `""` |  |
+| bpa.config.resolver.urlOverride | string | `""` |  |
+| bpa.config.scheme | string | `"https"` |  |
+| bpa.config.security.enabled | bool | `true` |  |
+| bpa.config.web.only | bool | `false` |  |
 | bpa.image.pullPolicy | string | `"IfNotPresent"` |  |
 | bpa.image.repository | string | `"ghcr.io/hyperledger-labs/business-partner-agent"` |  |
 | bpa.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
@@ -212,47 +251,81 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.ingress.annotations | object | `{}` |  |
 | bpa.ingress.enabled | bool | `true` |  |
 | bpa.ingress.tls | list | `[]` |  |
-| bpa.name | string | `"bpacore"` |  |
 | bpa.nodeSelector | object | `{}` |  |
-| bpa.openshift.route.enabled | bool | `false` | Set to true and bpa.ingress.enabled to false to use Openshift route templates |
-| bpa.openshift.route | object | `{"enabled": false, "path": "/", "targetPort": "http", "timeout": "30s", "tls": { "enabled": true, "insecureEdgeTerminationPolicy": "None", "termination": "edge" }, "wildcardPolicy": "None" }` | Configuration for the route, https/tls is optional |
+| bpa.openshift.route.enabled | bool | `false` |  |
+| bpa.openshift.route.path | string | `"/"` |  |
+| bpa.openshift.route.targetPort | string | `"http"` |  |
+| bpa.openshift.route.timeout | string | `"30s"` |  |
+| bpa.openshift.route.tls.enabled | bool | `true` |  |
+| bpa.openshift.route.tls.insecureEdgeTerminationPolicy | string | `"None"` |  |
+| bpa.openshift.route.tls.termination | string | `"edge"` |  |
+| bpa.openshift.route.wildcardPolicy | string | `"None"` |  |
 | bpa.podAnnotations | object | `{}` |  |
 | bpa.podSecurityContext | object | `{}` |  |
-| bpa.resources | object | `{}` |  |
+| bpa.resources.requests.cpu | string | `"100m"` |  |
+| bpa.resources.requests.memory | string | `"256Mi"` |  |
 | bpa.securityContext | object | `{}` |  |
 | bpa.service.port | int | `80` |  |
 | bpa.service.type | string | `"ClusterIP"` |  |
-| bpa.serviceAccount.annotations | object | `{}` |  |
-| bpa.serviceAccount.create | bool | `true` |  |
-| bpa.serviceAccount.name | string | `""` |  |
+| bpa.serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
+| bpa.serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
+| bpa.serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | bpa.tolerations | list | `[]` |  |
 | global.fullnameOverride | string | `""` |  |
-| global.ingressSuffix | string | `".example.com"` |  |
+| global.ingressSuffix | string | `".example.com"` | Domain suffix to be used for default hostpaths in ingress |
+| global.ledger | string | `"bosch-test"` | The used ledger. Will be used for default values. Any of: bosch-test, idu. |
 | global.nameOverride | string | `""` |  |
 | global.persistence.deployPostgres | bool | `true` | If true, the Postgres chart is deployed |
-| keycloak.enabled | bool | `false` | If true, adds security-keycloak.yml to micronaut config files |
-| keycloak.clientId | string |  | name of client in keycloak realm |
-| keycloak.clientSecret | string |  | value of client secret in keycloak realm |
-| keycloak.config | object | `{"rolesName": "roles", "nameKey": "preferred_username", "redirectUri": "${bpa.scheme}://${bpa.host}/logout", "scopes": "openid", "issuer": "<your keycloak realm issuer url>", "endsessionUrl": "<your keycloak realm end session url>" }` | configuration data, stored in ConfigMap, read by security-keycloak.yml |
+| keycloak.clientId | string | `"<your keycloak client id>"` |  |
+| keycloak.clientSecret | string | `"<your keycloak client secret>"` |  |
+| keycloak.config.endsessionUrl | string | `"<your keycloak realm end session url>"` |  |
+| keycloak.config.issuer | string | `"<your keycloak realm issuer url>"` |  |
+| keycloak.config.nameKey | string | `"preferred_username"` |  |
+| keycloak.config.redirectUri | string | `"${bpa.scheme}://${bpa.host}/logout"` |  |
+| keycloak.config.rolesName | string | `"roles"` |  |
+| keycloak.config.scopes | string | `"openid"` |  |
+| keycloak.enabled | bool | `false` |  |
+| postgresql.containerSecurityContext.enabled | bool | `true` |  |
 | postgresql.image.tag | int | `12` |  |
 | postgresql.persistence | object | `{"enabled":false}` | Persistent Volume Storage configuration. ref: https://kubernetes.io/docs/user-guide/persistent-volumes |
 | postgresql.persistence.enabled | bool | `false` | Enable PostgreSQL persistence using Persistent Volume Claims. |
 | postgresql.postgresqlDatabase | string | `"bpa"` | PostgreSQL Database to create. |
 | postgresql.postgresqlPassword | string | `"change-me"` | PostgreSQL Password for the new user. If not set, a random 10 characters password will be used. |
 | postgresql.postgresqlUsername | string | `"postgres"` | PostgreSQL User to create. Do not change - otherwise non-admin user is created! |
+| postgresql.resources.requests.cpu | string | `"100m"` |  |
+| postgresql.resources.requests.memory | string | `"256Mi"` |  |
+| postgresql.securityContext | object | `{"enabled":true}` | add securityContext (fsGroup, runAsUser). These need to be false for Openshift 4 |
 | postgresql.service | object | `{"port":5432}` | PostgreSQL service configuration |
-| schemas.enabled | bool | `false` | If true, adds schemas.yml to micronaut config files |
-| schemas.config | object | `{"bank-account": { "id": "UmZ25DANwS6ngGWB4ye4tN:2:BankAccount:0.1", "label": "Bank Account", "defaultAttributeName": "iban", "restrictions": [{"issuerDid": "did:sov:iil:UmZ25DANwS6ngGWB4ye4tN","label": "Demo Bank"}]},"commercial-register": {"id": "R6WR6n7CQVDjvvmwofHK6S:2:commercialregister:0.1", "label": "Commercial Register", "defaultAttributeName": "companyName", "restrictions": [{ "issuerDid": "did:sov:iil:R6WR6n7CQVDjvvmwofHK6S", "label": "Commercial Register" }]}}` | configuration data for schemas to load, stored in ConfigMap as schemas.yml, mounted into bpa deployment |
+| schemas.config | object | `{}` |  |
+| schemas.enabled | bool | `true` |  |
 
 ## Chart dependencies
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami/ | postgresql | 10.3.13 |
 
+## Chart development
+
+### Publish chart(s)
+
+See [publishing docu](../../PUBLISHING.md).
+
+### Documentation
+
+The chart documentation is generated via `helm-docs` out of a go template.
+
+```sh
+cd charts
+docker run --rm --volume "$(pwd):/helm-docs" -u $(id -u) jnorwood/helm-docs:latest
+```
+
 ## Maintainers
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Frank Bernhardt | Frank.Bernhardt@bosch.com |  |
-| Jason Sherman | jsherman@parcsystems.ca |  |
-| Jason Syrotuck | jason.syrotuck@nttdata.com |  |
+| frank-bee | Frank.Bernhardt@bosch.com | https://github.com/frank-bee |
+| parc-jason | jsherman@parcsystems.ca | https://github.com/parc-jason |
+| Jsyro | jason.syrotuck@nttdata.com | https://github.com/Jsyro |
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.4.0](https://github.com/norwoodj/helm-docs/releases/v1.4.0)

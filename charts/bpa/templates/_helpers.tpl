@@ -36,7 +36,7 @@ Create a default fully qualified bpa name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "bpa.fullname" -}}
-{{ template "global.fullname" . }}-{{ .Values.bpa.name }}
+{{ template "global.fullname" . }}-core
 {{- end -}}
 
 {{/*
@@ -44,7 +44,7 @@ Create a default fully qualified acapy name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "acapy.fullname" -}}
-{{ template "global.fullname" . }}-{{ .Values.acapy.name }}
+{{ template "global.fullname" . }}-acapy
 {{- end -}}
 
 {{/*
@@ -63,7 +63,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector bpa labels
 */}}
 {{- define "bpa.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "global.fullname" . }}-{{ .Values.bpa.name }}
+app.kubernetes.io/name: {{ include "global.fullname" . }}-core
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
@@ -90,6 +90,14 @@ generate hosts if not overriden
 {{- end }}
 
 {{/*
+generate ledger browser url
+*/}}
+{{- define "bpa.ledgerBrowser" -}}
+{{- $ledgerBrowser := dict "bosch-test" "https://indy-test.bosch-digital.de" "idu" "https://explorer.idu.network" -}}
+{{ .Values.bpa.config.ledger.browserUrlOverride | default ( get $ledgerBrowser .Values.global.ledger ) }}
+{{- end }}
+
+{{/*
 Common acapy labels
 */}}
 {{- define "acapy.labels" -}}
@@ -105,7 +113,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector acapy labels
 */}}
 {{- define "acapy.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "global.fullname" . }}-{{ .Values.acapy.name }}
+app.kubernetes.io/name: {{ include "global.fullname" . }}-acapy
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
@@ -158,6 +166,26 @@ Return seed
     {{- .Values.acapy.agentSeed -}}
 {{- else -}}
     {{- randAlphaNum 32 -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Return didPrefix
+*/}}
+{{- define "acapy.didPrefix" -}}
+{{- get (dict "bosch-test" "did:sov:iil:" "idu" "did:sov:idu:") .Values.global.ledger -}}
+{{- end -}}
+
+{{/*
+Return acapy label
+*/}}
+{{- define "acapy.label" -}}
+{{- if .Values.acapy.labelOverride }}
+    {{- .Values.acapy.labelOverride }}
+{{- else if .Values.bpa.config.did.value }}
+    {{- printf "%s%s:%s" (include "acapy.didPrefix" .) .Values.bpa.config.did.value .Release.Name -}}   
+{{ else }} 
+    {{- .Release.Name }}     
 {{- end -}}
 {{- end -}}
 
@@ -233,24 +261,14 @@ Create environment variables for database configuration.
 Return JAVA_OPTS -Dmicronaut.config.files
 */}}
 {{- define "bpa.config.files" -}}
-{{- if .Values.keycloak.enabled -}}
+{{- if and .Values.keycloak.enabled .Values.schemas.enabled -}}
+    classpath:application.yml,/home/indy/schemas.yml,classpath:security-keycloak.yml
+{{- else if .Values.keycloak.enabled  -}}
     classpath:application.yml,classpath:security-keycloak.yml
+{{- else if .Values.schemas.enabled -}}
+    classpath:application.yml,/home/indy/schemas.yml
 {{- else -}}
-    classpath:application.yml
-{{- end -}}
-{{- end -}}
-
-{{/*
-Return a configuration map value for imprint  and privacy policy urls
-*/}}
-{{- define "bpa.imprint.and.privacy.url" -}}
-{{- if (and .Values.bpa.config.imprint.url .Values.bpa.config.privacy.policy.url) -}}
-   {{- printf "BPA_IMPRINT_URL: %s" (.Values.bpa.config.imprint.url) | indent 2 -}}
-   {{- printf "BPA_PRIVACY_POLICY_URL: %s" (.Values.bpa.config.privacy.policy.url) | nindent 2 -}}
-{{ else if .Values.bpa.config.imprint.url }}
-   {{- printf "BPA_IMPRINT_URL: %s" (.Values.bpa.config.imprint.url) | indent 2 -}}
-{{ else if .Values.bpa.config.privacy.policy.url }}
-   {{- printf "BPA_PRIVACY_POLICY_URL: %s" (.Values.bpa.config.privacy.policy.url) | indent 2 -}}
+    classpath:application.yml    
 {{- end -}}
 {{- end -}}
 
@@ -297,7 +315,7 @@ volumes:
     configMap:
       name: {{ template "bpa.fullname" . }}-schemas
       items:
-      - key: "schemas.yaml"
+      - key: "schemas.yml"
         path: "schemas.yml"
 {{- end -}}
 {{- end -}}

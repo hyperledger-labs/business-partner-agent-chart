@@ -6,8 +6,40 @@ metadata:
   labels:
     {{- include "bpa.labels" . | nindent 4 }}
 data:
-  schemas.yaml: |-
+  schemas.yml: |-
     bpa:
       schemas:
+{{- if .Values.schemas.config }}
 {{ toYaml .Values.schemas.config | indent 8 }}
+{{- else if eq .Values.global.ledger "idu" }}
+        bank-account:
+          defaultAttributeName: "iban"
+          id: "UmZ25DANwS6ngGWB4ye4tN:2:BankAccount:0.1"
+          label: "Bank Account"
+          restrictions:
+          - issuerDid: "${bpa.did.prefix}UmZ25DANwS6ngGWB4ye4tN"
+            label: "Demo Bank"
+        commercial-register:
+          defaultAttributeName: "companyName"
+          id: "R6WR6n7CQVDjvvmwofHK6S:2:commercialregister:0.1"
+          label: "Commercial Register"
+          restrictions:
+          - issuerDid: "${bpa.did.prefix}R6WR6n7CQVDjvvmwofHK6S"
+            label: "Commercial Register"
+{{- else if eq .Values.global.ledger "bosch-test" }}
+        bank-account:
+          id: "M6Mbe3qx7vB4wpZF4sBRjt:2:bank_account:1.0"
+          label: "Bank Account"
+          defaultAttributeName: "iban"
+          restrictions:
+            - issuerDid: "${bpa.did.prefix}M6Mbe3qx7vB4wpZF4sBRjt"
+              label: "Demo Bank"
+        commercial-register:
+          id: "5mwQSWnRePrZ3oF67C4KqD:2:commercialregister:1.0"
+          label: "Commercial Register"
+          defaultAttributeName: "companyName"
+          restrictions:
+            - issuerDid: "${bpa.did.prefix}5mwQSWnRePrZ3oF67C4KqD"
+              label: "Commercial Register"
+{{- end -}}      
 {{- end -}}

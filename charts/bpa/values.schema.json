@@ -11,16 +11,10 @@
                 "affinity": {
                     "type": "object"
                 },
-                "agentName": {
-                    "type": "string",
-                    "description": "Agent name. It's helpful to set it in the as <DID>:<Human readable label>, e.g. did:sov:idu:XnEKP3WieQhNP7ugjV5r36:mybpa",
-                    "form": true
-                },
                 "agentSeed": {
                     "type": "string",
-                    "description": "The agent seed. Will be generated if not defined here.",
-                    "minLength": 32,
-                    "maxLength": 32,
+                    "description": "The agent's seed",
+                    "title": "Seed",
                     "form": true
                 },
                 "fullnameOverride": {
@@ -57,7 +51,7 @@
                         }
                     }
                 },
-                "name": {
+                "labelOverride": {
                     "type": "string"
                 },
                 "nameOverride": {
@@ -115,7 +109,20 @@
                     "type": "boolean"
                 },
                 "resources": {
-                    "type": "object"
+                    "type": "object",
+                    "properties": {
+                        "requests": {
+                            "type": "object",
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
                 },
                 "securityContext": {
                     "type": "object",
@@ -206,20 +213,24 @@
                         "bootstrap": {
                             "type": "object",
                             "description": "The administrator credentials.",
+                            "title": "Login Credentials",
                             "properties": {
-                                "password": {
-                                    "type": "string",
-                                    "form": true
-                                },
                                 "username": {
                                     "type": "string",
+                                    "title": "Username",
+                                    "form": true
+                                }, 
+                                "password": {
+                                    "type": "string",
+                                    "title": "Password",
                                     "form": true
                                 }
                             },
                             "form": true
                         },
                         "name": {
-                            "description": "Name shown in the frontend.",
+                            "description": "Human readable name shown in the frontend (may container whitespaces and so on).",
+                            "title": "Business Partner Name",
                             "type": "string",
                             "form": true
                         },
@@ -234,15 +245,27 @@
                         "did": {
                             "type": "object",
                             "properties": {
-                                "prefix": {
+                                "prefixOverride": {
                                     "type": "string"
+                                },
+                                "value": {
+                                    "description": "The DID, without ledger prefix.",
+                                    "title": "DID",
+                                    "type": "string",
+                                    "form": true
                                 }
                             }
                         },
                         "imprint": {
                             "type": "object",
                             "properties": {
-                                "url": {
+                                "enabled": {
+                                    "type": "boolean",
+                                    "description": "Check to show link to imprint page in frontend",
+                                    "title": "Show Imprint page?",
+                                    "form": true
+                                },
+                                "urlOverwrite": {
                                     "type": "string"
                                 }
                             }
@@ -250,28 +273,29 @@
                         "ledger": {
                             "type": "object",
                             "properties": {
-                                "browser": {
+                                "browserUrlOverride": {
                                     "type": "string"
                                 }
                             }
                         },
-                        "privacy": {
+                        "privacyPolicy": {
                             "type": "object",
                             "properties": {
-                                "policy": {
-                                    "type": "object",
-                                    "properties": {
-                                        "url": {
-                                            "type": "string"
-                                        }
-                                    }
+                                "enabled": {
+                                    "type": "boolean",
+                                    "description": "If checked, show link to privacy policy page in frontend",
+                                    "title": "Show policy page?",
+                                    "form": true
+                                },
+                                "urlOverwrite": {
+                                    "type": "string"
                                 }
                             }
                         },
                         "resolver": {
                             "type": "object",
                             "properties": {
-                                "url": {
+                                "urlOverride": {
                                     "type": "string"
                                 }
                             }
@@ -328,9 +352,6 @@
                         }
                     }
                 },
-                "name": {
-                    "type": "string"
-                },
                 "nodeSelector": {
                     "type": "object"
                 },
@@ -380,7 +401,20 @@
                     "type": "object"
                 },
                 "resources": {
-                    "type": "object"
+                    "type": "object",
+                    "properties": {
+                        "requests": {
+                            "type": "object",
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
                 },
                 "securityContext": {
                     "type": "object"
@@ -423,6 +457,13 @@
                 },
                 "ingressSuffix": {
                     "type": "string"
+                },
+                "ledger": {
+                    "type": "string",
+                    "enum": ["idu", "bosch-test"],
+                    "description": "The ledger to be configured",
+                    "title": "Ledger",
+                    "form": true
                 },
                 "nameOverride": {
                     "type": "string"
@@ -497,7 +538,10 @@
                     "type": "object",
                     "properties": {
                         "enabled": {
-                            "type": "boolean"
+                            "description": "Check to enable data persistance (recommended)",
+                            "type": "boolean",
+                            "title": "Persist data?",
+                            "form": true
                         }
                     }
                 },
@@ -509,6 +553,22 @@
                 },
                 "postgresqlUsername": {
                     "type": "string"
+                },
+                "resources": {
+                    "type": "object",
+                    "properties": {
+                        "requests": {
+                            "type": "object",
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
                 },
                 "securityContext": {
                     "type": "object",
@@ -532,65 +592,7 @@
             "type": "object",
             "properties": {
                 "config": {
-                    "type": "object",
-                    "properties": {
-                        "bank-account": {
-                            "type": "object",
-                            "properties": {
-                                "defaultAttributeName": {
-                                    "type": "string"
-                                },
-                                "id": {
-                                    "type": "string"
-                                },
-                                "label": {
-                                    "type": "string"
-                                },
-                                "restrictions": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "issuerDid": {
-                                                "type": "string"
-                                            },
-                                            "label": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "commercial-register": {
-                            "type": "object",
-                            "properties": {
-                                "defaultAttributeName": {
-                                    "type": "string"
-                                },
-                                "id": {
-                                    "type": "string"
-                                },
-                                "label": {
-                                    "type": "string"
-                                },
-                                "restrictions": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "issuerDid": {
-                                                "type": "string"
-                                            },
-                                            "label": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    "type": "object"
                 },
                 "enabled": {
                     "type": "boolean"
