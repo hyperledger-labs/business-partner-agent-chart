@@ -1,6 +1,7 @@
 # Business Partner Agent
 
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/business-partner-agent)](https://artifacthub.io/packages/search?repo=business-partner-agent)
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/hyperledger-labs/business-partner-agent-chart)
 
 The [Business Partner Agent](https://github.com/hyperledger-labs/business-partner-agent/) allows to manage and exchange master data between organizations.
 
@@ -27,14 +28,20 @@ See [Issues labled with `helm`](https://github.com/hyperledger-labs/business-par
 ### Locally run docu-gen 
 
 Run helm-docs before you create a PR to update the README.md:
-`docker run --rm --volume "$(pwd):/helm-docs" -u $(id -u) jnorwood/helm-docs:latest`
+````
+docker run --rm --volume "$(pwd):/helm-docs" -u $(id -u) jnorwood/helm-docs:latest
+```
+
+Ideally run the docu generation as pre-commit-hook, see [here](https://github.com/norwoodj/helm-docs#usage).
 
 ### Locally run linting / testing
 
 Lint:
-`docker run -it --rm --name ct --volume $(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config ct.yaml"`
+```
+docker run -it --rm --name ct --volume $(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config ct.yaml"
+```
 
 Test:
 Install ct locally and configure your cluster with kubectl.
-The following call will create an ephemeral namespace, install the char with default values and run the helm tests.
+The following call will create an ephemeral namespace, install the chart with default values and run the helm tests.
 `ct install --config ct.yaml --all`
