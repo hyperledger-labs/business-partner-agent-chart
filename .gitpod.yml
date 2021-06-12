@@ -1,5 +1,5 @@
 image:
-  file: dev/images/.gitpod.Dockerfile
+  file: dev/image/.gitpod.Dockerfile
 
 tasks:
   - name: Prepare workspace
