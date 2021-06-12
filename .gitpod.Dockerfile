@@ -4,8 +4,6 @@
 
 FROM gitpod/workspace-full-vnc:latest
 
-WORKDIR /dev/image
-
 ENV TRIGGER_REBUILD 12
 
 USER root
@@ -17,9 +15,12 @@ RUN install-packages qemu qemu-system-x86 linux-image-$(uname -r) libguestfs-too
 RUN install-packages clang-7 llvm-7
 
 ### cloud_sql_proxy ###
-ARG CLOUD_SQL_PROXY=/usr/local/bin/cloud_sql_proxy
-RUN curl -fsSL https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 > $CLOUD_SQL_PROXY \
-    && chmod +x $CLOUD_SQL_PROXY
+#ARG CLOUD_SQL_PROXY=/usr/local/bin/cloud_sql_proxy
+#RUN curl -fsSL https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 > $CLOUD_SQL_PROXY \
+#    && chmod +x $CLOUD_SQL_PROXY
+
+### Azure CLI ###
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb
 
 ### Helm3 ###
 RUN mkdir -p /tmp/helm/ \
@@ -30,13 +31,13 @@ RUN mkdir -p /tmp/helm/ \
     && helm completion bash > /usr/share/bash-completion/completions/helm
 
 ### kubernetes ###
-RUN mkdir -p /usr/local/kubernetes/ && \
-    curl -fsSL https://github.com/kubernetes/kubernetes/releases/download/v1.17.16/kubernetes.tar.gz \
-    | tar -xzvC /usr/local/kubernetes/ --strip-components=1 \
-    && KUBERNETES_SKIP_CONFIRM=true /usr/local/kubernetes/cluster/get-kube-binaries.sh \
-    && chown gitpod:gitpod -R /usr/local/kubernetes
-
-ENV PATH=$PATH:/usr/local/kubernetes/cluster/:/usr/local/kubernetes/client/bin/
+#RUN mkdir -p /usr/local/kubernetes/ && \
+#   curl -fsSL https://github.com/kubernetes/kubernetes/releases/download/v1.17.16/kubernetes.tar.gz \
+#    | tar -xzvC /usr/local/kubernetes/ --strip-components=1 \
+#    && KUBERNETES_SKIP_CONFIRM=true /usr/local/kubernetes/cluster/get-kube-binaries.sh \
+#    && chown gitpod:gitpod -R /usr/local/kubernetes
+#
+#ENV PATH=$PATH:/usr/local/kubernetes/cluster/:/usr/local/kubernetes/client/bin/
 
 ### kubectl ###
 RUN curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
@@ -135,7 +136,7 @@ RUN bash -c "pip uninstall crcmod; pip install --no-cache-dir -U crcmod"
 
 # Set kubeconfig file for dev cluster
 ARG KUBE_CONFIG_PATH=/home/gitpod/.kube/config
-COPY --chown=gitpod kubeconfig.yaml $KUBE_CONFIG_PATH
+COPY --chown=gitpod /dev/image/kubeconfig.yaml $KUBE_CONFIG_PATH
 
 ENV LEEWAY_WORKSPACE_ROOT=/workspace/gitpod
 ENV LEEWAY_REMOTE_CACHE_BUCKET=gitpod-core-leeway-cache-branch
