@@ -148,4 +148,5 @@ RUN sudo install-packages graphviz
 
 ENV PATH=$PATH:$HOME/.aws-iam:$HOME/.terraform
 
-RUN brew install norwoodj/tap/helm-docs pre-commit
+# brew : helm-docs, pre-commit, chart-testing
+RUN brew install norwoodj/tap/helm-docs pre-commit chart-testing
