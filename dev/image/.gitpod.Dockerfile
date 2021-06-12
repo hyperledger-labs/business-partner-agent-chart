@@ -4,6 +4,8 @@
 
 FROM gitpod/workspace-full-vnc:latest
 
+WORKDIR /dev/image
+
 ENV TRIGGER_REBUILD 12
 
 USER root
