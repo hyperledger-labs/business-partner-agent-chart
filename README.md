@@ -32,6 +32,8 @@ Run helm-docs before you create a PR to update the README.md:
 docker run --rm --volume "$(pwd):/helm-docs" -u $(id -u) jnorwood/helm-docs:latest
 ```
 
+Ideally run the docu generation as pre-commit-hook, see [here](https://github.com/norwoodj/helm-docs#usage).
+
 ### Locally run linting / testing
 
 Lint:
