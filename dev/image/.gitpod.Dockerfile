@@ -131,6 +131,10 @@ RUN sudo install-packages \
 
 RUN bash -c "pip uninstall crcmod; pip install --no-cache-dir -U crcmod"
 
+# Set kubeconfig file for dev cluster
+ARG KUBE_CONFIG_PATH=/home/gitpod/.kube/config
+COPY --chown=gitpod kubeconfig.yaml $KUBE_CONFIG_PATH
+
 ENV LEEWAY_WORKSPACE_ROOT=/workspace/gitpod
 ENV LEEWAY_REMOTE_CACHE_BUCKET=gitpod-core-leeway-cache-branch
 
