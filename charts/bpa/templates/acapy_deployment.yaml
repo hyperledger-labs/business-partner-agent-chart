@@ -12,8 +12,9 @@ spec:
       {{- include "acapy.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-    {{- with .Values.acapy.podAnnotations }}
       annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/acapy_configmap.yaml") . | sha256sum }}
+    {{- with .Values.acapy.podAnnotations }}
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
@@ -33,7 +34,7 @@ spec:
           imagePullPolicy: {{ .Values.acapy.image.pullPolicy }}
           args: [
            "-c",
-           "curl -d '{\"seed\":\"$(WALLET_SEED)\", \"role\":\"TRUST_ANCHOR\", \"alias\":\"{{ include "bpa.fullname" . }}\"}' -X POST {{ include "bpa.ledgerBrowser" . }}/register; \
+           "{{ include "acapy.registerLedger" . }} \
            sleep 15; \
            aca-py start \
            --auto-provision \

@@ -177,14 +177,25 @@ Return didPrefix
 {{- end -}}
 
 {{/*
+Return acapy initialization call
+*/}}
+{{- define "acapy.registerLedger" -}}
+{{- if eq .Values.global.ledger "bosch-test" -}}
+curl -d '{\"seed\":\"$(WALLET_SEED)\", \"role\":\"TRUST_ANCHOR\", \"alias\":\"{{ include "bpa.fullname" . }}\"}' -X POST {{ include "bpa.ledgerBrowser" . }}/register;
+{{- else if eq .Values.global.ledger "idu" -}}
+identifier=`curl --header 'Content-Type: application/json' -d '{\"seed\":\"$(WALLET_SEED)\", \"role\":\"ENDORSER\", \"send\":true}' -X POST node-agent-registrar.md.svc.cluster.local/register | tr { '\n' | tr , '\n' | tr } '\n' | grep \"identifier\" | awk  -F'\"' '{print $4}'`;
+{{- end -}}
+{{- end -}}
+
+{{/*
 Return acapy label
 */}}
 {{- define "acapy.label" -}}
-{{- if .Values.acapy.labelOverride }}
+{{- if .Values.acapy.labelOverride -}}
     {{- .Values.acapy.labelOverride }}
-{{- else if .Values.bpa.config.did.value }}
-    {{- printf "%s%s:%s" (include "acapy.didPrefix" .) .Values.bpa.config.did.value .Release.Name -}}   
-{{ else }} 
+{{- else if eq .Values.global.ledger "idu" -}}
+$identifier   
+{{- else -}} 
     {{- .Release.Name }}     
 {{- end -}}
 {{- end -}}

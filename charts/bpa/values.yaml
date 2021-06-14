@@ -48,7 +48,6 @@ bpa:
     did:
       # -- Will be otherwise calculated based on global.ledger config
       prefixOverride: ""
-      value: ""
     creddef:
       revocationRegistrySize: 3000
     imprint:

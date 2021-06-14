@@ -10,8 +10,15 @@ spec:
       {{- include "bpa.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-    {{- with .Values.bpa.podAnnotations }}
       annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/bpa_configmap.yaml") . | sha256sum }} 
+        {{- if .Values.keycloak.enabled  }}
+        checksum/configKeycloak: {{ include (print $.Template.BasePath "/bpa_configmap_keycloak.yaml") . | sha256sum }} 
+        {{- end }}   
+        {{- if .Values.schemas.enabled  }}
+        checksum/configSchemas: {{ include (print $.Template.BasePath "/bpa_configmap_schemas.yaml") . | sha256sum }}
+        {{- end }}
+    {{- with .Values.bpa.podAnnotations -}}  
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
