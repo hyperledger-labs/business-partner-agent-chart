@@ -12,8 +12,9 @@ spec:
       {{- include "acapy.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-    {{- with .Values.acapy.podAnnotations }}
       annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/acapy_configmap.yaml") . | sha256sum }}
+    {{- with .Values.acapy.podAnnotations }}
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
