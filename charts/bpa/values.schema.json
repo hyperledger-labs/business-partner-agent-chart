@@ -470,7 +470,15 @@
                             "type": "boolean"
                         }
                     }
+                },
+                "ux": {
+                    "type": "string",
+                    "enum": ["bosch", "bcgov"],
+                    "description": "The UX look and feel configuration",
+                    "title": "UX",
+                    "form": false
                 }
+
             }
         },
         "keycloak": {
@@ -584,6 +592,17 @@
             }
         },
         "schemas": {
+            "type": "object",
+            "properties": {
+                "config": {
+                    "type": "object"
+                },
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "ux": {
             "type": "object",
             "properties": {
                 "config": {

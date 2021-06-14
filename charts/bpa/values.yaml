@@ -16,6 +16,9 @@ global:
   # -- The used ledger. Will be used for default values. Any of: bosch-test, idu.
   ledger: bosch-test
 
+  # -- The ux configuration. Will be used for default values. Any of: bosch, bcgov.
+  ux: bosch
+
 bpa:
   image:
     repository: ghcr.io/hyperledger-labs/business-partner-agent
@@ -154,6 +157,10 @@ schemas:
 #      restrictions:
 #        - issuerDid: "${bpa.did.prefix}5mwQSWnRePrZ3oF67C4KqD"
 #          label: "Commercial Register"
+
+ux:
+  enabled: true
+  config: {}
 
 acapy:
   image:

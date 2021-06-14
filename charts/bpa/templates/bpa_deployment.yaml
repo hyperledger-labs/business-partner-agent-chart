@@ -18,6 +18,9 @@ spec:
         {{- if .Values.schemas.enabled  }}
         checksum/configSchemas: {{ include (print $.Template.BasePath "/bpa_configmap_schemas.yaml") . | sha256sum }}
         {{- end }}
+        {{- if .Values.ux.enabled  }}
+        checksum/configUx: {{ include (print $.Template.BasePath "/bpa_configmap_ux.yaml") . | sha256sum }}
+        {{- end }}
     {{- with .Values.bpa.podAnnotations -}}  
         {{- toYaml . | nindent 8 }}
     {{- end }}
@@ -60,10 +63,14 @@ spec:
                 -Dmicronaut.config.files={{ include "bpa.config.files" . }}
             {{- include "bpa.application.configmap.env.vars" . | nindent 10}}
             {{- include "bpa.keycloak.configmap.env.vars" . | nindent 12}}
-          {{- include "bpa.schemas.volume.mount" . | nindent 10}}
+            {{- include "bpa.volume.mounts" . | nindent 10}}
+            {{- include "bpa.volume.mounts.schemas" . | nindent 12}}
+            {{- include "bpa.volume.mounts.ux" . | nindent 12}}
           resources:
             {{- toYaml .Values.bpa.resources | nindent 12 }}
-          {{- include "bpa.schemas.volume" . | nindent 6}}
+      {{- include "bpa.volumes" . | nindent 6}}
+      {{- include "bpa.volumes.schemas" . | nindent 8}}
+      {{- include "bpa.volumes.ux" . | nindent 8}}
       {{- with .Values.bpa.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
