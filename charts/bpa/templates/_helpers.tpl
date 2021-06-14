@@ -183,7 +183,7 @@ Return acapy initialization call
 {{- if eq .Values.global.ledger "bosch-test" -}}
 curl -d '{\"seed\":\"$(WALLET_SEED)\", \"role\":\"TRUST_ANCHOR\", \"alias\":\"{{ include "bpa.fullname" . }}\"}' -X POST {{ include "bpa.ledgerBrowser" . }}/register;
 {{- else if eq .Values.global.ledger "idu" -}}
-identifier=$(curl --header 'Content-Type: application/json' -d '{\"seed\":\"$(WALLET_SEED)\", \"role\":\"ENDORSER\", \"send\":false}' -X POST registrar-node-agent-registrar/register  | tr { '\n' | tr , '\n' | tr } '\n' | grep \"identifier\" | awk  -F'\"' '{print $4}');
+identifier=`curl --header 'Content-Type: application/json' -d '{\"seed\":\"$(WALLET_SEED)\", \"role\":\"ENDORSER\", \"send\":false}' -X POST node-agent-registrar.md.svc.cluster.local/register | tr { '\n' | tr , '\n' | tr } '\n' | grep \"identifier\" | awk  -F'\"' '{print $4}'`;
 {{- end -}}
 {{- end -}}
 
