@@ -272,12 +272,18 @@ Create environment variables for database configuration.
 Return JAVA_OPTS -Dmicronaut.config.files
 */}}
 {{- define "bpa.config.files" -}}
-{{- if and .Values.keycloak.enabled .Values.schemas.enabled -}}
+{{- if and .Values.keycloak.enabled .Values.schemas.enabled .Values.ux.enabled -}}
+    classpath:application.yml,/home/indy/schemas.yml,/home/indy/ux.yml,classpath:security-keycloak.yml
+{{- else if and .Values.keycloak.enabled .Values.schemas.enabled -}}
     classpath:application.yml,/home/indy/schemas.yml,classpath:security-keycloak.yml
+{{- else if and .Values.keycloak.enabled .Values.ux.enabled -}}
+    classpath:application.yml,/home/indy/ux.yml,classpath:security-keycloak.yml
 {{- else if .Values.keycloak.enabled  -}}
     classpath:application.yml,classpath:security-keycloak.yml
 {{- else if .Values.schemas.enabled -}}
     classpath:application.yml,/home/indy/schemas.yml
+{{- else if .Values.ux.enabled -}}
+    classpath:application.yml,/home/indy/ux.yml
 {{- else -}}
     classpath:application.yml    
 {{- end -}}
@@ -317,29 +323,72 @@ envFrom:
 {{- end -}}
 
 {{/*
-If schemas is enabled, create a volume for the config map
+If schemas or ux is enabled, create a volumes for the config maps
 */}}
-{{- define "bpa.schemas.volume" -}}
-{{- if (.Values.schemas.enabled) -}}
+{{- define "bpa.volumes" -}}
+{{- if or (.Values.schemas.enabled) (.Values.ux.enabled) -}}
 volumes:
-  - name: config
-    configMap:
-      name: {{ template "bpa.fullname" . }}-schemas
-      items:
-      - key: "schemas.yml"
-        path: "schemas.yml"
 {{- end -}}
 {{- end -}}
 
 {{/*
-If schemas is enabled, create a volume mount for the config map
+If schemas is enabled, create a volume for the config maps
 */}}
-{{- define "bpa.schemas.volume.mount" -}}
+{{- define "bpa.volumes.schemas" -}}
 {{- if (.Values.schemas.enabled) -}}
+- name: config-schemas
+  configMap:
+    name: {{ template "bpa.fullname" . }}-schemas
+    items:
+    - key: "schemas.yml"
+      path: "schemas.yml"
+{{- end -}}
+{{- end -}}
+
+{{/*
+If ux is enabled, create a volume for the config maps
+*/}}
+{{- define "bpa.volumes.ux" -}}
+{{- if (.Values.ux.enabled) -}}
+- name: config-ux
+  configMap:
+    name: {{ template "bpa.fullname" . }}-ux
+    items:
+    - key: "ux.yml"
+      path: "ux.yml"
+{{- end -}}
+{{- end -}}
+
+
+{{/*
+If schemas or ux is enabled, create a volume mounts for the config maps
+*/}}
+{{- define "bpa.volume.mounts" -}}
+{{- if or (.Values.schemas.enabled) (.Values.ux.enabled) -}}
 volumeMounts:
-- name: config
+{{- end -}}
+{{- end -}}
+
+{{/*
+If schemas is enabled, create a volume mount
+*/}}
+{{- define "bpa.volume.mounts.schemas" -}}
+{{- if (.Values.schemas.enabled) -}}
+- name: config-schemas
   mountPath: "/home/indy/schemas.yml"
   subPath: "schemas.yml"
+  readOnly: true
+{{- end -}}
+{{- end -}}
+
+{{/*
+If ux is enabled, create a volume mount
+*/}}
+{{- define "bpa.volume.mounts.ux" -}}
+{{- if (.Values.ux.enabled) -}}
+- name: config-ux
+  mountPath: "/home/indy/ux.yml"
+  subPath: "ux.yml"
   readOnly: true
 {{- end -}}
 {{- end -}}
