@@ -1,0 +1,128 @@
+{{- if (.Values.ux.enabled) -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "bpa.fullname" . }}-ux
+  labels:
+    {{- include "bpa.labels" . | nindent 4 }}
+data:
+  ux.yml: |-
+    bpa:
+      ux:
+{{- if .Values.ux.config }}
+{{ toYaml .Values.ux.config | indent 8 }}
+{{ toYaml .Values.ux.config | indent 8 }}
+{{- else if eq .Values.global.ux "bosch" }}
+        theme:
+          override: false
+          dark: false
+          themes:
+            light:
+              # these are the default light theme colors except primary...
+              primary: '#4A148C'
+              secondary: '#424242'
+              accent: '#82B1FF'
+              error: '#FF5252'
+              info: '#2196F3'
+              success: '#4CAF50'
+              warning: '#FFC107'
+              # these are required for styles.scss variables
+              bgLight: "#FAFAFA"
+              bgLight2: "#ECECEC"
+              font: "#313132"
+              anchor: "#1A5A96"
+              anchorHover: "#3B99FC"
+        favicon:
+          override: false
+          href: ""
+        navigation:
+          avatar:
+            agent:
+              enabled: true
+              default: true
+              src: ""
+              subtitle: ""
+            user:
+              enabled: false
+          settings:
+            location: "top"
+            title: Settings
+          about:
+            enabled: true
+            title: About
+          logout:
+            enabled: false
+            title: Log out
+        header:
+          title:
+            prefix: false
+          logout:
+            enabled: true
+            title: Log out
+          logo:
+            enabled: false
+            href: ""
+            alt: ""
+            images: []
+{{- else if eq .Values.global.ux "bcgov" }}
+        theme:
+          override: true
+          dark: false
+          themes:
+            light:
+              primary: '#003366'
+              secondary: '#003366'
+              accent: '#82B1FF'
+              error: '#D8292F'
+              info: '#2196F3'
+              success: '#2E8540'
+              warning: '#FFC107'
+              bgLight: "#FAFAFA"
+              bgLight2: "#ECECEC"
+              font: "#313132"
+              anchor: "#1A5A96"
+              anchorHover: "#3B99FC"
+        favicon:
+          override: true
+          href: "https://raw.githubusercontent.com/bcgov/common-forms-toolkit/master/app/frontend/public/favicon.ico"
+        navigation:
+          avatar:
+            agent:
+              enabled: false
+              default: true
+              src: ""
+              subtitle: ""
+            user:
+              enabled: true
+          settings:
+            location: "bottom"
+            title: Settings
+          about:
+            enabled: false
+            title: About
+          logout:
+            enabled: true
+            title: Sign out
+        header:
+          title:
+            prefix: true
+          logout:
+            enabled: false
+            title: Sign out
+          logo:
+            enabled: true
+            href: "https://www2.gov.bc.ca"
+            alt: "B.C. Government Logo"
+            images:
+              - name: "small"
+                class: "d-none d-sm-flex d-md-none"
+                height: "3.5rem"
+                src: "https://raw.githubusercontent.com/bcgov/common-forms-toolkit/master/app/frontend/src/assets/images/bc_logo_square.svg"
+                width: "3.5rem"
+              - name: "medium"
+                class: "d-none d-md-flex"
+                height: "3.5rem"
+                src: "https://raw.githubusercontent.com/bcgov/common-forms-toolkit/master/app/frontend/src/assets/images/bc_logo.svg"
+                width: "10rem"
+{{- end -}}
+{{- end -}}
