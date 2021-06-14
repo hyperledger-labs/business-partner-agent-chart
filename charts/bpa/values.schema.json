@@ -13,9 +13,7 @@
                 },
                 "agentSeed": {
                     "type": "string",
-                    "description": "The agent's seed",
-                    "title": "Seed",
-                    "form": true
+                    "description": "The agent's seed"
                 },
                 "fullnameOverride": {
                     "type": "string"
@@ -249,10 +247,7 @@
                                     "type": "string"
                                 },
                                 "value": {
-                                    "description": "The DID, without ledger prefix.",
-                                    "title": "DID",
-                                    "type": "string",
-                                    "form": true
+                                    "type": "string"
                                 }
                             }
                         },

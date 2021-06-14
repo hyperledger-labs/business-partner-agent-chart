@@ -34,7 +34,7 @@ spec:
           imagePullPolicy: {{ .Values.acapy.image.pullPolicy }}
           args: [
            "-c",
-           "curl -d '{\"seed\":\"$(WALLET_SEED)\", \"role\":\"TRUST_ANCHOR\", \"alias\":\"{{ include "bpa.fullname" . }}\"}' -X POST {{ include "bpa.ledgerBrowser" . }}/register; \
+           "{{ include "acapy.registerLedger" . }} \
            sleep 15; \
            aca-py start \
            --auto-provision \

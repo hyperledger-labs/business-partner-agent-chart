@@ -80,7 +80,6 @@ The Business Partner Agent allows to manage and exchange master data between org
 | bpa.config.bootstrap.username | string | `"admin"` |  |
 | bpa.config.creddef.revocationRegistrySize | int | `3000` |  |
 | bpa.config.did.prefixOverride | string | `""` | Will be otherwise calculated based on global.ledger config |
-| bpa.config.did.value | string | `""` |  |
 | bpa.config.imprint.enabled | bool | `false` |  |
 | bpa.config.imprint.url | string | `"{{ printf \"https://bpa%s/\" .Values.global.ingressSuffix }}"` |  |
 | bpa.config.ledger.browserUrlOverride | string | `""` |  |
