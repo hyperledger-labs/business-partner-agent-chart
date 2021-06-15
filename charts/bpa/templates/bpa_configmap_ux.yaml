@@ -11,8 +11,7 @@ data:
       ux:
 {{- if .Values.ux.config }}
 {{ toYaml .Values.ux.config | indent 8 }}
-{{ toYaml .Values.ux.config | indent 8 }}
-{{- else if eq .Values.global.ux "bosch" }}
+{{- else if eq .Values.global.ux "default" }}
         theme:
           override: false
           dark: false
@@ -41,24 +40,19 @@ data:
               enabled: true
               default: true
               src: ""
-              subtitle: ""
             user:
               enabled: false
           settings:
             location: "top"
-            title: Settings
           about:
             enabled: true
-            title: About
           logout:
             enabled: false
-            title: Log out
         header:
           title:
             prefix: false
           logout:
             enabled: true
-            title: Log out
           logo:
             enabled: false
             href: ""
@@ -91,24 +85,19 @@ data:
               enabled: false
               default: true
               src: ""
-              subtitle: ""
             user:
               enabled: true
           settings:
             location: "bottom"
-            title: Settings
           about:
             enabled: false
-            title: About
           logout:
             enabled: true
-            title: Sign out
         header:
           title:
             prefix: true
           logout:
             enabled: false
-            title: Sign out
           logo:
             enabled: true
             href: "https://www2.gov.bc.ca"
