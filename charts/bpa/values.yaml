@@ -16,8 +16,8 @@ global:
   # -- The used ledger. Will be used for default values. Any of: bosch-test, idu.
   ledger: bosch-test
 
-  # -- The ux configuration. Will be used for default values. Any of: bosch, bcgov.
-  ux: bosch
+  # -- The ux configuration. Will be used for default values. Any of: default, bcgov.
+  ux: default
 
 bpa:
   image:

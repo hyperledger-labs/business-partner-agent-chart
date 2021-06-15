@@ -270,23 +270,20 @@ Create environment variables for database configuration.
 
 {{/*
 Return JAVA_OPTS -Dmicronaut.config.files
+Always return application.yml add in other files if they are enabled.
 */}}
 {{- define "bpa.config.files" -}}
-{{- if and .Values.keycloak.enabled .Values.schemas.enabled .Values.ux.enabled -}}
-    classpath:application.yml,/home/indy/schemas.yml,/home/indy/ux.yml,classpath:security-keycloak.yml
-{{- else if and .Values.keycloak.enabled .Values.schemas.enabled -}}
-    classpath:application.yml,/home/indy/schemas.yml,classpath:security-keycloak.yml
-{{- else if and .Values.keycloak.enabled .Values.ux.enabled -}}
-    classpath:application.yml,/home/indy/ux.yml,classpath:security-keycloak.yml
-{{- else if .Values.keycloak.enabled  -}}
-    classpath:application.yml,classpath:security-keycloak.yml
-{{- else if .Values.schemas.enabled -}}
-    classpath:application.yml,/home/indy/schemas.yml
-{{- else if .Values.ux.enabled -}}
-    classpath:application.yml,/home/indy/ux.yml
-{{- else -}}
-    classpath:application.yml    
+{{- $configFiles := list "classpath:application.yml"}}
+{{- if .Values.schemas.enabled -}}
+{{- $configFiles = append $configFiles "/home/indy/schemas.yml" -}}
 {{- end -}}
+{{- if .Values.ux.enabled -}}
+{{- $configFiles = append $configFiles "/home/indy/ux.yml" -}}
+{{- end -}}
+{{- if .Values.keycloak.enabled -}}
+{{- $configFiles = append $configFiles "classpath:security-keycloak.yml" -}}
+{{- end -}}
+{{- join "," $configFiles -}}
 {{- end -}}
 
 {{/*

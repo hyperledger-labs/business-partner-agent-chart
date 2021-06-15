@@ -473,10 +473,7 @@
                 },
                 "ux": {
                     "type": "string",
-                    "enum": ["bosch", "bcgov"],
-                    "description": "The UX look and feel configuration",
-                    "title": "UX",
-                    "form": false
+                    "enum": ["default", "bcgov"]
                 }
 
             }
