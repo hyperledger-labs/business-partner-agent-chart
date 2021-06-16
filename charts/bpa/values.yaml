@@ -41,7 +41,7 @@ bpa:
       url: "{{ printf \"https://resolver%s\" .Values.global.ingressSuffix }}"
     ledger:
       browserUrlOverride: ""
-    name: "{{ .Release.Name }}"
+    name: "{{ camelcase .Release.Name }}"
     scheme: https
     web:
       only: false
