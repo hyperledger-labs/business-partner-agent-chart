@@ -1,11 +1,12 @@
 # Business Partner Agent
 
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/business-partner-agent)](https://artifacthub.io/packages/search?repo=business-partner-agent)
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/hyperledger-labs/business-partner-agent-chart)
 
 The [Business Partner Agent](https://github.com/hyperledger-labs/business-partner-agent/) allows to manage and exchange master data between organizations.
 
 This chart will install a business partner agent (bpa-core & bpa-acapy) and Postgres.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/hyperledger-labs/business-partner-agent-chart)
 
 ## TL;DR
 
