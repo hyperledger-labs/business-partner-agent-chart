@@ -16,7 +16,9 @@ global:
   # -- The used ledger. Will be used for default values. Any of: bosch-test, idu.
   ledger: bosch-test
 
-  # -- The ux configuration. Will be used for default values. Any of: default, bcgov.
+  # -- The ux preset configuration.
+  # -- Allowed values: default, bcgov.
+  # -- This is used with ux.enabled property and provides preset for ux.config
   ux: default
 
 bpa:
@@ -44,7 +46,7 @@ bpa:
       url: "{{ printf \"https://resolver%s\" .Values.global.ingressSuffix }}"
     ledger:
       browserUrlOverride: ""
-    name: "{{ camelcase .Release.Name }}"
+    name: "{{ .Release.Name }}"
     scheme: https
     web:
       only: false
