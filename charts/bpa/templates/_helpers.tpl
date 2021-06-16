@@ -323,7 +323,7 @@ envFrom:
 Are we overriding the UX?
 */}}
 {{- define "bpa.ux.override" -}}
-{{- if and (.Values.ux.enabled) (ne .Values.global.ux "default") -}}
+{{- if ne .Values.ux.preset "default" -}}
 {{- printf "true" }}
 {{- else -}}
 {{- printf "false" }}

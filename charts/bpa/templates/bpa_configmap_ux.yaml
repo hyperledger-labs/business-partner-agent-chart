@@ -9,9 +9,9 @@ data:
   ux.yml: |-
     bpa:
       ux:
-{{- if .Values.ux.config }}
+{{- if eq .Values.ux.preset "custom" }}
 {{ toYaml .Values.ux.config | indent 8 }}
-{{- else if eq .Values.global.ux "bcgov" }}
+{{- else if eq .Values.ux.preset "bcgov" }}
         theme:
           dark: false
           themes:
