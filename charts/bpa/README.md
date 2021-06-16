@@ -1,6 +1,6 @@
 # bpa
 
-![Version: 0.6.0-alpha05](https://img.shields.io/badge/Version-0.6.0--alpha05-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-86b02ee6](https://img.shields.io/badge/AppVersion-sha--86b02ee6-informational?style=flat-square)
+![Version: 0.6.0-alpha06](https://img.shields.io/badge/Version-0.6.0--alpha06-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-8f1bec60](https://img.shields.io/badge/AppVersion-sha--8f1bec60-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
