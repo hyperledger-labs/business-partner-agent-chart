@@ -162,6 +162,13 @@ ux:
   # -- When using preset=custom, you need to populate the config object.
   preset: default
   config: {}
+#    buttons:
+#      primary:
+#        text: false
+#        outlined: false
+#      secondary:
+#        text: true
+#        outlined: false
 #    theme:
 #      dark: false
 #      themes:
