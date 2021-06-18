@@ -7,7 +7,6 @@ The Business Partner Agent allows to manage and exchange master data between org
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
 This chart will install a business partner agent (bpa-core, bpa-acapy) and postgres.
-
 It will also create the default ingress routes.
 
 ## TL;DR
