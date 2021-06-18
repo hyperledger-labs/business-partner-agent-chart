@@ -277,7 +277,7 @@ Always return application.yml add in other files if they are enabled.
 {{- if .Values.schemas.enabled -}}
 {{- $configFiles = append $configFiles "/home/indy/schemas.yml" -}}
 {{- end -}}
-{{- if .Values.ux.enabled -}}
+{{- if eq (include "bpa.ux.override" .) "true" -}}
 {{- $configFiles = append $configFiles "/home/indy/ux.yml" -}}
 {{- end -}}
 {{- if .Values.keycloak.enabled -}}
@@ -320,10 +320,21 @@ envFrom:
 {{- end -}}
 
 {{/*
+Are we overriding the UX?
+*/}}
+{{- define "bpa.ux.override" -}}
+{{- if ne .Values.ux.preset "default" -}}
+{{- printf "true" }}
+{{- else -}}
+{{- printf "false" }}
+{{- end -}}
+{{- end -}}
+
+{{/*
 If schemas or ux is enabled, create a volumes for the config maps
 */}}
 {{- define "bpa.volumes" -}}
-{{- if or (.Values.schemas.enabled) (.Values.ux.enabled) -}}
+{{- if or (.Values.schemas.enabled) (eq (include "bpa.ux.override" .) "true") -}}
 volumes:
 {{- end -}}
 {{- end -}}
@@ -346,7 +357,7 @@ If schemas is enabled, create a volume for the config maps
 If ux is enabled, create a volume for the config maps
 */}}
 {{- define "bpa.volumes.ux" -}}
-{{- if (.Values.ux.enabled) -}}
+{{- if eq (include "bpa.ux.override" .) "true" -}}
 - name: config-ux
   configMap:
     name: {{ template "bpa.fullname" . }}-ux
@@ -361,7 +372,7 @@ If ux is enabled, create a volume for the config maps
 If schemas or ux is enabled, create a volume mounts for the config maps
 */}}
 {{- define "bpa.volume.mounts" -}}
-{{- if or (.Values.schemas.enabled) (.Values.ux.enabled) -}}
+{{- if or (.Values.schemas.enabled) (eq (include "bpa.ux.override" .) "true") -}}
 volumeMounts:
 {{- end -}}
 {{- end -}}
@@ -382,7 +393,7 @@ If schemas is enabled, create a volume mount
 If ux is enabled, create a volume mount
 */}}
 {{- define "bpa.volume.mounts.ux" -}}
-{{- if (.Values.ux.enabled) -}}
+{{- if eq (include "bpa.ux.override" .) "true" -}}
 - name: config-ux
   mountPath: "/home/indy/ux.yml"
   subPath: "ux.yml"

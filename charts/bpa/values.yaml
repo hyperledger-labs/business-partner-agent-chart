@@ -16,9 +16,6 @@ global:
   # -- The used ledger. Will be used for default values. Any of: bosch-test, idu.
   ledger: bosch-test
 
-  # -- The ux configuration. Will be used for default values. Any of: default, bcgov.
-  ux: default
-
 bpa:
   image:
     repository: ghcr.io/hyperledger-labs/business-partner-agent
@@ -159,8 +156,61 @@ schemas:
 #          label: "Commercial Register"
 
 ux:
-  enabled: true
+  # -- The ux preset configuration.
+  # -- Allowed values: bcgov, custom, default
+  # -- When using preset=default, no ux configmaps will be created; app runs with default configuration
+  # -- When using preset=custom, you need to populate the config object.
+  preset: default
   config: {}
+#    buttons:
+#      primary:
+#        text: false
+#        outlined: false
+#      secondary:
+#        text: true
+#        outlined: false
+#    theme:
+#      dark: false
+#      themes:
+#        light:
+#          primary: '#4A148C'
+#          secondary: '#424242'
+#          accent: '#82B1FF'
+#          error: '#FF5252'
+#          info: '#2196F3'
+#          success: '#4CAF50'
+#          warning: '#FFC107'
+#          bgLight: "#FAFAFA"
+#          bgLight2: "#ECECEC"
+#          font: "#313132"
+#          anchor: "#1A5A96"
+#          anchorHover: "#3B99FC"
+#    favicon:
+#      href: "<url to fav icon>"
+#    navigation:
+#      avatar:
+#        agent:
+#          enabled: true
+#          default: true
+#          src: ""
+#        user:
+#          enabled: false
+#      settings:
+#        location: "top"
+#      about:
+#        enabled: true
+#      logout:
+#        enabled: false
+#    header:
+#      title:
+#        prefix: false
+#      logout:
+#        enabled: true
+#      logo:
+#        enabled: false
+#        href: ""
+#        alt: ""
+#        images: []
 
 acapy:
   image:

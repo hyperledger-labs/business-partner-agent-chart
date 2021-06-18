@@ -470,10 +470,6 @@
                             "type": "boolean"
                         }
                     }
-                },
-                "ux": {
-                    "type": "string",
-                    "enum": ["default", "bcgov"]
                 }
 
             }
@@ -605,8 +601,9 @@
                 "config": {
                     "type": "object"
                 },
-                "enabled": {
-                    "type": "boolean"
+                "preset": {
+                    "type": "string",
+                    "enum": ["bcgov", "custom", "default"]
                 }
             }
         }
