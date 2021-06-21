@@ -46,10 +46,16 @@ spec:
               protocol: TCP
           readinessProbe:
             httpGet:
-              path: /health
+              path: /readiness
               port: 8080
             initialDelaySeconds: 20
             periodSeconds: 10  
+          livenessProbe:
+            httpGet:
+              path: /liveness
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 20   
           env:
             - name: POSTGRES_PASSWORD
               valueFrom:
