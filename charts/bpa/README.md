@@ -2,7 +2,7 @@
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
-![Version: 0.6.0-alpha07](https://img.shields.io/badge/Version-0.6.0--alpha07-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-8f1bec60](https://img.shields.io/badge/AppVersion-sha--8f1bec60-informational?style=flat-square)
+![Version: 0.6.0-alpha09](https://img.shields.io/badge/Version-0.6.0--alpha09-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-06da9227](https://img.shields.io/badge/AppVersion-sha--06da9227-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -274,7 +274,6 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | global.ledger | string | `"bosch-test"` | The used ledger. Will be used for default values. Any of: bosch-test, idu. |
 | global.nameOverride | string | `""` |  |
 | global.persistence.deployPostgres | bool | `true` | If true, the Postgres chart is deployed |
-| global.ux | string | `"default"` | The ux configuration. Will be used for default values. Any of: default, bcgov. |
 | keycloak.clientId | string | `"<your keycloak client id>"` |  |
 | keycloak.clientSecret | string | `"<your keycloak client secret>"` |  |
 | keycloak.config.endsessionUrl | string | `"<your keycloak realm end session url>"` |  |
@@ -298,7 +297,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | schemas.config | object | `{}` |  |
 | schemas.enabled | bool | `true` |  |
 | ux.config | object | `{}` |  |
-| ux.enabled | bool | `true` |  |
+| ux.preset | string | `"default"` | The ux preset configuration. -- Allowed values: bcgov, custom, default -- When using preset=default, no ux configmaps will be created; app runs with default configuration -- When using preset=custom, you need to populate the config object. |
 
 ## Chart dependencies
 | Repository | Name | Version |
