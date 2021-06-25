@@ -4,7 +4,7 @@ Deploy BC Registries to Openshift Test
 
 ```
 export INGRESS_SUFFIX=-test.apps.silver.devops.gov.bc.ca
-export KEYCLOAK_CLIENT_SECRET=9fc29bf5-1e50-4ae3-9b69-f4cf6ebd0c4a
+export KEYCLOAK_CLIENT_SECRET=<get from the keycloak realm and specific client>
 export ISSUER_URL=https://test.oidc.gov.bc.ca/auth/realms/digitaltrust
 export END_SESSION_URL=https://test.oidc.gov.bc.ca/auth/realms/digitaltrust/protocol/openid-connect/logout
 
