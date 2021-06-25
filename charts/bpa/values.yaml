@@ -56,6 +56,10 @@ bpa:
     privacyPolicy:
       enabled: false
       url: "{{ printf \"https://bpa%s/privacyPolicy\" .Values.global.ingressSuffix }}"
+    title: Business Partner Agent
+    i18n:
+      locale: en
+      fallbackLocale: en
 
   imagePullSecrets: []
 
