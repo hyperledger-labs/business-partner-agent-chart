@@ -251,6 +251,17 @@
                                 }
                             }
                         },
+                        "i18n": {
+                            "type": "object",
+                            "properties": {
+                                "fallbackLocale": {
+                                    "type": "string"
+                                },
+                                "locale": {
+                                  "type": "string"
+                                }
+                            }
+                        },
                         "imprint": {
                             "type": "object",
                             "properties": {
@@ -305,6 +316,9 @@
                                     "type": "boolean"
                                 }
                             }
+                        },
+                        "title": {
+                            "type": "string"
                         },
                         "web": {
                             "type": "object",

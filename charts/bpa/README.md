@@ -232,6 +232,8 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.bootstrap.username | string | `"admin"` |  |
 | bpa.config.creddef.revocationRegistrySize | int | `3000` |  |
 | bpa.config.did.prefixOverride | string | `""` | Will be otherwise calculated based on global.ledger config |
+| bpa.config.i18n.fallbackLocale | string | `en` |  |
+| bpa.config.i18n.locale | string | `en` |  |
 | bpa.config.imprint.enabled | bool | `false` |  |
 | bpa.config.imprint.url | string | `"{{ printf \"https://bpa%s/\" .Values.global.ingressSuffix }}"` |  |
 | bpa.config.ledger.browserUrlOverride | string | `""` |  |
@@ -241,6 +243,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.resolver.url | string | `"{{ printf \"https://resolver%s\" .Values.global.ingressSuffix }}"` |  |
 | bpa.config.scheme | string | `"https"` |  |
 | bpa.config.security.enabled | bool | `true` |  |
+| bpa.config.title | string | `"Business Partner Agent"` |  |
 | bpa.config.web.only | bool | `false` |  |
 | bpa.image.pullPolicy | string | `"IfNotPresent"` |  |
 | bpa.image.repository | string | `"ghcr.io/hyperledger-labs/business-partner-agent"` |  |
