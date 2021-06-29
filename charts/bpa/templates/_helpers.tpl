@@ -416,3 +416,36 @@ tls:
   termination: {{ .Values.acapy.openshift.route.tls.termination }}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Set the Business Partner Agent name
+Default is .Values.bpa.config.name, which is Release name in the values.yaml
+If check the overwrite.name is set in values.yaml or --set, then use that value.
+*/}}
+{{- define "business.partner.agent.name" -}}
+{{- $name := (tpl .Values.bpa.config.name .) }}
+{{- if .Values.bpa.config.overwrite.name -}}
+{{- $name = (tpl .Values.bpa.config.overwrite.name .) -}}
+{{- end -}}
+{{- $name -}}
+{{- end -}}
+
+
+{{/*
+Set the Business Partner Agent Browser Title value.
+This will be the title in the browser or tab.
+Default is .Values.bpa.config.title, which is Release name in the values.yaml
+If we are overriding the name, then use that...
+And finally, if the title has an explicit overwrite value, then use that
+*/}}
+{{- define "business.partner.browser.title" -}}
+{{- $title := (tpl .Values.bpa.config.title .) }}
+{{- if .Values.bpa.config.overwrite.name -}}
+{{- $title = (tpl .Values.bpa.config.overwrite.name .) -}}
+{{- end -}}
+{{- if .Values.bpa.config.overwrite.title -}}
+{{- $title = (tpl .Values.bpa.config.overwrite.title .) -}}
+{{- end -}}
+{{- $title -}}
+{{- end -}}
+

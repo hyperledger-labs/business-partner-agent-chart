@@ -3,6 +3,8 @@
 {{- $acapyUrl := (printf "http://%s:%g" (include "acapy.fullname" .) (.Values.acapy.service.adminPort)) -}}
 {{- $acapyEndpoint := (printf "https://%s" ($acapyIngressHost)) -}}
 {{- $didPrefix := include "acapy.didPrefix" . -}} 
+{{- $agentName := include "business.partner.agent.name" . -}}
+{{- $browserTitle := include "business.partner.browser.title" . -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -10,7 +12,7 @@ metadata:
   labels:
     {{- include "bpa.labels" . | nindent 4 }}
 data:
-  AGENT_NAME: {{ tpl .Values.bpa.config.name . | quote }}
+  AGENT_NAME: {{ $agentName | quote }}
   ACAPY_URL: {{ $acapyUrl | quote }}
   ACAPY_ENDPOINT: {{ $acapyEndpoint | quote }}
   ACAPY_API_KEY: {{ .Values.acapy.adminURLApiKey | quote }}
@@ -26,7 +28,7 @@ data:
   BPA_BOOTSTRAP_UN: {{ .Values.bpa.config.bootstrap.username | quote }}
   BPA_BOOTSTRAP_PW: {{ .Values.bpa.config.bootstrap.password | quote }}
   BPA_CREDDEF_REVOCATION_REGISTRY_SIZE: {{ .Values.bpa.config.creddef.revocationRegistrySize | quote }}
-  BPA_TITLE: {{ .Values.bpa.config.title | quote }}
+  BPA_TITLE: {{ $browserTitle | quote }}
   BPA_I18N_LOCALE: {{ .Values.bpa.config.i18n.locale | quote }}
   BPA_I18N_FALLBACK_LOCALE: {{ .Values.bpa.config.i18n.fallbackLocale | quote }}
 {{- if .Values.bpa.config.imprint.enabled }}
