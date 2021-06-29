@@ -284,6 +284,17 @@
                                 }
                             }
                         },
+                        "overwrite": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            }
+                        },
                         "privacyPolicy": {
                             "type": "object",
                             "properties": {

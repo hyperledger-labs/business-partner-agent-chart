@@ -238,12 +238,14 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.imprint.url | string | `"{{ printf \"https://bpa%s/\" .Values.global.ingressSuffix }}"` |  |
 | bpa.config.ledger.browserUrlOverride | string | `""` |  |
 | bpa.config.name | string | `"{{ camelcase .Release.Name }}"` |  |
+| bpa.config.overwrite.name | string |  | Set value to override bpa.config.name |
+| bpa.config.overwrite.title | string |  | Set value to override bpa.config.title |
 | bpa.config.privacyPolicy.enabled | bool | `false` |  |
 | bpa.config.privacyPolicy.url | string | `"{{ printf \"https://bpa%s/privacyPolicy\" .Values.global.ingressSuffix }}"` |  |
 | bpa.config.resolver.url | string | `"{{ printf \"https://resolver%s\" .Values.global.ingressSuffix }}"` |  |
 | bpa.config.scheme | string | `"https"` |  |
 | bpa.config.security.enabled | bool | `true` |  |
-| bpa.config.title | string | `"Business Partner Agent"` |  |
+| bpa.config.title | string | `"{{ camelcase .Release.Name }}"` |  |
 | bpa.config.web.only | bool | `false` |  |
 | bpa.image.pullPolicy | string | `"IfNotPresent"` |  |
 | bpa.image.repository | string | `"ghcr.io/hyperledger-labs/business-partner-agent"` |  |
