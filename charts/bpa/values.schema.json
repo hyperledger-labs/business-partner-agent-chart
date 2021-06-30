@@ -226,11 +226,8 @@
                             },
                             "form": true
                         },
-                        "name": {
-                            "description": "Human readable name shown in the frontend (may container whitespaces and so on).",
-                            "title": "Business Partner Name",
-                            "type": "string",
-                            "form": true
+                        "nameOverride": {
+                            "type": "string"
                         },
                         "creddef": {
                             "type": "object",
@@ -271,7 +268,7 @@
                                     "title": "Show Imprint page?",
                                     "form": true
                                 },
-                                "urlOverwrite": {
+                                "urlOverride": {
                                     "type": "string"
                                 }
                             }
@@ -280,17 +277,6 @@
                             "type": "object",
                             "properties": {
                                 "browserUrlOverride": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "overwrite": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "title": {
                                     "type": "string"
                                 }
                             }
@@ -304,7 +290,7 @@
                                     "title": "Show policy page?",
                                     "form": true
                                 },
-                                "urlOverwrite": {
+                                "urlOverride": {
                                     "type": "string"
                                 }
                             }

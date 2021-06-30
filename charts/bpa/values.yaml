@@ -32,16 +32,21 @@ bpa:
     name: ""
 
   config:
+    # -- Override name shown in the frontend (may container whitespaces and so on). Default: Helm release name, capitalized
+    nameOverride: ""
+
+    # -- Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given)
+    titleOverride: ""
+
     security:
       enabled: true
     bootstrap:
       username: admin
       password: changeme
     resolver:
-      url: "{{ printf \"https://resolver%s\" .Values.global.ingressSuffix }}"
+      urlOverride: ""
     ledger:
       browserUrlOverride: ""
-    name: "{{ camelcase .Release.Name }}"
     scheme: https
     web:
       only: false
@@ -52,17 +57,13 @@ bpa:
       revocationRegistrySize: 3000
     imprint:
       enabled: false
-      url: "{{ printf \"https://bpa%s/\" .Values.global.ingressSuffix }}"
+      urlOverride: ""
     privacyPolicy:
       enabled: false
-      url: "{{ printf \"https://bpa%s/privacyPolicy\" .Values.global.ingressSuffix }}"
-    title: "{{ camelcase .Release.Name }}"
+      urlOverride: ""
     i18n:
       locale: en
       fallbackLocale: en
-    overwrite:
-      name: ""
-      title: ""
 
   imagePullSecrets: []
 
