@@ -416,3 +416,30 @@ tls:
   termination: {{ .Values.acapy.openshift.route.tls.termination }}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Set the Business Partner Agent name
+*/}}
+{{- define "business.partner.agent.name" -}}
+{{- $name := camelcase .Release.Name }}
+{{- if .Values.bpa.config.nameOverride -}}
+{{- $name = (tpl .Values.bpa.config.nameOverride .) -}}
+{{- end -}}
+{{- $name -}}
+{{- end -}}
+
+
+{{/*
+Set the Business Partner Agent Browser Title value.
+*/}}
+{{- define "business.partner.browser.title" -}}
+{{- $title := camelcase .Release.Name }}
+{{- if .Values.bpa.config.nameOverride -}}
+{{- $title = (tpl .Values.bpa.config.nameOverride .) -}}
+{{- end -}}
+{{- if .Values.bpa.config.titleOverride -}}
+{{- $title = (tpl .Values.bpa.config.titleOverride .) -}}
+{{- end -}}
+{{- $title -}}
+{{- end -}}
+

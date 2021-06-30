@@ -2,7 +2,7 @@
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
-![Version: 0.6.0](https://img.shields.io/badge/Version-0.6.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.6.0](https://img.shields.io/badge/AppVersion-0.6.0-informational?style=flat-square)
+![Version: 0.7.0-alpha01](https://img.shields.io/badge/Version-0.7.0--alpha01-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-ee1621b5](https://img.shields.io/badge/AppVersion-sha--ee1621b5-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -186,7 +186,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.fullnameOverride | string | `""` |  |
 | acapy.image.pullPolicy | string | `"IfNotPresent"` |  |
 | acapy.image.repository | string | `"bcgovimages/aries-cloudagent"` |  |
-| acapy.image.tag | string | `"py36-1.16-0_0.6.0"` | Overrides the image tag whose default is the chart appVersion. |
+| acapy.image.tag | string | `"py36-1.16-0_0.7-pre.3"` | Overrides the image tag whose default is the chart appVersion. |
 | acapy.imagePullSecrets | list | `[]` |  |
 | acapy.ingress.annotations | object | `{}` |  |
 | acapy.ingress.enabled | bool | `true` |  |
@@ -232,15 +232,18 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.bootstrap.username | string | `"admin"` |  |
 | bpa.config.creddef.revocationRegistrySize | int | `3000` |  |
 | bpa.config.did.prefixOverride | string | `""` | Will be otherwise calculated based on global.ledger config |
+| bpa.config.i18n.fallbackLocale | string | `"en"` |  |
+| bpa.config.i18n.locale | string | `"en"` |  |
 | bpa.config.imprint.enabled | bool | `false` |  |
-| bpa.config.imprint.url | string | `"{{ printf \"https://bpa%s/\" .Values.global.ingressSuffix }}"` |  |
+| bpa.config.imprint.urlOverride | string | `""` |  |
 | bpa.config.ledger.browserUrlOverride | string | `""` |  |
-| bpa.config.name | string | `"{{ camelcase .Release.Name }}"` |  |
+| bpa.config.nameOverride | string | `""` | Override name shown in the frontend (may container whitespaces and so on). Default: Helm release name, capitalized |
 | bpa.config.privacyPolicy.enabled | bool | `false` |  |
-| bpa.config.privacyPolicy.url | string | `"{{ printf \"https://bpa%s/privacyPolicy\" .Values.global.ingressSuffix }}"` |  |
-| bpa.config.resolver.url | string | `"{{ printf \"https://resolver%s\" .Values.global.ingressSuffix }}"` |  |
+| bpa.config.privacyPolicy.urlOverride | string | `""` |  |
+| bpa.config.resolver.urlOverride | string | `""` |  |
 | bpa.config.scheme | string | `"https"` |  |
 | bpa.config.security.enabled | bool | `true` |  |
+| bpa.config.titleOverride | string | `""` | Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given) |
 | bpa.config.web.only | bool | `false` |  |
 | bpa.image.pullPolicy | string | `"IfNotPresent"` |  |
 | bpa.image.repository | string | `"ghcr.io/hyperledger-labs/business-partner-agent"` |  |

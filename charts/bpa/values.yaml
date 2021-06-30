@@ -32,16 +32,21 @@ bpa:
     name: ""
 
   config:
+    # -- Override name shown in the frontend (may container whitespaces and so on). Default: Helm release name, capitalized
+    nameOverride: ""
+
+    # -- Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given)
+    titleOverride: ""
+
     security:
       enabled: true
     bootstrap:
       username: admin
       password: changeme
     resolver:
-      url: "{{ printf \"https://resolver%s\" .Values.global.ingressSuffix }}"
+      urlOverride: ""
     ledger:
       browserUrlOverride: ""
-    name: "{{ camelcase .Release.Name }}"
     scheme: https
     web:
       only: false
@@ -52,10 +57,13 @@ bpa:
       revocationRegistrySize: 3000
     imprint:
       enabled: false
-      url: "{{ printf \"https://bpa%s/\" .Values.global.ingressSuffix }}"
+      urlOverride: ""
     privacyPolicy:
       enabled: false
-      url: "{{ printf \"https://bpa%s/privacyPolicy\" .Values.global.ingressSuffix }}"
+      urlOverride: ""
+    i18n:
+      locale: en
+      fallbackLocale: en
 
   imagePullSecrets: []
 
@@ -217,7 +225,7 @@ acapy:
     repository: bcgovimages/aries-cloudagent
     pullPolicy: IfNotPresent
     # --  Overrides the image tag whose default is the chart appVersion.
-    tag: py36-1.16-0_0.6.0
+    tag: py36-1.16-0_0.7-pre.3
 
   adminURLApiKey: 2f9729eef0be49608c1cffd49ee3cc4a
 

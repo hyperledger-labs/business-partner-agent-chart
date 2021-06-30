@@ -3,6 +3,8 @@
 {{- $acapyUrl := (printf "http://%s:%g" (include "acapy.fullname" .) (.Values.acapy.service.adminPort)) -}}
 {{- $acapyEndpoint := (printf "https://%s" ($acapyIngressHost)) -}}
 {{- $didPrefix := include "acapy.didPrefix" . -}} 
+{{- $agentName := include "business.partner.agent.name" . -}}
+{{- $browserTitle := include "business.partner.browser.title" . -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -10,14 +12,14 @@ metadata:
   labels:
     {{- include "bpa.labels" . | nindent 4 }}
 data:
-  AGENT_NAME: {{ tpl .Values.bpa.config.name . | quote }}
+  AGENT_NAME: {{ $agentName | quote }}
   ACAPY_URL: {{ $acapyUrl | quote }}
   ACAPY_ENDPOINT: {{ $acapyEndpoint | quote }}
   ACAPY_API_KEY: {{ .Values.acapy.adminURLApiKey | quote }}
   POSTGRESQL_HOST: {{ include "global.postgresql.fullname" . | quote }}
   POSTGRESQL_USER: {{ .Values.postgresql.postgresqlUsername | quote }}
   BPA_SECURITY_ENABLED: {{ .Values.bpa.config.security.enabled | quote }}
-  BPA_RESOLVER_URL: {{ tpl .Values.bpa.config.resolver.url . | quote }}
+  BPA_RESOLVER_URL: {{ .Values.bpa.config.resolver.urlOverride | default (printf "https://resolver%s" .Values.global.ingressSuffix) | quote }}
   BPA_LEDGER_BROWSER: {{ include "bpa.ledgerBrowser" . | quote }}
   BPA_HOST: {{ $bpaIngressHost | quote }}
   BPA_SCHEME: {{ .Values.bpa.config.scheme | quote }}
@@ -26,9 +28,12 @@ data:
   BPA_BOOTSTRAP_UN: {{ .Values.bpa.config.bootstrap.username | quote }}
   BPA_BOOTSTRAP_PW: {{ .Values.bpa.config.bootstrap.password | quote }}
   BPA_CREDDEF_REVOCATION_REGISTRY_SIZE: {{ .Values.bpa.config.creddef.revocationRegistrySize | quote }}
+  BPA_TITLE: {{ $browserTitle | quote }}
+  BPA_I18N_LOCALE: {{ .Values.bpa.config.i18n.locale | quote }}
+  BPA_I18N_FALLBACK_LOCALE: {{ .Values.bpa.config.i18n.fallbackLocale | quote }}
 {{- if .Values.bpa.config.imprint.enabled }}
-  BPA_IMPRINT_URL: {{ tpl .Values.bpa.config.imprint.url . | quote }}
+  BPA_IMPRINT_URL: {{ .Values.bpa.config.imprint.urlOverride | default (printf "https://bpa%s/" .Values.global.ingressSuffix) | quote }}
 {{- end }}   
 {{- if .Values.bpa.config.privacyPolicy.enabled }}
-  BPA_PRIVACY_POLICY_URL: {{ tpl .Values.bpa.config.privacyPolicy.url . | quote }}
+  BPA_PRIVACY_POLICY_URL: {{ tpl .Values.bpa.config.privacyPolicy.urlOverride . | default (printf "https://bpa%s/privacyPolicy" .Values.global.ingressSuffix) | quote }}
 {{- end }}
