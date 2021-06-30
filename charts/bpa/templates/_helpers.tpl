@@ -419,13 +419,11 @@ tls:
 
 {{/*
 Set the Business Partner Agent name
-Default is .Values.bpa.config.name, which is Release name in the values.yaml
-If check the overwrite.name is set in values.yaml or --set, then use that value.
 */}}
 {{- define "business.partner.agent.name" -}}
-{{- $name := (tpl .Values.bpa.config.name .) }}
-{{- if .Values.bpa.config.overwrite.name -}}
-{{- $name = (tpl .Values.bpa.config.overwrite.name .) -}}
+{{- $name := camelcase .Release.Name }}
+{{- if .Values.bpa.config.nameOverride -}}
+{{- $name = (tpl .Values.bpa.config.nameOverride .) -}}
 {{- end -}}
 {{- $name -}}
 {{- end -}}
@@ -433,18 +431,14 @@ If check the overwrite.name is set in values.yaml or --set, then use that value.
 
 {{/*
 Set the Business Partner Agent Browser Title value.
-This will be the title in the browser or tab.
-Default is .Values.bpa.config.title, which is Release name in the values.yaml
-If we are overriding the name, then use that...
-And finally, if the title has an explicit overwrite value, then use that
 */}}
 {{- define "business.partner.browser.title" -}}
-{{- $title := (tpl .Values.bpa.config.title .) }}
-{{- if .Values.bpa.config.overwrite.name -}}
-{{- $title = (tpl .Values.bpa.config.overwrite.name .) -}}
+{{- $title := camelcase .Release.Name }}
+{{- if .Values.bpa.config.nameOverride -}}
+{{- $title = (tpl .Values.bpa.config.nameOverride .) -}}
 {{- end -}}
-{{- if .Values.bpa.config.overwrite.title -}}
-{{- $title = (tpl .Values.bpa.config.overwrite.title .) -}}
+{{- if .Values.bpa.config.titleOverride -}}
+{{- $title = (tpl .Values.bpa.config.titleOverride .) -}}
 {{- end -}}
 {{- $title -}}
 {{- end -}}
