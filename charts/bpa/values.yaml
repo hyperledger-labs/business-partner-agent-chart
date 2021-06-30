@@ -225,7 +225,7 @@ acapy:
     repository: bcgovimages/aries-cloudagent
     pullPolicy: IfNotPresent
     # --  Overrides the image tag whose default is the chart appVersion.
-    tag: bcgovimages/aries-cloudagent:py36-1.16-0_0.7-pre.3
+    tag: py36-1.16-0_0.7-pre.3
 
   adminURLApiKey: 2f9729eef0be49608c1cffd49ee3cc4a
 
