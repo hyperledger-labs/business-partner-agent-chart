@@ -2,7 +2,7 @@
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
-![Version: 0.7.0-alpha01](https://img.shields.io/badge/Version-0.7.0--alpha01-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-ee1621b5](https://img.shields.io/badge/AppVersion-sha--ee1621b5-informational?style=flat-square)
+![Version: 0.7.0-alpha02](https://img.shields.io/badge/Version-0.7.0--alpha02-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-ee1621b5](https://img.shields.io/badge/AppVersion-sha--ee1621b5-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -72,7 +72,7 @@ Create a yaml file.
 ```yaml
 cat <<EOT >> values-mybpa.yaml
 acapy:
-  agentName: did:sov:idu:1234:agentname
+  agentName: did:sov:1234:agentname
   agentSeed: 12345678912345678912345678900011
   resources:
     requests:
@@ -83,13 +83,9 @@ bpa:
     bootstrap:
       password: changeme
       username: admin
-    did:
-      prefix: 'did:sov:idu:'
     ledger:
       browser: https://explorer.idu.network
     name: My BPA
-    resolver:
-      url: https://resolver.stage.economyofthings.io
   resources:
     requests:
       cpu: 100m
@@ -112,14 +108,14 @@ schemas:
       id: UmZ25DANwS6ngGWB4ye4tN:2:BankAccount:0.1
       label: Bank Account
       restrictions:
-      - issuerDid: did:sov:idu:UmZ25DANwS6ngGWB4ye4tN
+      - issuerDid: did:sov:UmZ25DANwS6ngGWB4ye4tN
         label: Demo Bank
     commercial-register:
       defaultAttributeName: companyName
       id: R6WR6n7CQVDjvvmwofHK6S:2:commercialregister:0.1
       label: Commercial Register
       restrictions:
-      - issuerDid: did:sov:idu:R6WR6n7CQVDjvvmwofHK6S
+      - issuerDid: did:sov:R6WR6n7CQVDjvvmwofHK6S
         label: Commercial Register
   enabled: true
 
@@ -231,7 +227,6 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.bootstrap.password | string | `"changeme"` |  |
 | bpa.config.bootstrap.username | string | `"admin"` |  |
 | bpa.config.creddef.revocationRegistrySize | int | `3000` |  |
-| bpa.config.did.prefixOverride | string | `""` | Will be otherwise calculated based on global.ledger config |
 | bpa.config.i18n.fallbackLocale | string | `"en"` |  |
 | bpa.config.i18n.locale | string | `"en"` |  |
 | bpa.config.imprint.enabled | bool | `false` |  |
@@ -240,7 +235,6 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.nameOverride | string | `""` | Override name shown in the frontend (may container whitespaces and so on). Default: Helm release name, capitalized |
 | bpa.config.privacyPolicy.enabled | bool | `false` |  |
 | bpa.config.privacyPolicy.urlOverride | string | `""` |  |
-| bpa.config.resolver.urlOverride | string | `""` |  |
 | bpa.config.scheme | string | `"https"` |  |
 | bpa.config.security.enabled | bool | `true` |  |
 | bpa.config.titleOverride | string | `""` | Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given) |

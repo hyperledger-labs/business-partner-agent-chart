@@ -71,7 +71,7 @@ Create a yaml file.
 ```yaml
 cat <<EOT >> values-mybpa.yaml
 acapy:
-  agentName: did:sov:idu:1234:agentname
+  agentName: did:sov:1234:agentname
   agentSeed: 12345678912345678912345678900011
   resources:
     requests:
@@ -82,13 +82,9 @@ bpa:
     bootstrap:
       password: changeme
       username: admin
-    did:
-      prefix: 'did:sov:idu:'
     ledger:
       browser: https://explorer.idu.network
     name: My BPA
-    resolver:
-      url: https://resolver.stage.economyofthings.io
   resources:
     requests:
       cpu: 100m
@@ -111,14 +107,14 @@ schemas:
       id: UmZ25DANwS6ngGWB4ye4tN:2:BankAccount:0.1
       label: Bank Account
       restrictions:
-      - issuerDid: did:sov:idu:UmZ25DANwS6ngGWB4ye4tN
+      - issuerDid: did:sov:UmZ25DANwS6ngGWB4ye4tN
         label: Demo Bank
     commercial-register:
       defaultAttributeName: companyName
       id: R6WR6n7CQVDjvvmwofHK6S:2:commercialregister:0.1
       label: Commercial Register
       restrictions:
-      - issuerDid: did:sov:idu:R6WR6n7CQVDjvvmwofHK6S
+      - issuerDid: did:sov:R6WR6n7CQVDjvvmwofHK6S
         label: Commercial Register
   enabled: true
 

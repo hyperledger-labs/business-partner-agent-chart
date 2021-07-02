@@ -2,7 +2,6 @@
 {{- $bpaIngressHost := include "bpa.host" . -}}
 {{- $acapyUrl := (printf "http://%s:%g" (include "acapy.fullname" .) (.Values.acapy.service.adminPort)) -}}
 {{- $acapyEndpoint := (printf "https://%s" ($acapyIngressHost)) -}}
-{{- $didPrefix := include "acapy.didPrefix" . -}} 
 {{- $agentName := include "business.partner.agent.name" . -}}
 {{- $browserTitle := include "business.partner.browser.title" . -}}
 apiVersion: v1
@@ -19,12 +18,10 @@ data:
   POSTGRESQL_HOST: {{ include "global.postgresql.fullname" . | quote }}
   POSTGRESQL_USER: {{ .Values.postgresql.postgresqlUsername | quote }}
   BPA_SECURITY_ENABLED: {{ .Values.bpa.config.security.enabled | quote }}
-  BPA_RESOLVER_URL: {{ .Values.bpa.config.resolver.urlOverride | default (printf "https://resolver%s" .Values.global.ingressSuffix) | quote }}
   BPA_LEDGER_BROWSER: {{ include "bpa.ledgerBrowser" . | quote }}
   BPA_HOST: {{ $bpaIngressHost | quote }}
   BPA_SCHEME: {{ .Values.bpa.config.scheme | quote }}
   BPA_WEB_MODE: {{ .Values.bpa.config.web.only | quote }}
-  BPA_DID_PREFIX: {{ .Values.bpa.config.did.prefixOverride | default $didPrefix | quote }}
   BPA_BOOTSTRAP_UN: {{ .Values.bpa.config.bootstrap.username | quote }}
   BPA_BOOTSTRAP_PW: {{ .Values.bpa.config.bootstrap.password | quote }}
   BPA_CREDDEF_REVOCATION_REGISTRY_SIZE: {{ .Values.bpa.config.creddef.revocationRegistrySize | quote }}
