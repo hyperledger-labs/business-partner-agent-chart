@@ -194,6 +194,22 @@ $identifier
 {{- end -}}
 
 {{/*
+generate tails baseUrl
+*/}}
+{{- define "acapy.tails.baseUrl" -}}
+{{- $tailsBaseUrl := dict "bosch-test" "http://test-tails:6543" "idu" "http://idu-tails:6543" -}}
+{{ .Values.acapy.tails.baseUrlOverride| default ( get $tailsBaseUrl .Values.global.ledger ) }}
+{{- end }}
+
+{{/*
+generate tails uploadUrl
+*/}}
+{{- define "acapy.tails.uploadUrl" -}}
+{{- $tailsUploadUrl:= dict "bosch-test" (printf "https://tails-test%s" .Values.global.ingressSuffix) "idu" (printf "https://tails%s" .Values.global.ingressSuffix) -}}
+{{ .Values.acapy.tails.uploadUrlOverride| default ( get $tailsUploadUrl .Values.global.ledger ) }}
+{{- end }}
+
+{{/*
 Create a default fully qualified app name for the postgres requirement.
 */}}
 {{- define "global.postgresql.fullname" -}}

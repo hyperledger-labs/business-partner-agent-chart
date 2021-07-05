@@ -2,7 +2,7 @@
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
-![Version: 0.7.0-alpha02](https://img.shields.io/badge/Version-0.7.0--alpha02-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-ee1621b5](https://img.shields.io/badge/AppVersion-sha--ee1621b5-informational?style=flat-square)
+![Version: 0.7.0-alpha03](https://img.shields.io/badge/Version-0.7.0--alpha03-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-ee1621b5](https://img.shields.io/badge/AppVersion-sha--ee1621b5-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -222,6 +222,9 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.staticArgs.logLevel | string | `"info"` |  |
 | acapy.staticArgs.monitorPing | bool | `true` |  |
 | acapy.staticArgs.publicInvites | bool | `true` |  |
+| acapy.tails.baseUrlOverride | string | `""` | Override the otherwise ledger-specifically generated base URL of the external tails server |
+| acapy.tails.enabled | bool | `false` | Set to true to enable revocation (external tails server required) |
+| acapy.tails.uploadUrlOverride | string | `""` | Override the otherwise ledger-specifically generated upload URL of the external tails server |
 | acapy.tolerations | list | `[]` |  |
 | bpa.affinity | object | `{}` |  |
 | bpa.config.bootstrap.password | string | `"changeme"` |  |
