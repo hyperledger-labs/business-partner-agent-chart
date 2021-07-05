@@ -217,7 +217,7 @@
                                     "type": "string",
                                     "title": "Username",
                                     "form": true
-                                }, 
+                                },
                                 "password": {
                                     "type": "string",
                                     "title": "Password",
@@ -237,17 +237,6 @@
                                 }
                             }
                         },
-                        "did": {
-                            "type": "object",
-                            "properties": {
-                                "prefixOverride": {
-                                    "type": "string"
-                                },
-                                "value": {
-                                    "type": "string"
-                                }
-                            }
-                        },
                         "i18n": {
                             "type": "object",
                             "properties": {
@@ -255,7 +244,7 @@
                                     "type": "string"
                                 },
                                 "locale": {
-                                  "type": "string"
+                                    "type": "string"
                                 }
                             }
                         },
@@ -290,14 +279,6 @@
                                     "title": "Show policy page?",
                                     "form": true
                                 },
-                                "urlOverride": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "resolver": {
-                            "type": "object",
-                            "properties": {
                                 "urlOverride": {
                                     "type": "string"
                                 }

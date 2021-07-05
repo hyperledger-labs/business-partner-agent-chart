@@ -43,16 +43,11 @@ bpa:
     bootstrap:
       username: admin
       password: changeme
-    resolver:
-      urlOverride: ""
     ledger:
       browserUrlOverride: ""
     scheme: https
     web:
       only: false
-    did:
-      # -- Will be otherwise calculated based on global.ledger config
-      prefixOverride: ""
     creddef:
       revocationRegistrySize: 3000
     imprint:

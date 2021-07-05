@@ -170,13 +170,6 @@ Return seed
 {{- end -}}
 
 {{/*
-Return didPrefix
-*/}}
-{{- define "acapy.didPrefix" -}}
-{{- get (dict "bosch-test" "did:sov:iil:" "idu" "did:sov:idu:") .Values.global.ledger -}}
-{{- end -}}
-
-{{/*
 Return acapy initialization call
 */}}
 {{- define "acapy.registerLedger" -}}
