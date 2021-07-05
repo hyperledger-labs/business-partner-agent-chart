@@ -106,6 +106,23 @@
                 "readOnlyMode": {
                     "type": "boolean"
                 },
+                "tails": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Check to enable revocation (external tails server required)",
+                            "title": "Enable revocation support?",
+                            "form": true
+                        },
+                        "baseUrlOverride": {
+                            "type": "string"
+                        },
+                        "uploadUrlOverride": {
+                            "type": "string"
+                        }   
+                    }
+                },
                 "resources": {
                     "type": "object",
                     "properties": {
