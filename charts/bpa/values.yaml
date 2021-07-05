@@ -284,7 +284,7 @@ acapy:
   tails:
     # -- Set to true to enable revocation (external tails server required)
     enabled: false
-    
+
     # -- Override the otherwise ledger-specifically generated base URL of the external tails server
     baseUrlOverride: ""
 
