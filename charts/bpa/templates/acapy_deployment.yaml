@@ -52,6 +52,10 @@ spec:
            --admin '0.0.0.0' {{ .Values.acapy.service.adminPort }} \
            --admin-insecure-mode \
            --label {{ $acapyLabel }} \
+           {{- if .Values.acapy.tails.enabled }}
+           --tails-server-base-url {{ include "acapy.tails.baseUrl" . }} \
+           --tails-server-upload-url {{ include "acapy.tails.uploadUrl" . }} \
+           {{- end }}
            {{- if .Values.acapy.readOnlyMode }}
            --read-only-ledger \
            {{- end }}
