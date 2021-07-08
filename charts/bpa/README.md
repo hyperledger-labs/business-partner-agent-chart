@@ -2,7 +2,7 @@
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
-![Version: 0.7.0-alpha04](https://img.shields.io/badge/Version-0.7.0--alpha04-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-3abcc49a](https://img.shields.io/badge/AppVersion-sha--3abcc49a-informational?style=flat-square)
+![Version: 0.7.0-alpha05](https://img.shields.io/badge/Version-0.7.0--alpha05-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-5c5073f0](https://img.shields.io/badge/AppVersion-sha--5c5073f0-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -182,7 +182,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.fullnameOverride | string | `""` |  |
 | acapy.image.pullPolicy | string | `"IfNotPresent"` |  |
 | acapy.image.repository | string | `"bcgovimages/aries-cloudagent"` |  |
-| acapy.image.tag | string | `"py36-1.16-0_0.7-pre.3"` | Overrides the image tag whose default is the chart appVersion. |
+| acapy.image.tag | string | `"py36-1.16-1_0.7.0rc0"` | Overrides the image tag whose default is the chart appVersion. |
 | acapy.imagePullSecrets | list | `[]` |  |
 | acapy.ingress.annotations | object | `{}` |  |
 | acapy.ingress.enabled | bool | `true` |  |
