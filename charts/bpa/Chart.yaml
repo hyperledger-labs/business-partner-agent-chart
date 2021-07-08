@@ -4,7 +4,7 @@ description: The Business Partner Agent allows to manage and exchange master dat
 type: application
 
 version: 0.7.0-alpha05
-appVersion: sha-5c5073f0
+appVersion: sha-7beec350
 
 home: "https://github.com/hyperledger-labs/business-partner-agent-chart"
 sources: ["https://github.com/hyperledger-labs/business-partner-agent-chart"]
