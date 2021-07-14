@@ -60,7 +60,7 @@ bpa:
       locale: en
       fallbackLocale: en
     # --  log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json.
-    logConfigurationFile: log4j2-prod.xml 
+    logConfigurationFile: log4j2-prod.xml
 
   imagePullSecrets: []
 
