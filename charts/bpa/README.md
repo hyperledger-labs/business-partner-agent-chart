@@ -2,7 +2,7 @@
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
-![Version: 0.7.0-alpha05](https://img.shields.io/badge/Version-0.7.0--alpha05-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-9141903f](https://img.shields.io/badge/AppVersion-sha--9141903f-informational?style=flat-square)
+![Version: 0.7.0-alpha06](https://img.shields.io/badge/Version-0.7.0--alpha06-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-a2a60068](https://img.shields.io/badge/AppVersion-sha--a2a60068-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -235,6 +235,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.imprint.enabled | bool | `false` |  |
 | bpa.config.imprint.urlOverride | string | `""` |  |
 | bpa.config.ledger.browserUrlOverride | string | `""` |  |
+| bpa.config.logConfigurationFile | string | `"log4j2-prod.xml"` | log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json. |
 | bpa.config.nameOverride | string | `""` | Override name shown in the frontend (may container whitespaces and so on). Default: Helm release name, capitalized |
 | bpa.config.privacyPolicy.enabled | bool | `false` |  |
 | bpa.config.privacyPolicy.urlOverride | string | `""` |  |
