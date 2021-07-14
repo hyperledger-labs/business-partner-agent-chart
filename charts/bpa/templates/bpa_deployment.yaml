@@ -67,6 +67,7 @@ spec:
               value: |
                 -Dbpa.pg.password=$(POSTGRES_PASSWORD)
                 -Dmicronaut.config.files={{ include "bpa.config.files" . }}
+                -Dlog4j2.configurationFile={{ .Values.bpa.config.logConfigurationFile }}
             {{- include "bpa.application.configmap.env.vars" . | nindent 10}}
             {{- include "bpa.keycloak.configmap.env.vars" . | nindent 12}}
             {{- include "bpa.volume.mounts" . | nindent 10}}

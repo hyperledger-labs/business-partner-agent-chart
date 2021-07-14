@@ -2,7 +2,7 @@
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
-![Version: 0.7.0-alpha03](https://img.shields.io/badge/Version-0.7.0--alpha03-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-ee1621b5](https://img.shields.io/badge/AppVersion-sha--ee1621b5-informational?style=flat-square)
+![Version: 0.7.0-alpha08](https://img.shields.io/badge/Version-0.7.0--alpha08-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-54932db3](https://img.shields.io/badge/AppVersion-sha--54932db3-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -182,7 +182,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.fullnameOverride | string | `""` |  |
 | acapy.image.pullPolicy | string | `"IfNotPresent"` |  |
 | acapy.image.repository | string | `"bcgovimages/aries-cloudagent"` |  |
-| acapy.image.tag | string | `"py36-1.16-0_0.7-pre.3"` | Overrides the image tag whose default is the chart appVersion. |
+| acapy.image.tag | string | `"py36-1.16-1_0.7.0rc1"` | Overrides the image tag whose default is the chart appVersion. |
 | acapy.imagePullSecrets | list | `[]` |  |
 | acapy.ingress.annotations | object | `{}` |  |
 | acapy.ingress.enabled | bool | `true` |  |
@@ -235,6 +235,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.imprint.enabled | bool | `false` |  |
 | bpa.config.imprint.urlOverride | string | `""` |  |
 | bpa.config.ledger.browserUrlOverride | string | `""` |  |
+| bpa.config.logConfigurationFile | string | `"log4j2-prod.xml"` | log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json. |
 | bpa.config.nameOverride | string | `""` | Override name shown in the frontend (may container whitespaces and so on). Default: Helm release name, capitalized |
 | bpa.config.privacyPolicy.enabled | bool | `false` |  |
 | bpa.config.privacyPolicy.urlOverride | string | `""` |  |
@@ -260,8 +261,10 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.openshift.route.wildcardPolicy | string | `"None"` |  |
 | bpa.podAnnotations | object | `{}` |  |
 | bpa.podSecurityContext | object | `{}` |  |
-| bpa.resources.requests.cpu | string | `"100m"` |  |
-| bpa.resources.requests.memory | string | `"256Mi"` |  |
+| bpa.resources.limits.cpu | string | `"2"` |  |
+| bpa.resources.limits.memory | string | `"384Mi"` |  |
+| bpa.resources.requests.cpu | string | `"0.2"` |  |
+| bpa.resources.requests.memory | string | `"384Mi"` |  |
 | bpa.securityContext | object | `{}` |  |
 | bpa.service.port | int | `80` |  |
 | bpa.service.type | string | `"ClusterIP"` |  |

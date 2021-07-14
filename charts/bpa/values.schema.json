@@ -322,7 +322,10 @@
                                     "type": "boolean"
                                 }
                             }
-                        }
+                        },
+                        "logConfigurationFile": {
+                            "type": "string"
+                        }                
                     }
                 },
                 "image": {
