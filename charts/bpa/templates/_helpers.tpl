@@ -197,7 +197,7 @@ $identifier
 generate tails baseUrl
 */}}
 {{- define "acapy.tails.baseUrl" -}}
-{{- $tailsBaseUrl := dict "bosch-test" "https://tails-dev.vonx.io" "idu" "http://idu-tails:6543" -}}
+{{- $tailsBaseUrl := dict "bosch-test" "https://tails-dev.vonx.io" "idu" (printf "https://tails%s" .Values.global.ingressSuffix) -}}
 {{ .Values.acapy.tails.baseUrlOverride| default ( get $tailsBaseUrl .Values.global.ledger ) }}
 {{- end }}
 
@@ -205,7 +205,7 @@ generate tails baseUrl
 generate tails uploadUrl
 */}}
 {{- define "acapy.tails.uploadUrl" -}}
-{{- $tailsUploadUrl:= dict "bosch-test" "https://tails-dev.vonx.io" "idu" (printf "https://tails%s" .Values.global.ingressSuffix) -}}
+{{- $tailsUploadUrl:= dict "bosch-test" "https://tails-dev.vonx.io" "idu" "http://idu-tails:6543" -}}
 {{ .Values.acapy.tails.uploadUrlOverride| default ( get $tailsUploadUrl .Values.global.ledger ) }}
 {{- end }}
 
