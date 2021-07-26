@@ -43,6 +43,8 @@ bpa:
     bootstrap:
       username: admin
       password: changeme
+    webhook:
+      key: changeme
     ledger:
       browserUrlOverride: ""
     scheme: https
