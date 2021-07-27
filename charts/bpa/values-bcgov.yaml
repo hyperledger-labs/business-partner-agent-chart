@@ -9,7 +9,7 @@ global:
   # -- Domain suffix to be used for default hostpaths in ingress
   # override in different environments, or for each app
   # --set global.ingressSuffix
-  ingressSuffix: -f6b17d-dev.apps.silver.devops.gov.bc.ca
+  ingressSuffix: -dev.apps.silver.devops.gov.bc.ca
 
   persistence:
     # -- If true, the Postgres chart is deployed
@@ -34,30 +34,35 @@ bpa:
     name: ""
 
   config:
+    # -- Override name shown in the frontend (may container whitespaces and so on). Default: Helm release name, capitalized
+    nameOverride: ""
+
+    # -- Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given)
+    titleOverride: ""
     security:
       enabled: true
     bootstrap:
       username: admin
       password: changeme
-    resolver:
-      url: https://resolver.stage.economyofthings.io
     ledger:
-      browserUrlOverride: https://indy-test.bosch-digital.de
+      browserUrlOverride: http://test.bcovrin.vonx.io
     name: "{{ camelcase .Release.Name }}"
     scheme: https
     web:
       only: false
-    did:
-      # -- Will be otherwise calculated based on global.ledger config
-      prefixOverride: "did:sov:iil:"
     creddef:
-      revocationRegistrySize: 300
+      revocationRegistrySize: 3000
     imprint:
       enabled: false
-      url:
+      urlOverride: ""
     privacyPolicy:
       enabled: false
-      url:
+      urlOverride: ""
+    i18n:
+      locale: en
+      fallbackLocale: en
+    # --  log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json.
+    logConfigurationFile: log4j2.xml
 
   imagePullSecrets: []
 
@@ -219,7 +224,7 @@ acapy:
     repository: bcgovimages/aries-cloudagent
     pullPolicy: IfNotPresent
     # --  Overrides the image tag whose default is the chart appVersion.
-    tag: py36-1.16-0_0.6.0
+    tag: py36-1.16-1_0.7.0
 
   adminURLApiKey: 2f9729eef0be49608c1cffd49ee3cc4a
 
@@ -279,6 +284,16 @@ acapy:
         insecureEdgeTerminationPolicy: None
         termination: edge
       wildcardPolicy: None
+
+  tails:
+    # -- Set to true to enable revocation (external tails server required)
+    enabled: false
+
+    # -- Override the otherwise ledger-specifically generated base URL of the external tails server
+    baseUrlOverride: ""
+
+    # -- Override the otherwise ledger-specifically generated upload URL of the external tails server
+    uploadUrlOverride: ""
 
   resources:
     # We usually recommend not to specify default resources and to leave this as a conscious
