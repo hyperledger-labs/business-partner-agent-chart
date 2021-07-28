@@ -120,6 +120,9 @@ bpa:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 384Mi
     requests:
       cpu: 100m
       memory: 256Mi
@@ -306,6 +309,9 @@ acapy:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 384Mi
     requests:
       cpu: 100m
       memory: 256Mi
@@ -362,6 +368,9 @@ postgresql:
   containerSecurityContext:
     enabled: false
   resources:
+    limits:
+      cpu: 200m
+      memory: 384Mi
     requests:
       cpu: 100m
       memory: 256Mi
