@@ -182,7 +182,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.fullnameOverride | string | `""` |  |
 | acapy.image.pullPolicy | string | `"IfNotPresent"` |  |
 | acapy.image.repository | string | `"bcgovimages/aries-cloudagent"` |  |
-| acapy.image.tag | string | `"py36-1.16-1_0.7.0rc1"` | Overrides the image tag whose default is the chart appVersion. |
+| acapy.image.tag | string | `"py36-1.16-1_0.7.0"` | Overrides the image tag whose default is the chart appVersion. |
 | acapy.imagePullSecrets | list | `[]` |  |
 | acapy.ingress.annotations | object | `{}` |  |
 | acapy.ingress.enabled | bool | `true` |  |
@@ -275,7 +275,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.tolerations | list | `[]` |  |
 | global.fullnameOverride | string | `""` |  |
 | global.ingressSuffix | string | `".stage.economyofthings.io"` | Domain suffix to be used for default hostpaths in ingress |
-| global.ledger | string | `"bosch-test"` | The used ledger. Will be used for default values. Any of: bosch-test, idu. |
+| global.ledger | string | `"bosch-test"` | The used ledger. Will be used for default values. Any of: bosch-test, idu, bcovrin-test. |
 | global.nameOverride | string | `""` |  |
 | global.persistence.deployPostgres | bool | `true` | If true, the Postgres chart is deployed |
 | keycloak.clientId | string | `"<your keycloak client id>"` |  |

@@ -13,7 +13,7 @@ global:
     # -- If true, the Postgres chart is deployed
     deployPostgres: true
 
-  # -- The used ledger. Will be used for default values. Any of: bosch-test, idu.
+  # -- The used ledger. Will be used for default values. Any of: bosch-test, idu, bcovrin-test.
   ledger: bosch-test
 
 bpa:
@@ -226,7 +226,7 @@ acapy:
     repository: bcgovimages/aries-cloudagent
     pullPolicy: IfNotPresent
     # --  Overrides the image tag whose default is the chart appVersion.
-    tag: py36-1.16-1_0.7.0rc1
+    tag: py36-1.16-1_0.7.0
 
   adminURLApiKey: 2f9729eef0be49608c1cffd49ee3cc4a
 

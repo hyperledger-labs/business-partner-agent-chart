@@ -120,7 +120,7 @@
                         },
                         "uploadUrlOverride": {
                             "type": "string"
-                        }   
+                        }
                     }
                 },
                 "resources": {
@@ -325,7 +325,7 @@
                         },
                         "logConfigurationFile": {
                             "type": "string"
-                        }                
+                        }
                     }
                 },
                 "image": {
@@ -467,7 +467,7 @@
                 },
                 "ledger": {
                     "type": "string",
-                    "enum": ["idu", "bosch-test"],
+                    "enum": ["idu", "bosch-test", "bcovrin-test"],
                     "description": "The ledger to be configured",
                     "title": "Ledger",
                     "form": true
