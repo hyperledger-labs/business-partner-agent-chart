@@ -39,14 +39,19 @@ bpa:
     titleOverride: ""
 
     security:
+      # -- Enable login page and endpoint security
       enabled: true
     bootstrap:
+      # -- The name of the default admin user
       username: admin
+      # -- Default password
       password: changeme
     webhook:
+      # -- Optional: secures aca-py to backend webhook communication with an api-key
       key: changeme
     ledger:
       browserUrlOverride: ""
+    # -- The scheme that is used to register the profile endpoint on the ledger
     scheme: https
     web:
       only: false

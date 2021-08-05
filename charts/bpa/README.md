@@ -227,8 +227,8 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.tails.uploadUrlOverride | string | `""` | Override the otherwise ledger-specifically generated upload URL of the external tails server |
 | acapy.tolerations | list | `[]` |  |
 | bpa.affinity | object | `{}` |  |
-| bpa.config.bootstrap.password | string | `"changeme"` |  |
-| bpa.config.bootstrap.username | string | `"admin"` |  |
+| bpa.config.bootstrap.password | string | `"changeme"` | Default password |
+| bpa.config.bootstrap.username | string | `"admin"` | The name of the default admin user |
 | bpa.config.creddef.revocationRegistrySize | int | `3000` |  |
 | bpa.config.i18n.fallbackLocale | string | `"en"` |  |
 | bpa.config.i18n.locale | string | `"en"` |  |
@@ -239,11 +239,11 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.nameOverride | string | `""` | Override name shown in the frontend (may container whitespaces and so on). Default: Helm release name, capitalized |
 | bpa.config.privacyPolicy.enabled | bool | `false` |  |
 | bpa.config.privacyPolicy.urlOverride | string | `""` |  |
-| bpa.config.scheme | string | `"https"` |  |
-| bpa.config.security.enabled | bool | `true` |  |
+| bpa.config.scheme | string | `"https"` | The scheme that is used to register the profile endpoint on the ledger |
+| bpa.config.security.enabled | bool | `true` | Enable login page and endpoint security |
 | bpa.config.titleOverride | string | `""` | Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given) |
 | bpa.config.web.only | bool | `false` |  |
-| bpa.config.webhook.key | string | `"changeme"` |  |
+| bpa.config.webhook.key | string | `"changeme"` | Optional: secures aca-py to backend webhook communication with an api-key |
 | bpa.image.pullPolicy | string | `"IfNotPresent"` |  |
 | bpa.image.repository | string | `"ghcr.io/hyperledger-labs/business-partner-agent"` |  |
 | bpa.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
