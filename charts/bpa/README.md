@@ -2,7 +2,7 @@
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
-![Version: 0.7.1](https://img.shields.io/badge/Version-0.7.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.7.0](https://img.shields.io/badge/AppVersion-0.7.0-informational?style=flat-square)
+![Version: 0.8.0-alpha01](https://img.shields.io/badge/Version-0.8.0--alpha01-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.7.0](https://img.shields.io/badge/AppVersion-0.7.0-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -274,7 +274,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.tolerations | list | `[]` |  |
 | global.fullnameOverride | string | `""` |  |
 | global.ingressSuffix | string | `".stage.economyofthings.io"` | Domain suffix to be used for default hostpaths in ingress |
-| global.ledger | string | `"bosch-test"` | The used ledger. Will be used for default values. Any of: bosch-test, idu. |
+| global.ledger | string | `"bosch-test"` | The used ledger. Will be used for default values. Any of: bosch-test, idu, bcovrin-test. |
 | global.nameOverride | string | `""` |  |
 | global.persistence.deployPostgres | bool | `true` | If true, the Postgres chart is deployed |
 | keycloak.clientId | string | `"<your keycloak client id>"` |  |
