@@ -3,8 +3,8 @@ name: bpa
 description: The Business Partner Agent allows to manage and exchange master data between organizations.
 type: application
 
-version: 0.8.0-alpha01
-appVersion: 0.7.0
+version: 0.8-alpha02
+appVersion: sha-52f16240
 
 home: "https://github.com/hyperledger-labs/business-partner-agent-chart"
 sources: ["https://github.com/hyperledger-labs/business-partner-agent-chart"]
