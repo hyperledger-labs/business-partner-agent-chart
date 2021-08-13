@@ -145,6 +145,7 @@ keycloak:
     scopes: openid
     issuer: <your keycloak realm issuer url>
     endsessionUrl: <your keycloak realm end session url>
+    vcauthn_pres_req_conf_id: <vcauthn pres_req_conf_id> 
 
 schemas:
   enabled: true
