@@ -13,5 +13,5 @@ data:
   BPA_KEYCLOAK_ISSUER: {{ .Values.keycloak.config.issuer | quote }}
   BPA_KEYCLOAK_ENDSESSION_URL: {{ .Values.keycloak.config.endsessionUrl | quote }}
   BPA_KEYCLOAK_CLIENT_ID: {{ .Values.keycloak.clientId | quote }}
-  BPA_KEYCLOAK_VCAUTHN_PRES_REQ_CONF_ID: {{ .Values.keycloak.vcauthn_pres_req_conf_id | quote }}
+  BPA_KEYCLOAK_VCAUTHN_PRES_REQ_CONF_ID: {{ .Values.keycloak.config.vcauthn_pres_req_conf_id | quote }}
 {{- end -}}
