@@ -8,13 +8,13 @@ Deploy BC Registries to Openshift DEV
 ```
 export KEYCLOAK_CLIENT=bpa-mdt-team
 export KEYCLOAK_CLIENT_SECRET=a1dcebce-ac3f-4a0c-9147-43845c58423b
-'use INGRESS_SUFFIX, ISSUER_URL and END_SESSION_URL defaults from values-bcgov.yaml'
+#use INGRESS_SUFFIX, ISSUER_URL and END_SESSION_URL defaults from values-bcgov.yaml
 
 helm upgrade bravo bpa -f bpa/values-bcgov.yaml --install \
   --set bpa.config.name="Bravo" \
-  --set global.ingressSuffix=$INGRESS_SUFFIX \
-  --set keycloak.clientId=&KEYCLOAK_CLIENT \
+  --set keycloak.clientId=$KEYCLOAK_CLIENT \
   --set keycloak.clientSecret=$KEYCLOAK_CLIENT_SECRET \
+
 
 ```
 
