@@ -68,7 +68,7 @@ helm upgrade purchaser bpa -f bpa/values-bcgov.yaml --install \
 
 # BPA uses different client for VC Authn IDP
 
-helm upgrade mdt-team bpa -f bpa/values-bcgov.yaml --install \
+helm upgrade mdt-team-test bpa -f values-bcgov.yaml --install \
   --set bpa.config.name="MDT Team" \
   --set ux.preset=custom \
   --set ux.config.theme.themes.light.primary="#549F43" \
