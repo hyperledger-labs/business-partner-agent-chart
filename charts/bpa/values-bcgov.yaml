@@ -146,7 +146,8 @@ keycloak:
     scopes: openid
     issuer: https://dev.oidc.gov.bc.ca/auth/realms/digitaltrust
     endsessionUrl: https://dev.oidc.gov.bc.ca/auth/realms/digitaltrust/protocol/openid-connect/logout
-
+    vcauthn_pres_req_conf_id: bpa-wallet-access-dev
+    
 schemas:
   enabled: false
   config: {}
