@@ -44,6 +44,9 @@ bpa:
     bootstrap:
       username: admin
       password: changeme
+    webhook:
+      # -- Optional: secures aca-py to backend webhook communication with an api-key
+      key: ""
     ledger:
       browserUrlOverride: http://test.bcovrin.vonx.io
     name: "{{ camelcase .Release.Name }}"
