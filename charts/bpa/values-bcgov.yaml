@@ -49,6 +49,7 @@ bpa:
       key: ""
     ledger:
       browserUrlOverride: http://test.bcovrin.vonx.io
+    #  genesisUrlOverride: ""
     name: "{{ camelcase .Release.Name }}"
     scheme: https
     web:
@@ -131,7 +132,7 @@ bpa:
   affinity: {}
 
 keycloak:
-  enabled: true
+  enabled: false
 
   clientId: bbcm
   clientSecret: <use --set keycloak.clientSecret>
@@ -236,6 +237,8 @@ acapy:
   labelOverride: ""
 
   readOnlyMode: false
+  #
+  logLevel: warning #('debug', 'info', 'warning', 'error', 'critical')
 
   imagePullSecrets: []
   nameOverride: ""
@@ -245,6 +248,7 @@ acapy:
 
   podSecurityContext: {}
     # fsGroup: 2000
+
 
   securityContext:
     # capabilities:
@@ -304,12 +308,6 @@ acapy:
     limits:
       cpu: 200m
       memory: 512Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
-    limits:
-      cpu: 200m
-      memory: 384Mi
     requests:
       cpu: 100m
       memory: 256Mi

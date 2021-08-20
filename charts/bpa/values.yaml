@@ -239,6 +239,8 @@ acapy:
 
   readOnlyMode: false
 
+  logLevel: warning #('debug', 'info', 'warning', 'error', 'critical')
+
   imagePullSecrets: []
   nameOverride: ""
   fullnameOverride: ""
