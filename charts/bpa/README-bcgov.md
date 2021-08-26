@@ -10,8 +10,8 @@ export KEYCLOAK_CLIENT=bpa-mdt-team
 export KEYCLOAK_CLIENT_SECRET=a1dcebce-ac3f-4a0c-9147-43845c58423b
 #use INGRESS_SUFFIX, ISSUER_URL and END_SESSION_URL defaults from values-bcgov.yaml
 
-helm upgrade bravo bpa -f bpa/values-bcgov.yaml --install \
-  --set bpa.config.name="Bravo" \
+helm upgrade charlie bpa -f bpa/values-bcgov.yaml --install \
+  --set bpa.config.name="Charlie" \
   --set keycloak.clientId=$KEYCLOAK_CLIENT \
   --set keycloak.clientSecret=$KEYCLOAK_CLIENT_SECRET \
 
@@ -79,3 +79,33 @@ helm upgrade mdt-team-test bpa -f values-bcgov.yaml --install \
   --set keycloak.config.endsessionUrl=$END_SESSION_URL
 
 ```
+
+
+
+export INGRESS_SUFFIX=-test.apps.silver.devops.gov.bc.ca
+
+
+helm upgrade sovrin-staging-1 bpa -f bpa/values-bcgov.yaml --install \
+  --set bpa.config.name="Sovrin-Staging 1" \
+  --set global.ingressSuffix=$INGRESS_SUFFIX \
+  --set bpa.config.security.enabled=false\
+  --set keycloak.enabled=false \
+  --set bpa.ledger.browserUrlOverride="https://indyscan.io/home/SOVRIN_STAGINGNET/" \
+  --set bpa.ledger.genesisUrlOverride="https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_sandbox_genesis" 
+
+
+helm upgrade sovrin-staging-2 bpa -f bpa/values-bcgov.yaml --install \
+  --set bpa.config.name="Sovrin-Staging 2" \
+  --set global.ingressSuffix=$INGRESS_SUFFIX \
+  --set bpa.config.security.enabled=false\
+  --set keycloak.enabled=false \
+  --set bpa.ledger.browserUrlOverride="https://indyscan.io/home/SOVRIN_STAGINGNET/" \
+  --set bpa.ledger.genesisUrlOverride="https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_sandbox_genesis" 
+
+
+helm upgrade uat2 bpa -f bpa/values-bcgov.yaml --install \
+  --set bpa.config.name="Uat2" \
+  --set global.ingressSuffix=$INGRESS_SUFFIX \
+  --set bpa.config.security.enabled=false\
+  --set keycloak.enabled=false 
+

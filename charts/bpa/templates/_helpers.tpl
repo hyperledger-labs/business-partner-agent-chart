@@ -101,8 +101,8 @@ generate ledger browser url
 generate genesisfileurl
 */}}
 {{- define "bpa.genesisUrl" -}}
-{{- if .Values.bpa.ledger.genesisUrlOverride -}}
-{{- .Values.bpa.ledger.genesisUrlOverride -}}
+{{- if .Values.bpa.config.ledger.genesisUrlOverride -}}
+{{- .Values.bpa.config.ledger.genesisUrlOverride -}}
 {{- else }}
 {{- include "bpa.ledgerBrowser" . }}/genesis
 {{- end -}}

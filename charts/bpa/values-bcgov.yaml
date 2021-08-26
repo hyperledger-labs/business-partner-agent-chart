@@ -21,7 +21,7 @@ global:
 bpa:
   image:
     repository: ghcr.io/hyperledger-labs/business-partner-agent
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
     # --  Overrides the image tag whose default is the chart appVersion.
     tag: "edge"
 
@@ -49,7 +49,7 @@ bpa:
       key: ""
     ledger:
       browserUrlOverride: http://test.bcovrin.vonx.io
-    #  genesisUrlOverride: ""
+      genesisUrlOverride: ""
     name: "{{ camelcase .Release.Name }}"
     scheme: https
     web:
@@ -365,8 +365,8 @@ postgresql:
     enabled: false
   resources:
     limits:
-      cpu: 200m
+      cpu: 100m
       memory: 384Mi
     requests:
-      cpu: 100m
+      cpu: 50m
       memory: 256Mi
