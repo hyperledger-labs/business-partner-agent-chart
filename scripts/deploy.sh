@@ -8,6 +8,30 @@ while [[ $# -gt 0 ]]; do
   key="$1"
 
   case $key in
+    -h|--help)
+      echo "\
+      This script provides consistency in multiple deployments/upgrades on the Mine Digital Trust team's OCP4 namespaces 
+      with options that effect: security, naming, themeing, environment, ledger 
+      options can be provided as flags, or will be prompted in the execution
+
+      Output is a helm upgrade --install command with --set <key from values.yaml>=<override_value> for each applicable value
+
+      see 'helm_values_map' in this script to configure/see mapping from .yaml to script variables, can be added/updated as need
+    
+      FLAGS:
+      -e, --environment, loads variables from /env/<parameter>.param file 
+      -c, --config, loads variables from /config/<parameter>.param file 
+      -d, --deployment, overrides helm deployment name (default=<config>) 
+          --secret_file, loads any other variables from <parameter> file should refer to unversioned file for keycloak_client_secret
+
+      SIMPLE EXAMPLE: 
+      ./deploy.sh -c demo -e dev
+
+      KEYCLOAK EXAMPLE: 
+      ./deploy.sh -c gov -e dev --secret_file example_secret_file -d dev_gov_keycloak
+       " 
+      exit 1
+      ;;
     -e|--environment)
       ENVIRONMENT="$2"
       shift # past argument
@@ -18,8 +42,8 @@ while [[ $# -gt 0 ]]; do
       shift # past argument
       shift # past value
       ;;
-    -s|--security)
-      SECURITY="$2"
+    -d|--deployment_name)
+      DEPLOYMENT_NAME_OVERRIDE="$2"
       shift # past argument
       shift # past value
       ;;
@@ -27,10 +51,6 @@ while [[ $# -gt 0 ]]; do
       SECRET_FILE="$2"
       shift # past argument
       shift # past value
-      ;;
-    --default)
-      DEFAULT=YES
-      shift # past argument
       ;;
     *)    # unknown option
       POSITIONAL+=("$1") # save it in an array for later
@@ -119,7 +139,11 @@ helm_values_map["keycloak.clientSecret"]=$KEYCLOAK_CLIENT_SECRET
 ###########################
 #### Construct Command
 ###########################
-CMD="helm upgrade $CONFIG$DEPLOYMENT_SUFFIX ../charts/bpa -f ../charts/bpa/values.yaml --install"
+
+declare DEPLOYMENT_NAME=$DEPLOYMENT_NAME_OVERRIDE || $CONFIG$DEPLOYMENT_SUFFIX
+
+
+CMD="helm upgrade $DEPLOYMENT_NAME ../charts/bpa -f ../charts/bpa/values.yaml --install"
 SET_PARAMS=
 
 for key in "${!helm_values_map[@]}"; do
