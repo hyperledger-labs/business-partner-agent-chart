@@ -120,6 +120,10 @@ helm_values_map["ux.config.theme.themes.light.primary"]=$UX_PRIMARY_COLOR
 ## environment
 helm_values_map["global.ingressSuffix"]=$INGRESS_SUFFIX
 
+## ledger
+helm_values_map["bpa.ledger.browserUrlOverride"]=$BPA_LEDGER_BROWSER_URL
+helm_values_map["bpa.ledger.genesisUrlOverride"]=$BPA_LEDGER_GENESIS_URL
+
 ## security
 helm_values_map["bpa.config.security.enabled"]=$BPA_SECURITY_ENABLED
 helm_values_map["keycloak.enabled"]=$BPA_KEYCLOAK_ENABLED
