@@ -88,7 +88,7 @@ fi
 if [ ${SECURITY,,} == 'keycloak' ]
 then
     SECURITY_FILE=./security/keycloak/$ENVIRONMENT
-    if [ !$KEYCLOAK_CLIENT_SECRET ]
+    if [ -z $KEYCLOAK_CLIENT_SECRET ]
     then
         read -p "KEYCLOAK_CLIENT_SECRET not provided in secret_file, what is it: " KEYCLOAK_CLIENT_SECRET
     fi
