@@ -23,7 +23,7 @@ while [[ $# -gt 0 ]]; do
       shift # past argument
       shift # past value
       ;;
-    --secrets)
+    --secret-file)
       SECRET_FILE="$2"
       shift # past argument
       shift # past value
@@ -44,7 +44,7 @@ done
 ###########################
 if [ $SECRET_FILE ]
 then
-    source ./$SECRET_FILE
+    source $SECRET_FILE
 fi
 
 if  [ $ENVIRONMENT ]

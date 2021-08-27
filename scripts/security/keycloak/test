@@ -1,4 +1,5 @@
 KEYCLOAK_CLIENT_ID=bbcm
-KEYCLOAK_CLIENT_SECRET=605c2782-e564-45f1-a69f-b0a6803524a8
+# do not store secrets in this file, see deploy.sh usage
+KEYCLOAK_CLIENT_SECRET=
 ISSUER_URL=https://test.oidc.gov.bc.ca/auth/realms/digitaltrust
 END_SESSION_URL=https://test.oidc.gov.bc.ca/auth/realms/digitaltrust/protocol/openid-connect/logout
