@@ -1,5 +1,8 @@
 #!/bin/bash
 
+###########################
+#### LOAD PARAMS
+###########################
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
   key="$1"
@@ -20,6 +23,11 @@ while [[ $# -gt 0 ]]; do
       shift # past argument
       shift # past value
       ;;
+    --secrets)
+      SECRET_FILE="$2"
+      shift # past argument
+      shift # past value
+      ;;
     --default)
       DEFAULT=YES
       shift # past argument
@@ -31,55 +39,104 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+###########################
+#### LOAD PROFILES
+###########################
+if [ $SECRET_FILE ]
+then
+    source ./$SECRET_FILE
+fi
 
 if  [ $ENVIRONMENT ]
 then 
-    echo "-e flag provided, loading environment"
+    echo "-e flag provided, loading environment profile"
 else
     read -p "-e not set: provide environment name (dev, test, prod): " ENVIRONMENT
 fi
-# echo `cat env/$ENVIRONMENT.sh`
-./env/$ENVIRONMENT.sh
-
+if [ $ENVIRONMENT ]
+then
+    eval "oc project f6b17d-${ENVIRONMENT}"
+    source ./env/$ENVIRONMENT.sh
+else 
+    echo "not set, using defaults (../charts/bpa/values.yaml)"
+fi
 
 if [ $CONFIG ]
 then 
-    echo "-c flag provided, loading config"
+    echo "-c flag provided, loading config profile"
 else
     read -p "-c not set: provide config name (see config folder): " CONFIG
+fi    
+if [ $CONFIG ]
+then
+    source ./config/$CONFIG.sh
+else 
+    echo "not set, using defaults (../charts/bpa/values.yaml)"
 fi
-# echo `cat config/$CONFIG.sh`
-./config/$CONFIG.sh
 
+#### SECURITY
 
+## pick file
 if [ $SECURITY ]
 then 
-    echo "-s flag provided, loading s"
+    echo "-s flag provided, loading security profile"
 else
     read -p "-s not set: provide security config name (none, basic, keycloak): " SECURITY
 fi
-# echo `cat security/$SECURITY.sh`
-./security/$SECURITY.sh
+
+## keycloak config handling
+if [ ${SECURITY,,} == 'keycloak' ]
+then
+    SECURITY_FILE=./security/keycloak/$ENVIRONMENT
+    if [ !$KEYCLOAK_CLIENT_SECRET ]
+    then
+        read -p "KEYCLOAK_CLIENT_SECRET not provided in secret_file, what is it: " KEYCLOAK_CLIENT_SECRET
+    fi
+
+else 
+    SECURITY_FILE=./security/$SECURITY
+fi
+
+## load if provided
+
+if [ $SECURITY ]
+then
+    source $SECURITY_FILE
+else 
+    echo "not set, using defaults (../charts/bpa/values.yaml)"
+fi 
+
+###########################
+#### SET VARIABLES
+###########################
+declare -A helm_values_map
+
+## config
+declare BPA_VAR_NAME=$ENVIRONMENT_DEPLOYMENT_NAME
+helm_values_map["bpa.config.name"]=$BPA_VAR_NAME
+helm_values_map["ux.preset"]=$UX_PRESET
+helm_values_map["ux.config.theme.themes.light.primary"]=$UX_PRIMARY_COLOR
+
+## environment
+helm_values_map["global.ingressSuffix"]=$INGRESS_SUFFIX
+
+## security
+helm_values_map["bpa.config.security.enabled"]=$BPA_SECURITY_ENABLED
+helm_values_map["keycloak.enabled"]=$BPA_KEYCLOAK_ENABLED
+
+## security.keycloak
+helm_values_map["keycloak.clientId"]=$KEYCLOAK_CLIENT_ID
+helm_values_map["keycloak.clientSecret"]=$KEYCLOAK_CLIENT_SECRET
+helm_values_map["keycloak.config.issuer"]=$ISSUER_URL
+helm_values_map["keycloak.config.endsessionUrl"]=$END_SESSION_URL
 
 
-# read -p "Environment Name (default=${defaultEnvName}): " envName
-# export INGRESS_SUFFIX=-${envName:-$defaultEnvName}.apps.silver.devops.gov.bc.ca
+CMD="helm upgrade $CONFIG ../charts/bpa -f ../charts/bpa/values-bcgov.yaml --install"
+SET_PARAMS=
 
-# read -p "Ledger Genesis Files URL (default=${defaultGenesisUrl}): " genesisUrlOverride
-# export genesisUrlOverride=${genesisUrlOverride:-$defaultGenesisUrl}
-
-# read -p "Security type (default=$defaultSecurity): " security
-# export security=${security:-$defaultSecurity}
-
-# read -p "Docker Image Repo (default=$defaultBPAImageRepo): " BPAImageRepo
-# export bpaImageRepo=${BPAImageRepo:-$defaultBPAImageRepo}
-
-# read -p "Docker Image Tag (default=$defaultBPAImageTag): " BPAImageTag
-# export bpaImageTag=${BPAImageTag:-$defaultBPAImageTag}
+for key in "${!helm_values_map[@]}"; do
+    [ -z ${helm_values_map[$key]} ] || SET_PARAMS="$SET_PARAMS --set $key=${helm_values_map[$key]}"
+done
 
 
-# echo $INGRESS_SUFFIX
-# echo $genesisUrlOverride
-# echo $security
-# echo $bpaImageRepo
-# echo $bpaImageTag
+eval "${CMD} ${SET_PARAMS}"
