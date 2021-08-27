@@ -51,6 +51,7 @@ bpa:
       key: changeme
     ledger:
       browserUrlOverride: ""
+      genesisUrlOverride: ""
     # -- The scheme that is used to register the profile endpoint on the ledger
     scheme: https
     web:
