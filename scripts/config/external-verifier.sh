@@ -1,5 +1,0 @@
-PROD_DEPLOYMENT_NAME="PriceWaterhouseCoopers"
-TEST_DEPLOYMENT_NAME="External Verifier"
-
-UX_PRESET=custom
-UX_PRIMARY_COLOR="#18D5E3" 

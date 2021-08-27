@@ -42,6 +42,8 @@ done
 ###########################
 #### LOAD PROFILES
 ###########################
+
+## --secret-file for things that shouldn't be source controlled
 if [ $SECRET_FILE ]
 then
     source $SECRET_FILE
@@ -56,7 +58,7 @@ fi
 if [ $ENVIRONMENT ]
 then
     eval "oc project f6b17d-${ENVIRONMENT}"
-    source ./env/$ENVIRONMENT.sh
+    source ./env/$ENVIRONMENT.param
 else 
     echo "not set, using defaults (../charts/bpa/values.yaml)"
 fi
@@ -69,42 +71,11 @@ else
 fi    
 if [ $CONFIG ]
 then
-    source ./config/$CONFIG.sh
+    source ./config/$CONFIG.param
 else 
     echo "not set, using defaults (../charts/bpa/values.yaml)"
 fi
 
-#### SECURITY
-
-## pick file
-if [ $SECURITY ]
-then 
-    echo "-s flag provided, loading security profile"
-else
-    read -p "-s not set: provide security config name (none, basic, keycloak): " SECURITY
-fi
-
-## keycloak config handling
-if [ ${SECURITY,,} == 'keycloak' ]
-then
-    SECURITY_FILE=./security/keycloak/$ENVIRONMENT
-    if [ -z $KEYCLOAK_CLIENT_SECRET ]
-    then
-        read -p "KEYCLOAK_CLIENT_SECRET not provided in secret_file, what is it: " KEYCLOAK_CLIENT_SECRET
-    fi
-
-else 
-    SECURITY_FILE=./security/$SECURITY
-fi
-
-## load if provided
-
-if [ $SECURITY ]
-then
-    source $SECURITY_FILE
-else 
-    echo "not set, using defaults (../charts/bpa/values.yaml)"
-fi 
 
 ###########################
 #### SET VARIABLES
@@ -130,11 +101,15 @@ helm_values_map["keycloak.enabled"]=$BPA_KEYCLOAK_ENABLED
 
 ## security.keycloak
 helm_values_map["keycloak.clientId"]=$KEYCLOAK_CLIENT_ID
+helm_values_map["keycloak.config.issuer"]=$KEYCLOAK_ISSUER_URL
+helm_values_map["keycloak.config.endsessionUrl"]=$KEYCLOAK_END_SESSION_URL
+
 helm_values_map["keycloak.clientSecret"]=$KEYCLOAK_CLIENT_SECRET
-helm_values_map["keycloak.config.issuer"]=$ISSUER_URL
-helm_values_map["keycloak.config.endsessionUrl"]=$END_SESSION_URL
 
 
+###########################
+#### Construct Command
+###########################
 CMD="helm upgrade $CONFIG ../charts/bpa -f ../charts/bpa/values-bcgov.yaml --install"
 SET_PARAMS=
 
@@ -144,3 +119,10 @@ done
 
 
 eval "${CMD} ${SET_PARAMS}"
+
+###########################
+#### FORCE REDEPLOY
+###########################
+
+# pod_name="oc get pods --no-headers | grep $CONFIG-bpa-core"
+# eval "oc delete pod $pod_name"

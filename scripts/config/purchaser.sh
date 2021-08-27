@@ -1,6 +1,0 @@
-
-PROD_DEPLOYMENT_NAME="Mistubishi"
-TEST_DEPLOYMENT_NAME="Purchaser of Raw Materials"
-
-UX_PRESET=custom
-UX_PRIMARY_COLOR="#18D5E3" 
