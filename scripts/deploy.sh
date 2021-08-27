@@ -110,7 +110,7 @@ helm_values_map["keycloak.clientSecret"]=$KEYCLOAK_CLIENT_SECRET
 ###########################
 #### Construct Command
 ###########################
-CMD="helm upgrade $CONFIG ../charts/bpa -f ../charts/bpa/values-bcgov.yaml --install"
+CMD="helm upgrade $CONFIG ../charts/bpa --install"
 SET_PARAMS=
 
 for key in "${!helm_values_map[@]}"; do
