@@ -1,0 +1,14 @@
+PROD_DEPLOYMENT_NAME="BC Gov: Ministry of Energy, Mines, and Low-Carbon Innovation"
+TEST_DEPLOYMENT_NAME="Government"
+DEV_DEPLOYMENT_NAME="Government"
+
+UX_PRESET=custom
+#UX_PRIMARY_COLOR=
+
+BPA_SECURITY_ENABLED=true
+BPA_KEYCLOAK_ENABLED=true
+KEYCLOAK_CLIENT_ID=bbcm
+
+## Use default - Test-BCovrin
+#BPA_LEDGER_BROWSER_URL
+#BPA_LEDGER_GENESIS_URL
