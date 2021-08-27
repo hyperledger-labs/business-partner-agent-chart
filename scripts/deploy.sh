@@ -104,13 +104,22 @@ helm_values_map["keycloak.clientId"]=$KEYCLOAK_CLIENT_ID
 helm_values_map["keycloak.config.issuer"]=$KEYCLOAK_ISSUER_URL
 helm_values_map["keycloak.config.endsessionUrl"]=$KEYCLOAK_END_SESSION_URL
 
+if [ $BPA_KEYCLOAK_ENABLED ] && [ -z $KEYCLOAK_CLIENT_SECRET ]
+then
+    read -p "Keycloak enabled, provide client secret for (env=$ENVIRONMENT, client_id=$KEYCLOAK_CLIENT_ID) : " KEYCLOAK_CLIENT_SECRET
+    if [ -z $KEYCLOAK_CLIENT_SECRET ]
+    then 
+        echo "don't skip that next time"
+        exit 1
+    fi
+fi
 helm_values_map["keycloak.clientSecret"]=$KEYCLOAK_CLIENT_SECRET
 
 
 ###########################
 #### Construct Command
 ###########################
-CMD="helm upgrade $CONFIG ../charts/bpa --install"
+CMD="helm upgrade $CONFIG$DEPLOYMENT_SUFFIX ../charts/bpa -f ../charts/bpa/values.yaml --install"
 SET_PARAMS=
 
 for key in "${!helm_values_map[@]}"; do
