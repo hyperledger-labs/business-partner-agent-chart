@@ -1,8 +1,9 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
+echo $BASH_VERSION
 ###########################
 #### LOAD PARAMS
 ###########################
+
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
   key="$1"
@@ -124,7 +125,7 @@ helm_values_map["keycloak.clientId"]=$KEYCLOAK_CLIENT_ID
 helm_values_map["keycloak.config.issuer"]=$KEYCLOAK_ISSUER_URL
 helm_values_map["keycloak.config.endsessionUrl"]=$KEYCLOAK_END_SESSION_URL
 
-if [ $BPA_KEYCLOAK_ENABLED ] && [ -z $KEYCLOAK_CLIENT_SECRET ]
+if $BPA_KEYCLOAK_ENABLED && [ -z $KEYCLOAK_CLIENT_SECRET ]
 then
     read -p "Keycloak enabled, provide client secret for (env=$ENVIRONMENT, client_id=$KEYCLOAK_CLIENT_ID) : " KEYCLOAK_CLIENT_SECRET
     if [ -z $KEYCLOAK_CLIENT_SECRET ]
