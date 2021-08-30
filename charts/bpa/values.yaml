@@ -16,7 +16,7 @@ global:
     deployPostgres: true
 
   # -- The used ledger. Will be used for default values. Any of: bosch-test, idu.
-  ledger: bosch-test
+  ledger: bcovrin-test
 
 bpa:
   image:
