@@ -141,7 +141,7 @@ helm_values_map["keycloak.clientSecret"]=$KEYCLOAK_CLIENT_SECRET
 #### Construct Command
 ###########################
 
-declare DEPLOYMENT_NAME=$DEPLOYMENT_NAME_OVERRIDE || $CONFIG$DEPLOYMENT_SUFFIX
+declare DEPLOYMENT_NAME=${DEPLOYMENT_NAME_OVERRIDE:-$CONFIG$DEPLOYMENT_SUFFIX}
 
 
 CMD="helm upgrade $DEPLOYMENT_NAME ../charts/bpa -f ../charts/bpa/values.yaml --install"
