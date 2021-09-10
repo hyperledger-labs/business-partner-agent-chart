@@ -1,6 +1,7 @@
+# NO SPACES ALLOWED
 PROD_DEPLOYMENT_NAME="PriceWaterhouseCoopers"
-TEST_DEPLOYMENT_NAME="External Verifier"
-DEV_DEPLOYMENT_NAME="External Verifier"
+TEST_DEPLOYMENT_NAME="External-Verifier"
+DEV_DEPLOYMENT_NAME="External-Verifier"
 
 UX_PRESET=custom
 UX_PRIMARY_COLOR="#18D5E3" 
@@ -12,3 +13,6 @@ KEYCLOAK_CLIENT_ID=bbcm
 ## Use default - Test-BCovrin
 #BPA_LEDGER_BROWSER_URL
 #BPA_LEDGER_GENESIS_URL
+
+UX_HEADER_LOGO_ENABLED=true
+UX_HEADER_LOGO_URL=https://www.pwc.com/etc.clientlibs/pwc/clientlibs/rebrand-clientlibs/components-colors/resources/images/slim-header-v2/PwC-logo.svg

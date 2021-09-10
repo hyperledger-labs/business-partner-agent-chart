@@ -1,3 +1,4 @@
+# NO SPACES ALLOWED
 PROD_DEPLOYMENT_NAME="BCGov-Climate-Action-Secretariat"
 TEST_DEPLOYMENT_NAME="Government-GHG"
 DEV_DEPLOYMENT_NAME="Government-2"
