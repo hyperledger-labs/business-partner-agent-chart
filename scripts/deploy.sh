@@ -104,8 +104,8 @@ fi
 declare -A helm_values_map
 
 ## config
-declare BPA_VAR_NAME=$ENVIRONMENT_DEPLOYMENT_NAME
-helm_values_map["bpa.config.name"]=$BPA_VAR_NAME
+declare BPA_VAR_NAME=${ENVIRONMENT^^}_DEPLOYMENT_NAME
+helm_values_map["bpa.config.nameOverride"]="${!BPA_VAR_NAME}"
 helm_values_map["ux.preset"]=$UX_PRESET
 helm_values_map["ux.config.theme.themes.light.primary"]=$UX_PRIMARY_COLOR
 
@@ -127,7 +127,7 @@ helm_values_map["keycloak.config.endsessionUrl"]=$KEYCLOAK_END_SESSION_URL
 
 if $BPA_KEYCLOAK_ENABLED && [ -z $KEYCLOAK_CLIENT_SECRET ]
 then
-    read -p "Keycloak enabled, provide client secret for (env=$ENVIRONMENT, client_id=$KEYCLOAK_CLIENT_ID) : " KEYCLOAK_CLIENT_SECRET
+    read -p "Keycloak enabled, provide client secret for (env=$ENVIRONMENT, client_id=$KEYCLOAK_CLIENT_ID): " KEYCLOAK_CLIENT_SECRET
     if [ -z $KEYCLOAK_CLIENT_SECRET ]
     then 
         echo "don't skip that next time"
