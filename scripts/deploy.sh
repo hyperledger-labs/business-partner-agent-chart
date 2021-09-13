@@ -125,6 +125,16 @@ helm_values_map["keycloak.clientId"]=$KEYCLOAK_CLIENT_ID
 helm_values_map["keycloak.config.issuer"]=$KEYCLOAK_ISSUER_URL
 helm_values_map["keycloak.config.endsessionUrl"]=$KEYCLOAK_END_SESSION_URL
 
+## nav-header custom
+helm_values_map["ux.config.navigation.avatar.agent.enabled"]=$UX_NAVIGATION_AVATAR_AGENT_ENABLED
+helm_values_map["ux.config.navigation.avatar.agent.default"]=$UX_NAVIGATION_AVATAR_AGENT_DEFAULT
+helm_values_map["ux.config.navigation.avatar.user.enabled"]=$UX_NAVIGATION_AVATAR_USER_ENABLED
+helm_values_map["ux.config.navigation.about.enabled"]=$UX_NAVIGATION_ABOUT_ENABLED
+helm_values_map["ux.config.navigation.logout.enabled"]=$UX_NAVIGATION_LOGOUT_ENABLED
+helm_values_map["ux.config.navigation.avatar.agent.src"]=$UX_NAVIGATION_AVATAR_AGENT_SRC
+helm_values_map["ux.config.navigation.settings.location"]=$UX_NAVIGATION_SETTINGS_LOCATION
+
+
 if $BPA_KEYCLOAK_ENABLED && [ -z $KEYCLOAK_CLIENT_SECRET ]
 then
     read -p "Keycloak enabled, provide client secret for (env=$ENVIRONMENT, client_id=$KEYCLOAK_CLIENT_ID): " KEYCLOAK_CLIENT_SECRET
