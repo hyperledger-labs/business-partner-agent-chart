@@ -1,7 +1,7 @@
 # NO SPACES ALLOWED
-PROD_DEPLOYMENT_NAME="BCGov-Energy-Mines-LowCarbon-Innovation"
-TEST_DEPLOYMENT_NAME="Government-Mines"
-DEV_DEPLOYMENT_NAME="Government"
+PROD_DEPLOYMENT_NAME="BCGov-Climate-Action-Secretariat"
+TEST_DEPLOYMENT_NAME="Government-GHG"
+DEV_DEPLOYMENT_NAME="Government-2"
 
 UX_PRESET=bcgov
 
