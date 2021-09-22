@@ -20,10 +20,10 @@ global:
 
 bpa:
   image:
-    repository: ghcr.io/hyperledger-labs/business-partner-agent
+    repository: image-registry.openshift-image-registry.svc:5000/f6b17d-tools/bcgov-b2b
     pullPolicy: Always
     # --  Overrides the image tag whose default is the chart appVersion.
-    tag: "edge"
+    tag: "latest"
 
   serviceAccount:
     # -- Specifies whether a service account should be created
@@ -227,7 +227,7 @@ acapy:
     repository: bcgovimages/aries-cloudagent
     pullPolicy: IfNotPresent
     # --  Overrides the image tag whose default is the chart appVersion.
-    tag: py36-1.16-1_0.7.0
+    tag: py36-1.16-1_0.7.1
 
   adminURLApiKey: 2f9729eef0be49608c1cffd49ee3cc4a
 
