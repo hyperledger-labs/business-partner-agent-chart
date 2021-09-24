@@ -28,7 +28,6 @@ data:
   BPA_TITLE: {{ $browserTitle | quote }}
   BPA_I18N_LOCALE: {{ .Values.bpa.config.i18n.locale | quote }}
   BPA_I18N_FALLBACK_LOCALE: {{ .Values.bpa.config.i18n.fallbackLocale | quote }}
-  BPA_WEBHOOK_KEY: {{ .Values.bpa.config.webhook.key | quote }}
 {{- if .Values.bpa.config.imprint.enabled }}
   BPA_IMPRINT_URL: {{ .Values.bpa.config.imprint.urlOverride | default (printf "https://bpa%s/" .Values.global.ingressSuffix) | quote }}
 {{- end }}   
