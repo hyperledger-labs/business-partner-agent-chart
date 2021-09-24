@@ -3,6 +3,9 @@
 TEST_DEPLOYMENT_NAME="Sovrin-Staging"
 DEV_DEPLOYMENT_NAME="Sovrin-Staging"
 
+TEST_DEPLOYMENT_TITLE="Sovrin Staging"
+DEV_DEPLOYMENT_TITLE="Sovrin Staging"
+
 UX_PRESET=custom
 #UX_PRIMARY_COLOR=
 

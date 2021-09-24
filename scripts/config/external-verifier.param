@@ -3,6 +3,10 @@ PROD_DEPLOYMENT_NAME="PriceWaterhouseCoopers"
 TEST_DEPLOYMENT_NAME="External-Verifier"
 DEV_DEPLOYMENT_NAME="External-Verifier"
 
+PROD_DEPLOYMENT_TITLE="PricewaterhouseCoopers"
+TEST_DEPLOYMENT_TITLE="External Verifier"
+DEV_DEPLOYMENT_TITLE="External Verifier"
+
 UX_PRESET=custom
 UX_PRIMARY_COLOR="#18D5E3" 
 UX_NAVIGATION_AVATAR_AGENT_ENABLED=true

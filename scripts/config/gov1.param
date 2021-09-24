@@ -3,6 +3,10 @@ PROD_DEPLOYMENT_NAME="BCGov-Climate-Action-Secretariat"
 TEST_DEPLOYMENT_NAME="Government-GHG"
 DEV_DEPLOYMENT_NAME="Government-2"
 
+PROD_DEPLOYMENT_TITLE="BCGov Climate Action Secretariat"
+TEST_DEPLOYMENT_TITLE="Government GHG"
+DEV_DEPLOYMENT_TITLE="Government 2"
+
 UX_PRESET=bcgov
 
 BPA_SECURITY_ENABLED=true

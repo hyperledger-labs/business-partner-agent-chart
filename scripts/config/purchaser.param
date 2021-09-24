@@ -3,6 +3,10 @@ PROD_DEPLOYMENT_NAME="Purchaser-of-Raw-Materials"
 TEST_DEPLOYMENT_NAME="Purchaser-of-Raw-Materials"
 DEV_DEPLOYMENT_NAME="Purchaser-of-Raw-Materials"
 
+PROD_DEPLOYMENT_TITLE="Purchaser of Raw Materials"
+TEST_DEPLOYMENT_TITLE="Purchaser of Raw Materials"
+DEV_DEPLOYMENT_TITLE="Purchaser of Raw Materials"
+
 UX_PRESET=custom
 UX_PRIMARY_COLOR="#549F43" 
 

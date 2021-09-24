@@ -3,6 +3,10 @@ PROD_DEPLOYMENT_NAME="BCGov-Energy-Mines-LowCarbon-Innovation"
 TEST_DEPLOYMENT_NAME="Government-Mines"
 DEV_DEPLOYMENT_NAME="Government"
 
+PROD_DEPLOYMENT_TITLE="BCGov Energy Mines LowCarbon Innovation"
+TEST_DEPLOYMENT_TITLE="Government Mines"
+DEV_DEPLOYMENT_TITLE="Government"
+
 UX_PRESET=bcgov
 
 BPA_SECURITY_ENABLED=true

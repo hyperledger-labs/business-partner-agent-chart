@@ -3,7 +3,7 @@ echo $BASH_VERSION
 ###########################
 #### LOAD PARAMS
 ###########################
-
+whitespace="[[:space:]]"
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
   key="$1"
@@ -23,10 +23,14 @@ while [[ $# -gt 0 ]]; do
       -e, --environment, loads variables from /env/<parameter>.param file 
       -c, --config, loads variables from /config/<parameter>.param file 
       -d, --deployment, overrides helm deployment name (default=<config>) 
+      -t, --title, sets the browser/tab title  
           --secret_file, loads any other variables from <parameter> file should refer to unversioned file for keycloak_client_secret
 
       SIMPLE EXAMPLE: 
       ./deploy.sh -c demo -e dev
+      
+      COMPLEX EXAMPLE: 
+      ./deploy.sh -c demo -e dev -d my-example -t 'My Example'
 
       KEYCLOAK EXAMPLE: 
       ./deploy.sh -c gov -e dev --secret_file example_secret_file -d dev_gov_keycloak
@@ -45,6 +49,16 @@ while [[ $# -gt 0 ]]; do
       ;;
     -d|--deployment_name)
       DEPLOYMENT_NAME_OVERRIDE="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    -t|--title)
+      if [[ $2 =~ $whitespace ]]
+      then
+        TITLE_OVERRIDE=\"$2\"
+      else
+        TITLE_OVERRIDE=$2
+      fi
       shift # past argument
       shift # past value
       ;;
@@ -105,7 +119,10 @@ declare -A helm_values_map
 
 ## config
 declare BPA_VAR_NAME=${ENVIRONMENT^^}_DEPLOYMENT_NAME
+declare BPA_VAR_TITLE=${ENVIRONMENT^^}_DEPLOYMENT_TITLE
+declare BPA_TITLE_OVERRIDE=${TITLE_OVERRIDE:-\"${!BPA_VAR_TITLE}\"}
 helm_values_map["bpa.config.nameOverride"]="${!BPA_VAR_NAME}"
+helm_values_map["bpa.config.titleOverride"]=\"$BPA_TITLE_OVERRIDE\"
 helm_values_map["ux.preset"]=$UX_PRESET
 helm_values_map["ux.config.theme.themes.light.primary"]=$UX_PRIMARY_COLOR
 
@@ -158,7 +175,7 @@ CMD="helm upgrade $DEPLOYMENT_NAME ../charts/bpa -f ../charts/bpa/values.yaml --
 SET_PARAMS=
 
 for key in "${!helm_values_map[@]}"; do
-    [ -z ${helm_values_map[$key]} ] || SET_PARAMS="$SET_PARAMS --set $key=${helm_values_map[$key]}"
+    [ -z "${helm_values_map[$key]}" ] || SET_PARAMS="$SET_PARAMS --set $key=\"${helm_values_map[$key]}\""
 done
 
 
