@@ -126,6 +126,9 @@ helm_values_map["bpa.config.titleOverride"]=\"$BPA_TITLE_OVERRIDE\"
 helm_values_map["ux.preset"]=$UX_PRESET
 helm_values_map["ux.config.theme.themes.light.primary"]=$UX_PRIMARY_COLOR
 
+## image
+helm_values_map["bpa.image.tag"]=$BPA_IMAGE_TAG
+
 ## environment
 helm_values_map["global.ingressSuffix"]=$INGRESS_SUFFIX
 
