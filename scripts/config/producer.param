@@ -1,0 +1,19 @@
+# NO SPACES ALLOWED
+PROD_DEPLOYMENT_NAME="Copper-Mountain-Mine"
+TEST_DEPLOYMENT_NAME="Producer-of-Raw-Materials"
+DEV_DEPLOYMENT_NAME="Producer-of-Raw-Materials"
+
+PROD_DEPLOYMENT_TITLE="Copper Mountain Mine"
+TEST_DEPLOYMENT_TITLE="Producer of Raw Materials"
+DEV_DEPLOYMENT_TITLE="Producer of Raw Materials"
+
+UX_PRESET=custom
+#UX_PRIMARY_COLOR=
+
+BPA_SECURITY_ENABLED=true
+BPA_KEYCLOAK_ENABLED=true
+KEYCLOAK_CLIENT_ID=bbcm
+
+## Use default - Test-BCovrin
+#BPA_LEDGER_BROWSER_URL
+#BPA_LEDGER_GENESIS_URL

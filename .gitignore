@@ -1,3 +1,7 @@
 *.tgz
 test.yaml
 /mymanifests*
+
+scripts/test-secret
+
+scripts/dev-secret
