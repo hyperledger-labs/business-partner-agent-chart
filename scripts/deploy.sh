@@ -123,10 +123,15 @@ declare BPA_VAR_TITLE=${ENVIRONMENT^^}_DEPLOYMENT_TITLE
 declare BPA_TITLE_OVERRIDE=${TITLE_OVERRIDE:-\"${!BPA_VAR_TITLE}\"}
 helm_values_map["bpa.config.nameOverride"]="${!BPA_VAR_NAME}"
 helm_values_map["bpa.config.titleOverride"]=\"$BPA_TITLE_OVERRIDE\"
+helm_values_map["bpa.config.i18n.locale"]=$BPA_I18N_LOCALE
 helm_values_map["ux.preset"]=$UX_PRESET
 helm_values_map["ux.config.theme.themes.light.primary"]=$UX_PRIMARY_COLOR
 
+## image
+helm_values_map["bpa.image.tag"]=$BPA_IMAGE_TAG
+
 ## environment
+## loaded from .env config, then can be overriden in .param config
 helm_values_map["global.ingressSuffix"]=$INGRESS_SUFFIX
 
 ## ledger
@@ -141,6 +146,7 @@ helm_values_map["keycloak.enabled"]=$BPA_KEYCLOAK_ENABLED
 helm_values_map["keycloak.clientId"]=$KEYCLOAK_CLIENT_ID
 helm_values_map["keycloak.config.issuer"]=$KEYCLOAK_ISSUER_URL
 helm_values_map["keycloak.config.endsessionUrl"]=$KEYCLOAK_END_SESSION_URL
+helm_values_map["keycloak.config.vcauthn_pres_req_conf_id"]=$KEYCLOAK_CONFIG_VCAUTHN_PRES_REQ_CONF_ID
 
 ## nav-header custom
 helm_values_map["ux.config.navigation.avatar.agent.enabled"]=$UX_NAVIGATION_AVATAR_AGENT_ENABLED
