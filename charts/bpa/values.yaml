@@ -170,7 +170,7 @@ ux:
   # -- Allowed values: bcgov, custom, default
   # -- When using preset=default, no ux configmaps will be created; app runs with default configuration
   # -- When using preset=custom, you need to populate the config object.
-  preset: bcgov
+  preset: custom
   config:
     buttons:
       primary:
@@ -195,16 +195,16 @@ ux:
           font: "#313132"
           anchor: "#1A5A96"
           anchorHover: "#3B99FC"
-#    favicon:
-#      href: "<url to fav icon>"
-#    navigation:
-#      avatar:
-#        agent:
-#          enabled: true
-#          default: true
-#          src: ""
-#        user:
-#          enabled: false
+          icons: "#000000"    
+    favicon:      
+      href: "https://raw.githubusercontent.com/bcgov/mines-digital-trust/main/assets/material-design/black-24dp/1x/outline_domain_black_24dp.png"
+    navigation:
+      avatar:
+        agent:
+          enabled: true
+          default: false
+          src: "https://raw.githubusercontent.com/bcgov/mines-digital-trust/main/assets/material-design/black-24dp/2x/outline_domain_black_24dp.png"
+          showName: true
 #      settings:
 #        location: "top"
 #      about:
@@ -212,15 +212,8 @@ ux:
 #      logout:
 #        enabled: false
 #    header:
-#      title:
-#        prefix: false
 #      logout:
 #        enabled: true
-#      logo:
-#        enabled: false
-#        href: ""
-#        alt: ""
-#        images: []
 
 acapy:
   image:

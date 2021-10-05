@@ -24,7 +24,8 @@ while [[ $# -gt 0 ]]; do
       -c, --config, loads variables from /config/<parameter>.param file 
       -d, --deployment, overrides helm deployment name (default=<config>) 
       -t, --title, sets the browser/tab title  
-          --secret_file, loads any other variables from <parameter> file should refer to unversioned file for keycloak_client_secret
+      -it, --image_tag, sets the image tag 
+      --secret_file, loads any other variables from <parameter> file should refer to unversioned file for keycloak_client_secret
 
       SIMPLE EXAMPLE: 
       ./deploy.sh -c demo -e dev
@@ -59,6 +60,11 @@ while [[ $# -gt 0 ]]; do
       else
         TITLE_OVERRIDE=$2
       fi
+      shift # past argument
+      shift # past value
+      ;;
+    -it|--image_tag)
+      IMAGE_TAG_OVERRIDE="$2"
       shift # past argument
       shift # past value
       ;;
@@ -126,9 +132,12 @@ helm_values_map["bpa.config.titleOverride"]=\"$BPA_TITLE_OVERRIDE\"
 helm_values_map["bpa.config.i18n.locale"]=$BPA_I18N_LOCALE
 helm_values_map["ux.preset"]=$UX_PRESET
 helm_values_map["ux.config.theme.themes.light.primary"]=$UX_PRIMARY_COLOR
+helm_values_map["ux.config.theme.themes.light.icons"]=$UX_ICONS_COLOR
 
 ## image
-helm_values_map["bpa.image.tag"]=$BPA_IMAGE_TAG
+declare BPA_VAR_IMAGE_TAG=${ENVIRONMENT^^}_IMAGE_TAG
+declare BPA_IMAGE_TAG_OVERRIDE=${IMAGE_TAG_OVERRIDE:-${!BPA_VAR_IMAGE_TAG}}
+helm_values_map["bpa.image.tag"]=${BPA_IMAGE_TAG_OVERRIDE}
 
 ## environment
 ## loaded from .env config, then can be overriden in .param config
@@ -149,13 +158,15 @@ helm_values_map["keycloak.config.endsessionUrl"]=$KEYCLOAK_END_SESSION_URL
 helm_values_map["keycloak.config.vcauthn_pres_req_conf_id"]=$KEYCLOAK_CONFIG_VCAUTHN_PRES_REQ_CONF_ID
 
 ## nav-header custom
+helm_values_map["ux.config.favicon.href"]=$UX_FAVICON_HREF
 helm_values_map["ux.config.navigation.avatar.agent.enabled"]=$UX_NAVIGATION_AVATAR_AGENT_ENABLED
 helm_values_map["ux.config.navigation.avatar.agent.default"]=$UX_NAVIGATION_AVATAR_AGENT_DEFAULT
-helm_values_map["ux.config.navigation.avatar.user.enabled"]=$UX_NAVIGATION_AVATAR_USER_ENABLED
+helm_values_map["ux.config.navigation.avatar.agent.src"]=$UX_NAVIGATION_AVATAR_AGENT_SRC
+helm_values_map["ux.config.navigation.avatar.agent.showName"]=$UX_NAVIGATION_AVATAR_AGENT_SHOW_NAME
 helm_values_map["ux.config.navigation.about.enabled"]=$UX_NAVIGATION_ABOUT_ENABLED
 helm_values_map["ux.config.navigation.logout.enabled"]=$UX_NAVIGATION_LOGOUT_ENABLED
-helm_values_map["ux.config.navigation.avatar.agent.src"]=$UX_NAVIGATION_AVATAR_AGENT_SRC
 helm_values_map["ux.config.navigation.settings.location"]=$UX_NAVIGATION_SETTINGS_LOCATION
+helm_values_map["ux.config.header.logout.enabled"]=$UX_HEADER_LOGOUT_ENABLED
 
 
 if $BPA_KEYCLOAK_ENABLED && [ -z $KEYCLOAK_CLIENT_SECRET ]
@@ -193,3 +204,10 @@ eval "${CMD} ${SET_PARAMS}"
 
 # pod_name="oc get pods --no-headers | grep $CONFIG-bpa-core"
 # eval "oc delete pod $pod_name"
+
+
+###########################
+#### TAG IMAGE
+###########################
+
+# oc -n f6b17d-tools tag bcgov-b2b:latest bcgov-b2b:test

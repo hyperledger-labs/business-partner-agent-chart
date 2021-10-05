@@ -1,22 +1,21 @@
 # NO SPACES ALLOWED
 PROD_DEPLOYMENT_NAME="PriceWaterhouseCoopers"
-TEST_DEPLOYMENT_NAME="External-Verifier"
-DEV_DEPLOYMENT_NAME="External-Verifier"
+TEST_DEPLOYMENT_NAME="PriceWaterhouseCoopers"
+DEV_DEPLOYMENT_NAME="PriceWaterhouseCoopers"
 
 PROD_DEPLOYMENT_TITLE="PricewaterhouseCoopers"
-TEST_DEPLOYMENT_TITLE="External Verifier"
-DEV_DEPLOYMENT_TITLE="External Verifier"
+TEST_DEPLOYMENT_TITLE="PriceWaterhouseCoopers"
+DEV_DEPLOYMENT_TITLE="PriceWaterhouseCoopers"
 
 UX_PRESET=custom
-UX_PRIMARY_COLOR="#18D5E3" 
+UX_PRIMARY_COLOR="#C73F06" 
 #BPA_I18N_LOCALE=bcgov
-UX_NAVIGATION_AVATAR_AGENT_ENABLED=true
+
+UX_FAVICON_HREF=https://www.pwc.com/etc.clientlibs/pwc/clientlibs/css_common/resources/image/favicon.ico
+
 UX_NAVIGATION_AVATAR_AGENT_DEFAULT=false
-UX_NAVIGATION_AVATAR_USER_ENABLED=false
-UX_NAVIGATION_ABOUT_ENABLED=false
-UX_NAVIGATION_LOGOUT_ENABLED=false
 UX_NAVIGATION_AVATAR_AGENT_SRC=https://www.pwc.com/etc.clientlibs/pwc/clientlibs/rebrand-clientlibs/components-colors/resources/images/slim-header-v2/PwC-logo.svg
-UX_NAVIGATION_SETTINGS_LOCATION=top
+
 
 BPA_SECURITY_ENABLED=true
 BPA_KEYCLOAK_ENABLED=true
@@ -25,4 +24,3 @@ KEYCLOAK_CLIENT_ID=bbcm
 ## Use default - Test-BCovrin
 #BPA_LEDGER_BROWSER_URL
 #BPA_LEDGER_GENESIS_URL
-
