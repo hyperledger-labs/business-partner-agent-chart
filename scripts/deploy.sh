@@ -131,12 +131,8 @@ helm_values_map["ux.config.theme.themes.light.primary"]=$UX_PRIMARY_COLOR
 helm_values_map["bpa.image.tag"]=$BPA_IMAGE_TAG
 
 ## environment
-if [ $INGRESS_SUFFIX_OVERRIDE ]
-then 
-  helm_values_map["global.ingressSuffix"]=$INGRESS_SUFFIX_OVERRIDE
-else
-  helm_values_map["global.ingressSuffix"]=$INGRESS_SUFFIX
-fi
+## loaded from .env config, then can be overriden in .param config
+helm_values_map["global.ingressSuffix"]=$INGRESS_SUFFIX
 
 ## ledger
 helm_values_map["bpa.ledger.browserUrlOverride"]=$BPA_LEDGER_BROWSER_URL
