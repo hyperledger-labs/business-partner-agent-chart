@@ -93,9 +93,17 @@ generate hosts if not overriden
 generate ledger browser url
 */}}
 {{- define "bpa.ledgerBrowser" -}}
-{{- $ledgerBrowser := dict "bosch-test" "https://indy-test.bosch-digital.de" "idu" "https://explorer.idu.network" "bcovrin-test" "http://test.bcovrin.vonx.io" -}}
+{{- $ledgerBrowser := dict "bosch-test" "https://indy-test.bosch-digital.de" "idu" "https://explorer.idu.network" -}}
 {{ .Values.bpa.config.ledger.browserUrlOverride | default ( get $ledgerBrowser .Values.global.ledger ) }}
 {{- end }}
+
+{{/*
+generate genesisfileurl
+*/}}
+{{- define "bpa.genesisUrl" -}}
+{{ default (printf "%s%s" (include "bpa.ledgerBrowser" .) "/genesis") .Values.bpa.config.ledger.genesisUrlOverride }}
+{{- end }}
+
 
 {{/*
 Common acapy labels

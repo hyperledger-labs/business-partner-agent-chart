@@ -182,7 +182,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.fullnameOverride | string | `""` |  |
 | acapy.image.pullPolicy | string | `"IfNotPresent"` |  |
 | acapy.image.repository | string | `"bcgovimages/aries-cloudagent"` |  |
-| acapy.image.tag | string | `"py36-1.16-1_0.7.0"` | Overrides the image tag whose default is the chart appVersion. |
+| acapy.image.tag | string | `"py36-1.16-1_0.7.1"` | Overrides the image tag whose default is the chart appVersion. |
 | acapy.imagePullSecrets | list | `[]` |  |
 | acapy.ingress.annotations | object | `{}` |  |
 | acapy.ingress.enabled | bool | `true` |  |
@@ -219,7 +219,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.staticArgs.autoRespondPresentationRequest | bool | `true` |  |
 | acapy.staticArgs.autoStoreCredential | bool | `true` |  |
 | acapy.staticArgs.autoVerifyPresentation | bool | `true` |  |
-| acapy.staticArgs.logLevel | string | `"info"` |  |
+| acapy.staticArgs.logLevel | string | `"default"` |  |
 | acapy.staticArgs.monitorPing | bool | `true` |  |
 | acapy.staticArgs.publicInvites | bool | `true` |  |
 | acapy.tails.baseUrlOverride | string | `""` | Override the otherwise ledger-specifically generated base URL of the external tails server |
@@ -235,6 +235,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.imprint.enabled | bool | `false` |  |
 | bpa.config.imprint.urlOverride | string | `""` |  |
 | bpa.config.ledger.browserUrlOverride | string | `""` |  |
+| bpa.config.ledger.genesisUrlOverride | string | `""` |  |
 | bpa.config.logConfigurationFile | string | `"log4j2-prod.xml"` | log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json. |
 | bpa.config.nameOverride | string | `""` | Override name shown in the frontend (may container whitespaces and so on). Default: Helm release name, capitalized |
 | bpa.config.privacyPolicy.enabled | bool | `false` |  |
@@ -301,7 +302,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | schemas.config | object | `{}` |  |
 | schemas.enabled | bool | `true` |  |
 | ux.config | object | `{}` |  |
-| ux.preset | string | `"default"` | The ux preset configuration. -- Allowed values: bcgov, custom, default -- When using preset=default, no ux configmaps will be created; app runs with default configuration -- When using preset=custom, you need to populate the config object. |
+| ux.preset | string | `"default"` | The ux preset configuration. -- Allowed values: custom, default -- When using preset=default, no ux configmaps will be created; app runs with default configuration -- When using preset=custom, you need to populate the config object. |
 
 ## Chart dependencies
 | Repository | Name | Version |
