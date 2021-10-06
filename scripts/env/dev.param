@@ -1,7 +1,7 @@
 INGRESS_SUFFIX=-dev.apps.silver.devops.gov.bc.ca
 
 ## Openshift Images
-DEV_IMAGE_TAG=latest
+IMAGE_TAG=latest
 
 ## KEYCLOAK
 KEYCLOAK_ISSUER_URL=https://dev.oidc.gov.bc.ca/auth/realms/digitaltrust

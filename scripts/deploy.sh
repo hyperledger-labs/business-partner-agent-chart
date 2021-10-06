@@ -135,8 +135,7 @@ helm_values_map["ux.config.theme.themes.light.primary"]=$UX_PRIMARY_COLOR
 helm_values_map["ux.config.theme.themes.light.icons"]=$UX_ICONS_COLOR
 
 ## image
-declare BPA_VAR_IMAGE_TAG=${ENVIRONMENT^^}_IMAGE_TAG
-declare BPA_IMAGE_TAG_OVERRIDE=${IMAGE_TAG_OVERRIDE:-${!BPA_VAR_IMAGE_TAG}}
+declare BPA_IMAGE_TAG_OVERRIDE=${IMAGE_TAG_OVERRIDE:-${IMAGE_TAG}}
 helm_values_map["bpa.image.tag"]=${BPA_IMAGE_TAG_OVERRIDE}
 
 ## environment

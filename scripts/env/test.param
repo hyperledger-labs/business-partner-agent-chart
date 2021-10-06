@@ -1,7 +1,7 @@
 INGRESS_SUFFIX=-test.apps.silver.devops.gov.bc.ca
 
 ## Openshift Images
-DEV_IMAGE_TAG=test
+IMAGE_TAG=test
 
 
 ## KEYCLOAK
