@@ -1,5 +1,8 @@
 INGRESS_SUFFIX=-dev.apps.silver.devops.gov.bc.ca
 
+## Openshift Images
+IMAGE_TAG=latest
+
 ## KEYCLOAK
 KEYCLOAK_ISSUER_URL=https://dev.oidc.gov.bc.ca/auth/realms/digitaltrust
 KEYCLOAK_END_SESSION_URL=https://dev.oidc.gov.bc.ca/auth/realms/digitaltrust/protocol/openid-connect/logout

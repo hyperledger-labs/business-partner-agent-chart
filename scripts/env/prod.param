@@ -1,5 +1,8 @@
 INGRESS_SUFFIX=-prod.apps.silver.devops.gov.bc.ca
 
+## Openshift Images
+IMAGE_TAG=prod
+
 ## KEYCLOAK
 KEYCLOAK_ISSUER_URL=
 KEYCLOAK_END_SESSION_URL=
