@@ -51,7 +51,6 @@ bpa:
       browserUrlOverride: ""
       genesisUrlOverride: ""
     # -- The scheme that is used to register the profile endpoint on the ledger
-    name: "{{ camelcase .Release.Name }}"
     scheme: https
     web:
       only: false
@@ -231,8 +230,6 @@ acapy:
   labelOverride: ""
 
   readOnlyMode: false
-  #
-  logLevel: warning #('debug', 'info', 'warning', 'error', 'critical')
 
   imagePullSecrets: []
   nameOverride: ""
@@ -327,7 +324,7 @@ acapy:
     autoProvision: true
     monitorPing: true
     publicInvites: true
-    logLevel: info
+    logLevel: warning
 
 postgresql:
   # --  PostgreSQL service configuration

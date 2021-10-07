@@ -5,3 +5,5 @@ test.yaml
 scripts/test-secret
 
 scripts/dev-secret
+
+scripts/*.secret
