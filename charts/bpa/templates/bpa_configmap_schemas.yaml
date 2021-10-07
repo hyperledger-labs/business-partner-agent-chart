@@ -41,5 +41,14 @@ data:
           restrictions:
             - issuerDid: "${bpa.did.prefix}5mwQSWnRePrZ3oF67C4KqD"
               label: "Commercial Register"
+{{- else if eq .Values.global.ledger "bcovrin-test" }}
+        mines-act-permit:
+          id: "Bcrxne1yVV9LkAnJ4uga4V:2:bcgov-mines-act-permit:0.2.1"
+          label: "Mines Act Permit"
+          defaultAttributeName: "permit_no"
+        emissions-intensity:
+          id: "Bcrxne1yVV9LkAnJ4uga4V:2:emissions-intensity:0.2"
+          label: "Emissions Intensity"
+          defaultAttributeName: "reporting_year"
 {{- end -}}      
 {{- end -}}

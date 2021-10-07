@@ -146,6 +146,8 @@ helm_values_map["global.ingressSuffix"]=$INGRESS_SUFFIX
 helm_values_map["bpa.ledger.browserUrlOverride"]=$BPA_LEDGER_BROWSER_URL
 helm_values_map["bpa.ledger.genesisUrlOverride"]=$BPA_LEDGER_GENESIS_URL
 
+helm_values_map["schemas.enabled"]=$SCHEMAS_ENABLED
+
 ## security
 helm_values_map["bpa.config.security.enabled"]=$BPA_SECURITY_ENABLED
 helm_values_map["keycloak.enabled"]=$BPA_KEYCLOAK_ENABLED
@@ -179,6 +181,32 @@ then
 fi
 helm_values_map["keycloak.clientSecret"]=$KEYCLOAK_CLIENT_SECRET
 
+
+if $BPA_SECURITY_ENABLED && [[ $BPA_BOOTSTRAP_OVERRIDE ]] && [ $BPA_BOOTSTRAP_OVERRIDE ]
+then
+    echo "Local security enabled, overriding bootstrap defaults."
+    if [ -z $BPA_BOOTSTRAP_USERNAME ]
+    then
+        read -p "Provide bootstrap username: " BPA_BOOTSTRAP_USERNAME
+        if [ -z $BPA_BOOTSTRAP_USERNAME ]
+        then 
+            echo "don't skip that next time"
+            exit 1
+        fi
+    fi
+
+    if [ -z $BPA_BOOTSTRAP_PASSWORD ]
+    then
+        read -p "Provide password for $BPA_BOOTSTRAP_USERNAME: " BPA_BOOTSTRAP_PASSWORD
+        if [ -z $BPA_BOOTSTRAP_PASSWORD ]
+        then 
+            echo "don't skip that next time"
+            exit 1
+        fi
+    fi
+helm_values_map["bpa.config.bootstrap.username"]=$BPA_BOOTSTRAP_USERNAME
+helm_values_map["bpa.config.bootstrap.password"]=$BPA_BOOTSTRAP_PASSWORD
+fi
 
 ###########################
 #### Construct Command
