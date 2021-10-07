@@ -1,11 +1,11 @@
 # NO SPACES ALLOWED
-PROD_DEPLOYMENT_NAME="PriceWaterhouseCoopers"
-TEST_DEPLOYMENT_NAME="PriceWaterhouseCoopers"
-DEV_DEPLOYMENT_NAME="PriceWaterhouseCoopers"
+PROD_DEPLOYMENT_NAME="PricewaterhouseCoopers"
+TEST_DEPLOYMENT_NAME="PricewaterhouseCoopers"
+DEV_DEPLOYMENT_NAME="PricewaterhouseCoopers"
 
 PROD_DEPLOYMENT_TITLE="PricewaterhouseCoopers"
-TEST_DEPLOYMENT_TITLE="PriceWaterhouseCoopers"
-DEV_DEPLOYMENT_TITLE="PriceWaterhouseCoopers"
+TEST_DEPLOYMENT_TITLE="PricewaterhouseCoopers"
+DEV_DEPLOYMENT_TITLE="PricewaterhouseCoopers"
 
 UX_PRESET=custom
 UX_PRIMARY_COLOR="#C73F06" 
