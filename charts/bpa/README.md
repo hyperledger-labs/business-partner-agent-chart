@@ -2,7 +2,7 @@
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
-![Version: 0.8.2](https://img.shields.io/badge/Version-0.8.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-8808a152](https://img.shields.io/badge/AppVersion-sha--8808a152-informational?style=flat-square)
+![Version: 0.8.3](https://img.shields.io/badge/Version-0.8.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-3b55e2da](https://img.shields.io/badge/AppVersion-sha--3b55e2da-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -182,7 +182,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.fullnameOverride | string | `""` |  |
 | acapy.image.pullPolicy | string | `"IfNotPresent"` |  |
 | acapy.image.repository | string | `"bcgovimages/aries-cloudagent"` |  |
-| acapy.image.tag | string | `"py36-1.16-1_0.7.0"` | Overrides the image tag whose default is the chart appVersion. |
+| acapy.image.tag | string | `"py36-1.16-1_0.7.2-rc0"` | Overrides the image tag whose default is the chart appVersion. |
 | acapy.imagePullSecrets | list | `[]` |  |
 | acapy.ingress.annotations | object | `{}` |  |
 | acapy.ingress.enabled | bool | `true` |  |
@@ -208,15 +208,15 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.service.httpPort | int | `8030` |  |
 | acapy.service.type | string | `"ClusterIP"` |  |
 | acapy.staticArgs.autoAcceptInvites | bool | `true` |  |
-| acapy.staticArgs.autoAcceptRequests | bool | `true` |  |
+| acapy.staticArgs.autoAcceptRequests | bool | `false` |  |
 | acapy.staticArgs.autoPingConnection | bool | `true` |  |
 | acapy.staticArgs.autoProvision | bool | `true` |  |
 | acapy.staticArgs.autoRespondCredentialOffer | bool | `true` |  |
-| acapy.staticArgs.autoRespondCredentialProposal | bool | `true` |  |
+| acapy.staticArgs.autoRespondCredentialProposal | bool | `false` |  |
 | acapy.staticArgs.autoRespondCredentialRequest | bool | `true` |  |
-| acapy.staticArgs.autoRespondMessages | bool | `true` |  |
+| acapy.staticArgs.autoRespondMessages | bool | `false` |  |
 | acapy.staticArgs.autoRespondPresentationProposal | bool | `true` |  |
-| acapy.staticArgs.autoRespondPresentationRequest | bool | `true` |  |
+| acapy.staticArgs.autoRespondPresentationRequest | bool | `false` |  |
 | acapy.staticArgs.autoStoreCredential | bool | `true` |  |
 | acapy.staticArgs.autoVerifyPresentation | bool | `true` |  |
 | acapy.staticArgs.logLevel | string | `"info"` |  |
@@ -236,7 +236,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.imprint.urlOverride | string | `""` |  |
 | bpa.config.ledger.browserUrlOverride | string | `""` |  |
 | bpa.config.logConfigurationFile | string | `"log4j2-prod.xml"` | log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json. |
-| bpa.config.nameOverride | string | `""` | Override name shown in the frontend (may container whitespaces and so on). Default: Helm release name, capitalized |
+| bpa.config.nameOverride | string | `""` | Override name shown in the frontend (may contain whitespaces and so on). Default: Helm release name, capitalized |
 | bpa.config.privacyPolicy.enabled | bool | `false` |  |
 | bpa.config.privacyPolicy.urlOverride | string | `""` |  |
 | bpa.config.scheme | string | `"https"` | The scheme that is used to register the profile endpoint on the ledger |
@@ -245,7 +245,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.web.only | bool | `false` |  |
 | bpa.config.webhook.key | string | `"changeme"` | Optional: secures aca-py to backend webhook communication with an api-key |
 | bpa.image.pullPolicy | string | `"IfNotPresent"` |  |
-| bpa.image.repository | string | `"ghcr.io/hyperledger-labs/business-partner-agent"` |  |
+| bpa.image.repository | string | `"ghcr.io/hyperledger-labs/business-partner-agent-new"` |  |
 | bpa.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | bpa.imagePullSecrets | list | `[]` |  |
 | bpa.ingress.annotations | object | `{}` |  |
