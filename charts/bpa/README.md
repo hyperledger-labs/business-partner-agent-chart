@@ -245,7 +245,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.web.only | bool | `false` |  |
 | bpa.config.webhook.key | string | `"changeme"` | Optional: secures aca-py to backend webhook communication with an api-key |
 | bpa.image.pullPolicy | string | `"IfNotPresent"` |  |
-| bpa.image.repository | string | `"ghcr.io/hyperledger-labs/business-partner-agent"` |  |
+| bpa.image.repository | string | `"ghcr.io/hyperledger-labs/business-partner-agent-new"` |  |
 | bpa.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | bpa.imagePullSecrets | list | `[]` |  |
 | bpa.ingress.annotations | object | `{}` |  |

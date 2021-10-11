@@ -18,7 +18,7 @@ global:
 
 bpa:
   image:
-    repository: ghcr.io/hyperledger-labs/business-partner-agent
+    repository: ghcr.io/hyperledger-labs/business-partner-agent-new
     pullPolicy: IfNotPresent
     # --  Overrides the image tag whose default is the chart appVersion.
     tag: ""
