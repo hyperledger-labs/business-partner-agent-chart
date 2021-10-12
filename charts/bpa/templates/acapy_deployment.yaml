@@ -41,7 +41,7 @@ spec:
            --arg-file acapy-static-args.yml \
            --inbound-transport http '0.0.0.0' {{ .Values.acapy.service.httpPort }} \
            --webhook-url http://{{ include "bpa.fullname" . }}:{{ .Values.bpa.service.port }}/log#{{ .Values.bpa.config.webhook.key }}  \
-           --genesis-url '{{ include "bpa.ledgerBrowser" . }}/genesis' \
+           --genesis-url '{{ include "bpa.genesisUrl" . }}' \
            --endpoint https://{{ include "acapy.host" . }} \
            --wallet-storage-type 'postgres_storage' \
            --wallet-name 'mywallet' \
@@ -51,6 +51,7 @@ spec:
            --seed \"$(WALLET_SEED)\" \
            --admin '0.0.0.0' {{ .Values.acapy.service.adminPort }} \
            --admin-insecure-mode \
+           --emit-new-didcomm-prefix \
            --label {{ $acapyLabel }} \
            {{- if .Values.acapy.tails.enabled }}
            --tails-server-base-url {{ include "acapy.tails.baseUrl" . }} \

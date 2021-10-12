@@ -1,0 +1,18 @@
+# NO SPACES ALLOWED
+#PROD_DEPLOYMENT_NAME="NO PRODUCTION"
+TEST_DEPLOYMENT_NAME="Sovrin-Staging"
+DEV_DEPLOYMENT_NAME="Sovrin-Staging"
+
+TEST_DEPLOYMENT_TITLE="Sovrin Staging"
+DEV_DEPLOYMENT_TITLE="Sovrin Staging"
+
+UX_PRESET=custom
+#UX_PRIMARY_COLOR=
+
+BPA_SECURITY_ENABLED=false
+BPA_KEYCLOAK_ENABLED=false
+#KEYCLOAK_CLIENT_ID=bbcm
+
+## Use default - Test-BCovrin
+BPA_LEDGER_BROWSER_URL=https://indyscan.io/home/SOVRIN_STAGINGNET/
+BPA_LEDGER_GENESIS_URL=https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_sandbox_genesis
