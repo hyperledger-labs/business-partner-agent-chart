@@ -194,7 +194,7 @@ ux:
           font: "#313132"
           anchor: "#1A5A96"
           anchorHover: "#3B99FC"
-          icons: "#000000"    
+          icons: "#4A148C"    
     favicon:      
       href: "https://raw.githubusercontent.com/bcgov/mines-digital-trust/main/assets/material-design/black-24dp/1x/outline_domain_black_24dp.png"
     navigation:
