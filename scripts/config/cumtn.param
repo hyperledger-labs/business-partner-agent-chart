@@ -12,7 +12,8 @@ UX_PRESET=custom
 #BPA_I18N_LOCALE=bcgov
 
 UX_PRESET=custom
-UX_PRIMARY_COLOR="#AF866F" 
+UX_PRIMARY_COLOR="#AF866F"
+UX_ICONS_COLOR="#AF866F"
 #BPA_I18N_LOCALE=bcgov
 
 UX_FAVICON_HREF=https://cumtn.com/site/templates/img/favicon.png

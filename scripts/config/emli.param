@@ -3,9 +3,9 @@ PROD_DEPLOYMENT_NAME="BCGov-Energy-Mines-LowCarbon-Innovation"
 TEST_DEPLOYMENT_NAME="BCGov-Energy-Mines-LowCarbon-Innovation"
 DEV_DEPLOYMENT_NAME="BCGov-Energy-Mines-LowCarbon-Innovation"
 
-PROD_DEPLOYMENT_TITLE="BCGov-Energy-Mines-LowCarbon-Innovation"
-TEST_DEPLOYMENT_TITLE="BCGov-Energy-Mines-LowCarbon-Innovation"
-DEV_DEPLOYMENT_TITLE="BCGov-Energy-Mines-LowCarbon-Innovation"
+PROD_DEPLOYMENT_TITLE="BCGov Energy Mines LowCarbon Innovation"
+TEST_DEPLOYMENT_TITLE="BCGov Energy Mines LowCarbon Innovation"
+DEV_DEPLOYMENT_TITLE="BCGov Energy Mines LowCarbon Innovation"
 
 UX_PRESET=bcgov
 BPA_I18N_LOCALE=bcgov
