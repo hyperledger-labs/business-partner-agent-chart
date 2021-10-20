@@ -63,7 +63,7 @@ bpa:
       enabled: false
       urlOverride: ""
     i18n:
-      locale: en
+      locale: bcgov
       fallbackLocale: en
     # --  log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json.
     logConfigurationFile: log4j2.xml
