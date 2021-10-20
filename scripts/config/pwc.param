@@ -10,7 +10,7 @@ DEV_DEPLOYMENT_TITLE="PricewaterhouseCoopers"
 UX_PRESET=custom
 UX_PRIMARY_COLOR="#C73F06" 
 UX_ICONS_COLOR="#C73F06"
-#BPA_I18N_LOCALE=bcgov
+#BPA_I18N_LOCALE=en
 
 UX_FAVICON_HREF=https://www.pwc.com/etc.clientlibs/pwc/clientlibs/css_common/resources/image/favicon.ico
 

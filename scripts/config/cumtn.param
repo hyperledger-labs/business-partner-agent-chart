@@ -8,13 +8,9 @@ TEST_DEPLOYMENT_TITLE="Copper Mountain Mine"
 DEV_DEPLOYMENT_TITLE="Copper Mountain Mine"
 
 UX_PRESET=custom
-#UX_PRIMARY_COLOR=
-#BPA_I18N_LOCALE=bcgov
-
-UX_PRESET=custom
 UX_PRIMARY_COLOR="#AF866F"
 UX_ICONS_COLOR="#AF866F"
-#BPA_I18N_LOCALE=bcgov
+#BPA_I18N_LOCALE=en
 
 UX_FAVICON_HREF=https://cumtn.com/site/templates/img/favicon.png
 
