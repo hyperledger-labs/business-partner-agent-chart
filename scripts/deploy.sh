@@ -147,6 +147,9 @@ helm_values_map["bpa.ledger.browserUrlOverride"]=$BPA_LEDGER_BROWSER_URL
 helm_values_map["bpa.ledger.genesisUrlOverride"]=$BPA_LEDGER_GENESIS_URL
 
 helm_values_map["schemas.enabled"]=$SCHEMAS_ENABLED
+helm_values_map["schemas.minesActPermit.enabled"]=$SCHEMAS_MINESACT_ENABLED
+helm_values_map["schemas.emissionsProfile.enabled"]=$SCHEMAS_EMISSIONS_ENABLED
+helm_values_map["schemas.tsm.enabled"]=$SCHEMAS_TSM_ENABLED
 
 ## security
 helm_values_map["bpa.config.security.enabled"]=$BPA_SECURITY_ENABLED
