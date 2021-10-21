@@ -42,13 +42,23 @@ data:
             - issuerDid: "${bpa.did.prefix}5mwQSWnRePrZ3oF67C4KqD"
               label: "Commercial Register"
 {{- else if eq .Values.global.ledger "bcovrin-test" }}
+{{- if .Values.schemas.minesActPermit.enabled }}
         mines-act-permit:
-          id: "Bcrxne1yVV9LkAnJ4uga4V:2:bcgov-mines-act-permit:0.2.1"
+          id: "AhiKqtmUW2wTN3mYe9Xv7c:2:bcgov-mines-act-permit:0.2.2"
           label: "Mines Act Permit"
           defaultAttributeName: "permit_no"
-        emissions-intensity:
-          id: "Bcrxne1yVV9LkAnJ4uga4V:2:emissions-intensity:0.2"
-          label: "Emissions Intensity"
+{{- end -}} 
+{{- if .Values.schemas.emissionsProfile.enabled }}
+        emissions-profile:
+          id: "8PPeTySYPEj5g6JGzPFY1e:2:emissions-profile:0.3"
+          label: "Emissions Profile"
+          defaultAttributeName: "reporting_year" 
+{{- end -}} 
+{{- if .Values.schemas.tsm.enabled }}
+        tsm-safety-and-health-verification:
+          id: "CX7j6xjoE52PnKz44WM3fH:2:tsm-safety-and-health-verification:0.2"
+          label: "Towards Sustainability Mining - Safety and Health"
           defaultAttributeName: "reporting_year"
+{{- end -}} 
 {{- end -}}      
 {{- end -}}

@@ -147,7 +147,13 @@ keycloak:
     vcauthn_pres_req_conf_id: bpa-wallet-access-dev
     
 schemas:
-  enabled: false
+  enabled: true
+  minesActPermit:
+    enabled: true
+  emissionsProfile:
+    enabled: true
+  tsm:
+    enabled: false
   config: {}
 #    bank-account:
 #      id: "M6Mbe3qx7vB4wpZF4sBRjt:2:bank_account:1.0"
