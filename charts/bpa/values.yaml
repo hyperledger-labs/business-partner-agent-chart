@@ -323,7 +323,7 @@ acapy:
     autoAcceptRequests: false
     autoRespondMessages: false
     autoRespondCredentialProposal: false
-    autoRespondCredentialOffer: true
+    autoRespondCredentialOffer: false
     autoRespondCredentialRequest: true
     autoRespondPresentationProposal: true
     autoRespondPresentationRequest: false
