@@ -320,7 +320,6 @@ acapy:
     autoRespondMessages: false
     autoAcceptRequests: false
     autoRespondCredentialProposal: true
-    autoRespondCredentialOffer: true
     autoRespondCredentialRequest: true
     autoRespondPresentationProposal: true
     autoRespondPresentationRequest: false
