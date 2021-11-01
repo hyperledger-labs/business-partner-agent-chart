@@ -1,0 +1,32 @@
+# NO SPACES ALLOWED
+PROD_DEPLOYMENT_NAME="PricewaterhouseCoopers"
+TEST_DEPLOYMENT_NAME="PricewaterhouseCoopers"
+DEV_DEPLOYMENT_NAME="PricewaterhouseCoopers"
+
+PROD_DEPLOYMENT_TITLE="PricewaterhouseCoopers"
+TEST_DEPLOYMENT_TITLE="PricewaterhouseCoopers"
+DEV_DEPLOYMENT_TITLE="PricewaterhouseCoopers"
+
+UX_PRESET=custom
+UX_PRIMARY_COLOR="#C73F06" 
+UX_ICONS_COLOR="#C73F06"
+#BPA_I18N_LOCALE=en
+
+UX_FAVICON_HREF=https://www.pwc.com/etc.clientlibs/pwc/clientlibs/css_common/resources/image/favicon.ico
+
+UX_NAVIGATION_AVATAR_AGENT_DEFAULT=false
+UX_NAVIGATION_AVATAR_AGENT_SRC=https://www.pwc.com/etc.clientlibs/pwc/clientlibs/rebrand-clientlibs/components-colors/resources/images/slim-header-v2/PwC-logo.svg
+
+SCHEMAS_MINESACT_ENABLED=false
+SCHEMAS_EMISSIONS_ENABLED=false
+SCHEMAS_TSM_ENABLED=true
+
+BPA_SECURITY_ENABLED=true
+BPA_KEYCLOAK_ENABLED=false
+BPA_BOOTSTRAP_OVERRIDE=true
+BPA_BOOTSTRAP_USERNAME=pwc_admin
+#BPA_BOOTSTRAP_PASSWORD=
+
+## Use default - Test-BCovrin
+#BPA_LEDGER_BROWSER_URL
+#BPA_LEDGER_GENESIS_URL

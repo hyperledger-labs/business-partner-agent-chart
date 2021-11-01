@@ -7,25 +7,27 @@ global:
   fullnameOverride: ""
 
   # -- Domain suffix to be used for default hostpaths in ingress
-  ingressSuffix: .stage.economyofthings.io
+  # override in different environments, or for each app
+  # --set global.ingressSuffix
+  ingressSuffix: -dev.apps.silver.devops.gov.bc.ca
 
   persistence:
     # -- If true, the Postgres chart is deployed
     deployPostgres: true
 
-  # -- The used ledger. Will be used for default values. Any of: bosch-test, idu, bcovrin-test.
-  ledger: bosch-test
+  # -- The used ledger. Will be used for default values. Any of: bosch-test, idu.
+  ledger: bcovrin-test
 
 bpa:
   image:
-    repository: ghcr.io/hyperledger-labs/business-partner-agent-new
-    pullPolicy: IfNotPresent
+    repository: image-registry.openshift-image-registry.svc:5000/f6b17d-tools/bcgov-b2b
+    pullPolicy: Always
     # --  Overrides the image tag whose default is the chart appVersion.
-    tag: ""
+    tag: "latest"
 
   serviceAccount:
     # -- Specifies whether a service account should be created
-    create: true
+    create: false
     # -- Annotations to add to the service account
     annotations: {}
     # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
@@ -37,20 +39,17 @@ bpa:
 
     # -- Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given)
     titleOverride: ""
-
     security:
-      # -- Enable login page and endpoint security
       enabled: true
     bootstrap:
-      # -- The name of the default admin user
       username: admin
-      # -- Default password
       password: changeme
     webhook:
       # -- Optional: secures aca-py to backend webhook communication with an api-key
-      key: changeme
+      key: ""
     ledger:
       browserUrlOverride: ""
+      genesisUrlOverride: ""
     # -- The scheme that is used to register the profile endpoint on the ledger
     scheme: https
     web:
@@ -64,10 +63,10 @@ bpa:
       enabled: false
       urlOverride: ""
     i18n:
-      locale: en
+      locale: bcgov
       fallbackLocale: en
     # --  log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json.
-    logConfigurationFile: log4j2-prod.xml
+    logConfigurationFile: log4j2.xml
 
   imagePullSecrets: []
 
@@ -89,7 +88,7 @@ bpa:
     port: 80
 
   ingress:
-    enabled: true
+    enabled: false
     annotations: {}
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
@@ -104,10 +103,10 @@ bpa:
 
   openshift:
     route:
-      enabled: false
+      enabled: true
       path: "/"
       targetPort: http
-      timeout: 30s
+      timeout: 2m
       tls:
         enabled: true
         insecureEdgeTerminationPolicy: None
@@ -120,11 +119,11 @@ bpa:
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
     # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
     limits:
-      cpu: "2"
-      memory: 384Mi
+      cpu: 500m
+      memory: 512Mi
     requests:
-      cpu: "0.2"
-      memory: 384Mi
+      cpu: 200m
+      memory: 256Mi
 
   nodeSelector: {}
 
@@ -135,19 +134,26 @@ bpa:
 keycloak:
   enabled: false
 
-  clientId: <your keycloak client id>
-  clientSecret: <your keycloak client secret>
+  clientId: bbcm
+  clientSecret: <use --set keycloak.clientSecret>
 
   config:
     rolesName: roles
     nameKey: preferred_username
     redirectUri: "${bpa.scheme}://${bpa.host}/logout"
     scopes: openid
-    issuer: <your keycloak realm issuer url>
-    endsessionUrl: <your keycloak realm end session url>
-
+    issuer: https://dev.oidc.gov.bc.ca/auth/realms/digitaltrust
+    endsessionUrl: https://dev.oidc.gov.bc.ca/auth/realms/digitaltrust/protocol/openid-connect/logout
+    vcauthn_pres_req_conf_id: bpa-wallet-access-dev
+    
 schemas:
   enabled: true
+  minesActPermit:
+    enabled: true
+  emissionsProfile:
+    enabled: true
+  tsm:
+    enabled: false
   config: {}
 #    bank-account:
 #      id: "M6Mbe3qx7vB4wpZF4sBRjt:2:bank_account:1.0"
@@ -169,41 +175,41 @@ ux:
   # -- Allowed values: bcgov, custom, default
   # -- When using preset=default, no ux configmaps will be created; app runs with default configuration
   # -- When using preset=custom, you need to populate the config object.
-  preset: default
-  config: {}
-#    buttons:
-#      primary:
-#        text: false
-#        outlined: false
-#      secondary:
-#        text: true
-#        outlined: false
-#    theme:
-#      dark: false
-#      themes:
-#        light:
-#          primary: '#4A148C'
-#          secondary: '#424242'
-#          accent: '#82B1FF'
-#          error: '#FF5252'
-#          info: '#2196F3'
-#          success: '#4CAF50'
-#          warning: '#FFC107'
-#          bgLight: "#FAFAFA"
-#          bgLight2: "#ECECEC"
-#          font: "#313132"
-#          anchor: "#1A5A96"
-#          anchorHover: "#3B99FC"
-#    favicon:
-#      href: "<url to fav icon>"
-#    navigation:
-#      avatar:
-#        agent:
-#          enabled: true
-#          default: true
-#          src: ""
-#        user:
-#          enabled: false
+  preset: custom
+  config:
+    buttons:
+      primary:
+        text: false
+        outlined: false
+      secondary:
+        text: true
+        outlined: false
+    theme:
+      dark: false
+      themes:
+        light:
+          primary: '#4A148C'
+          secondary: '#424242'
+          accent: '#82B1FF'
+          error: '#FF5252'
+          info: '#2196F3'
+          success: '#4CAF50'
+          warning: '#FFC107'
+          bgLight: "#FAFAFA"
+          bgLight2: "#ECECEC"
+          font: "#313132"
+          anchor: "#1A5A96"
+          anchorHover: "#3B99FC"
+          icons: "#4A148C"    
+    favicon:      
+      href: "https://raw.githubusercontent.com/bcgov/mines-digital-trust/main/assets/material-design/black-24dp/1x/outline_domain_black_24dp.png"
+    navigation:
+      avatar:
+        agent:
+          enabled: true
+          default: false
+          src: "https://raw.githubusercontent.com/bcgov/mines-digital-trust/main/assets/material-design/black-24dp/2x/outline_domain_black_24dp.png"
+          showName: true
 #      settings:
 #        location: "top"
 #      about:
@@ -211,15 +217,8 @@ ux:
 #      logout:
 #        enabled: false
 #    header:
-#      title:
-#        prefix: false
 #      logout:
 #        enabled: true
-#      logo:
-#        enabled: false
-#        href: ""
-#        alt: ""
-#        images: []
 
 acapy:
   image:
@@ -247,13 +246,14 @@ acapy:
   podSecurityContext: {}
     # fsGroup: 2000
 
+
   securityContext:
     # capabilities:
     #   drop:
     #   - ALL
     # readOnlyRootFilesystem: true
     # runAsNonRoot: true
-    runAsUser: 1001
+    # runAsUser: 1001
 
   service:
     type: ClusterIP
@@ -261,7 +261,7 @@ acapy:
     httpPort: 8030
 
   ingress:
-    enabled: true
+    enabled: false
     annotations: {}
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
@@ -277,10 +277,10 @@ acapy:
 
   openshift:
     route:
-      enabled: false
+      enabled: true
       path: "/"
       targetPort: http
-      timeout: 30s
+      timeout: 2m
       tls:
         enabled: true
         insecureEdgeTerminationPolicy: None
@@ -302,12 +302,9 @@ acapy:
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
     # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 512Mi
     requests:
       cpu: 100m
       memory: 256Mi
@@ -320,10 +317,9 @@ acapy:
 
   staticArgs:
     autoAcceptInvites: true
-    autoAcceptRequests: false
     autoRespondMessages: false
-    autoRespondCredentialProposal: false
-    autoRespondCredentialOffer: false
+    autoAcceptRequests: false
+    autoRespondCredentialProposal: true
     autoRespondCredentialRequest: true
     autoRespondPresentationProposal: true
     autoRespondPresentationRequest: false
@@ -333,7 +329,7 @@ acapy:
     autoProvision: true
     monitorPing: true
     publicInvites: true
-    logLevel: info
+    logLevel: warning
 
 postgresql:
   # --  PostgreSQL service configuration
@@ -353,17 +349,20 @@ postgresql:
   persistence:
 
     # -- Enable PostgreSQL persistence using Persistent Volume Claims.
-    enabled: false
+    enabled: true
     size: 1Gi
-    storageClass: default
+    storageClass: netapp-file-standard
   image:
     tag: 12
   # -- add securityContext (fsGroup, runAsUser). These need to be false for Openshift 4
   securityContext:
-    enabled: true
+    enabled: false
   containerSecurityContext:
-    enabled: true
+    enabled: false
   resources:
-    requests:
+    limits:
       cpu: 100m
+      memory: 384Mi
+    requests:
+      cpu: 50m
       memory: 256Mi

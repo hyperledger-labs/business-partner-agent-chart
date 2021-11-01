@@ -98,6 +98,14 @@ generate ledger browser url
 {{- end }}
 
 {{/*
+generate genesisfileurl
+*/}}
+{{- define "bpa.genesisUrl" -}}
+{{ default (printf "%s%s" (include "bpa.ledgerBrowser" .) "/genesis") .Values.bpa.config.ledger.genesisUrlOverride }}
+{{- end }}
+
+
+{{/*
 Common acapy labels
 */}}
 {{- define "acapy.labels" -}}
