@@ -86,13 +86,13 @@ spec:
             httpGet:
               path: /status/live
               port: 8031
-            initialDelaySeconds: 45
+            initialDelaySeconds: 90
             periodSeconds: 3
           readinessProbe:
             httpGet:
               path: /status/ready
               port: 8031
-            initialDelaySeconds: 20
+            initialDelaySeconds: 60
             periodSeconds: 10    
           volumeMounts:
           - name: config
