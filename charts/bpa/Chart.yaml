@@ -1,10 +1,10 @@
 apiVersion: v2
 name: bpa
-description: The Business Partner Agent allows to manage and exchange master data between organizations.
+description: The BPA allows organizations to verify, hold, and issue verifiable credentials.
 type: application
 
-version: 0.8.4
-appVersion: sha-35c4130d
+version: 0.8.5
+appVersion: sha-8e51e6c
 
 home: "https://github.com/hyperledger-labs/business-partner-agent-chart"
 sources: ["https://github.com/hyperledger-labs/business-partner-agent-chart"]
