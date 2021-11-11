@@ -324,7 +324,7 @@ acapy:
     autoRespondMessages: false
     autoRespondCredentialProposal: false
     autoRespondCredentialOffer: false
-    autoRespondCredentialRequest: true
+    autoRespondCredentialRequest: false
     autoRespondPresentationProposal: true
     autoRespondPresentationRequest: false
     autoStoreCredential: true
