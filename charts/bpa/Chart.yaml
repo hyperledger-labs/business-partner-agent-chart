@@ -4,7 +4,7 @@ description: The BPA allows organizations to verify, hold, and issue verifiable 
 type: application
 
 version: 0.8.5
-appVersion: sha-8e51e6c
+appVersion: sha-37e04ff
 
 home: "https://github.com/hyperledger-labs/business-partner-agent-chart"
 sources: ["https://github.com/hyperledger-labs/business-partner-agent-chart"]
