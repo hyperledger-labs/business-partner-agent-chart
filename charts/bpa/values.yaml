@@ -18,7 +18,7 @@ global:
 
 bpa:
   image:
-    repository: ghcr.io/hyperledger-labs/business-partner-agent
+    repository: ghcr.io/hyperledger-labs/business-partner-agent-new
     pullPolicy: IfNotPresent
     # --  Overrides the image tag whose default is the chart appVersion.
     tag: ""
@@ -32,7 +32,7 @@ bpa:
     name: ""
 
   config:
-    # -- Override name shown in the frontend (may container whitespaces and so on). Default: Helm release name, capitalized
+    # -- Override name shown in the frontend (may contain whitespaces and so on). Default: Helm release name, capitalized
     nameOverride: ""
 
     # -- Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given)
@@ -220,7 +220,7 @@ acapy:
     repository: bcgovimages/aries-cloudagent
     pullPolicy: IfNotPresent
     # --  Overrides the image tag whose default is the chart appVersion.
-    tag: py36-1.16-1_0.7.1
+    tag: py36-1.16-1_0.7.2-rc0
 
   adminURLApiKey: 2f9729eef0be49608c1cffd49ee3cc4a
 
@@ -314,13 +314,13 @@ acapy:
 
   staticArgs:
     autoAcceptInvites: true
-    autoAcceptRequests: true
-    autoRespondMessages: true
-    autoRespondCredentialProposal: true
-    autoRespondCredentialOffer: true
-    autoRespondCredentialRequest: true
+    autoAcceptRequests: false
+    autoRespondMessages: false
+    autoRespondCredentialProposal: false
+    autoRespondCredentialOffer: false
+    autoRespondCredentialRequest: false
     autoRespondPresentationProposal: true
-    autoRespondPresentationRequest: true
+    autoRespondPresentationRequest: false
     autoStoreCredential: true
     autoVerifyPresentation: true
     autoPingConnection: true
