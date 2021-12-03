@@ -3,8 +3,8 @@ name: bpa
 description: The BPA allows organizations to verify, hold, and issue verifiable credentials.
 type: application
 
-version: 0.8.5
-appVersion: sha-37e04ff
+version: 0.9.0
+appVersion: sha-d7d467b
 
 home: "https://github.com/hyperledger-labs/business-partner-agent-chart"
 sources: ["https://github.com/hyperledger-labs/business-partner-agent-chart"]
