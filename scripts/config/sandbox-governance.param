@@ -1,0 +1,34 @@
+# WEIRD ENVIRONMENT SHENANIGANS
+
+INGRESS_SUFFIX=.apps.silver.devops.gov.bc.ca
+
+## KEYCLOAK
+KEYCLOAK_ISSUER_URL=https://test.oidc.gov.bc.ca/auth/realms/digitaltrust
+KEYCLOAK_END_SESSION_URL=https://test.oidc.gov.bc.ca/auth/realms/digitaltrust/protocol/openid-connect/logout
+
+
+## REGULAR CONFIG
+
+# NO SPACES ALLOWED
+##PROD_DEPLOYMENT_NAME=<NOT FOR PROD>
+##TEST_DEPLOYMENT_NAME=<USE DEV>
+DEV_DEPLOYMENT_NAME="sandbox-governance"
+
+UX_PRESET=custom
+BPA_I18N_LOCALE=bcgov
+
+SCHEMAS_ENABLED=false
+
+BPA_SECURITY_ENABLED=true
+BPA_KEYCLOAK_ENABLED=true
+KEYCLOAK_CLIENT_ID=public-sandbox
+
+## refers to this VCAUTHN IDP Configuration
+### https://github.com/bcgov/a2a-trust-over-ip-configurations/tree/master/proof-configurations
+KEYCLOAK_CONFIG_VCAUTHN_PRES_REQ_CONF_ID=bpa-sandbox-access-test
+
+## Use default - Test-BCovrin
+#BPA_LEDGER_BROWSER_URL
+#BPA_LEDGER_GENESIS_URL
+
+IMAGE_TAG=sandbox

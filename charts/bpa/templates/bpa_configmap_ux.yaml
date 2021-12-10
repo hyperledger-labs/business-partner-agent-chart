@@ -35,41 +35,24 @@ data:
               font: "#313132"
               anchor: "#1A5A96"
               anchorHover: "#3B99FC"
+              icons: "#003366"
         favicon:
           href: "https://raw.githubusercontent.com/bcgov/common-forms-toolkit/master/app/frontend/public/favicon.ico"
         navigation:
           avatar:
             agent:
-              enabled: false
-              default: true
-              src: ""
-            user:
               enabled: true
+              default: false
+              src: "https://raw.githubusercontent.com/bcgov/mines-digital-trust/main/assets/bcgov-logos/BCID_H_rgb_pos.png"
+              showName: true
           settings:
             location: "bottom"
           about:
-            enabled: false
-          logout:
             enabled: true
+          logout:
+            enabled: false
         header:
-          title:
-            prefix: true
           logout:
-            enabled: false
-          logo:
             enabled: true
-            href: "https://www2.gov.bc.ca"
-            alt: "B.C. Government Logo"
-            images:
-              - name: "small"
-                class: "d-none d-sm-flex d-md-none"
-                height: "3.5rem"
-                src: "https://raw.githubusercontent.com/bcgov/common-forms-toolkit/master/app/frontend/src/assets/images/bc_logo_square.svg"
-                width: "3.5rem"
-              - name: "medium"
-                class: "d-none d-md-flex"
-                height: "3.5rem"
-                src: "https://raw.githubusercontent.com/bcgov/common-forms-toolkit/master/app/frontend/src/assets/images/bc_logo.svg"
-                width: "10rem"
 {{- end -}}
 {{- end -}}

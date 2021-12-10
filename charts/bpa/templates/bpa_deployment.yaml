@@ -48,13 +48,13 @@ spec:
             httpGet:
               path: /health/readiness
               port: 8080
-            initialDelaySeconds: 20
+            initialDelaySeconds: 90
             periodSeconds: 10  
           livenessProbe:
             httpGet:
               path: /health
               port: 8080
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 20   
           env:
             - name: POSTGRES_PASSWORD
