@@ -2,7 +2,7 @@
 
 The BPA allows organizations to verify, hold, and issue verifiable credentials.
 
-![Version: 0.9.0](https://img.shields.io/badge/Version-0.9.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-d7d467b](https://img.shields.io/badge/AppVersion-sha--d7d467b-informational?style=flat-square)
+![Version: 0.9.1](https://img.shields.io/badge/Version-0.9.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-ff6e469](https://img.shields.io/badge/AppVersion-sha--ff6e469-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -328,7 +328,7 @@ docker run --rm --volume "$(pwd):/helm-docs" -u $(id -u) jnorwood/helm-docs:late
 | Name | Email | Url |
 | ---- | ------ | --- |
 | frank-bee | Frank.Bernhardt@bosch.com | https://github.com/frank-bee |
-| parc-jason | jsherman@parcsystems.ca | https://github.com/parc-jason |
+| usingtechnology | jsherman@parcsystems.ca | https://github.com/parc-jason |
 | Jsyro | jason.syrotuck@nttdata.com | https://github.com/Jsyro |
 
 ----------------------------------------------
