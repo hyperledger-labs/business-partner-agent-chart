@@ -2,7 +2,7 @@
 
 The BPA allows organizations to verify, hold, and issue verifiable credentials.
 
-![Version: 0.9.1](https://img.shields.io/badge/Version-0.9.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-ff6e469](https://img.shields.io/badge/AppVersion-sha--ff6e469-informational?style=flat-square)
+![Version: 0.9.2](https://img.shields.io/badge/Version-0.9.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-bed403a](https://img.shields.io/badge/AppVersion-sha--bed403a-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
