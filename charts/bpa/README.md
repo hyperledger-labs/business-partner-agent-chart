@@ -239,6 +239,9 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.nameOverride | string | `""` | Override name shown in the frontend (may contain whitespaces and so on). Default: Helm release name, capitalized |
 | bpa.config.privacyPolicy.enabled | bool | `false` |  |
 | bpa.config.privacyPolicy.urlOverride | string | `""` |  |
+| bpa.config.runtimeVariables.closeSidebar | bool | `false` | Setting this to true keeps the sidebar in the frontend closed when loading the page in a browser |
+| bpa.config.runtimeVariables.enabled | bool | `false` | Enables runtime variables which are injected into the frontend code on container startup (only if at least one runtime variable value has been set). These function e.g. as feature toggles for specific frontend changes. NOTE: The container startup time is impacted by using these. |
+| bpa.config.runtimeVariables.hideSidebarButton | bool | `false` | Setting this to true hides the sidebar burger button in the frontend. In combination with 'closeSidebar' the sidebar is completely gone. |
 | bpa.config.scheme | string | `"https"` | The scheme that is used to register the profile endpoint on the ledger |
 | bpa.config.security.enabled | bool | `true` | Enable login page and endpoint security |
 | bpa.config.titleOverride | string | `""` | Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given) |
