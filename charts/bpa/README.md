@@ -2,7 +2,7 @@
 
 The BPA allows organizations to verify, hold, and issue verifiable credentials.
 
-![Version: 0.9.2](https://img.shields.io/badge/Version-0.9.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-bed403a](https://img.shields.io/badge/AppVersion-sha--bed403a-informational?style=flat-square)
+![Version: 0.9.3](https://img.shields.io/badge/Version-0.9.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-7e67aba](https://img.shields.io/badge/AppVersion-sha--7e67aba-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -230,6 +230,9 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.bootstrap.password | string | `"changeme"` | Default password |
 | bpa.config.bootstrap.username | string | `"admin"` | The name of the default admin user |
 | bpa.config.creddef.revocationRegistrySize | int | `3000` |  |
+| bpa.config.frontend | object | `{"closeSidebar":false,"hideSidebarButton":false}` | Frontend runtime variables which are injected into the frontend code on container startup (only if at least one runtime variable value has been set). These function e.g. as feature toggles for specific frontend changes. NOTE: The container startup time is impacted by using these. |
+| bpa.config.frontend.closeSidebar | bool | `false` | Setting this to true keeps the sidebar in the frontend closed when loading the page in a browser |
+| bpa.config.frontend.hideSidebarButton | bool | `false` | Setting this to true hides the sidebar burger button in the frontend. In combination with 'closeSidebar' the sidebar is completely gone. |
 | bpa.config.i18n.fallbackLocale | string | `"en"` |  |
 | bpa.config.i18n.locale | string | `"en"` |  |
 | bpa.config.imprint.enabled | bool | `false` |  |
@@ -239,9 +242,6 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.nameOverride | string | `""` | Override name shown in the frontend (may contain whitespaces and so on). Default: Helm release name, capitalized |
 | bpa.config.privacyPolicy.enabled | bool | `false` |  |
 | bpa.config.privacyPolicy.urlOverride | string | `""` |  |
-| bpa.config.runtimeVariables.closeSidebar | bool | `false` | Setting this to true keeps the sidebar in the frontend closed when loading the page in a browser |
-| bpa.config.runtimeVariables.enabled | bool | `false` | Enables runtime variables which are injected into the frontend code on container startup (only if at least one runtime variable value has been set). These function e.g. as feature toggles for specific frontend changes. NOTE: The container startup time is impacted by using these. |
-| bpa.config.runtimeVariables.hideSidebarButton | bool | `false` | Setting this to true hides the sidebar burger button in the frontend. In combination with 'closeSidebar' the sidebar is completely gone. |
 | bpa.config.scheme | string | `"https"` | The scheme that is used to register the profile endpoint on the ledger |
 | bpa.config.security.enabled | bool | `true` | Enable login page and endpoint security |
 | bpa.config.titleOverride | string | `""` | Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given) |

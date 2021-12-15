@@ -66,9 +66,8 @@ bpa:
     i18n:
       locale: en
       fallbackLocale: en
-    runtimeVariables:
-      # -- Enables runtime variables which are injected into the frontend code on container startup (only if at least one runtime variable value has been set). These function e.g. as feature toggles for specific frontend changes. NOTE: The container startup time is impacted by using these.
-      enabled: false
+    # -- Frontend runtime variables which are injected into the frontend code on container startup (only if at least one runtime variable value has been set). These function e.g. as feature toggles for specific frontend changes. NOTE: The container startup time is impacted by using these.
+    frontend:
       # -- Setting this to true keeps the sidebar in the frontend closed when loading the page in a browser
       closeSidebar: false
       # -- Setting this to true hides the sidebar burger button in the frontend. In combination with 'closeSidebar' the sidebar is completely gone.
