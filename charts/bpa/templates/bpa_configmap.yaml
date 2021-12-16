@@ -35,3 +35,9 @@ data:
 {{- if .Values.bpa.config.privacyPolicy.enabled }}
   BPA_PRIVACY_POLICY_URL: {{ tpl .Values.bpa.config.privacyPolicy.urlOverride . | default (printf "https://bpa%s/privacyPolicy" .Values.global.ingressSuffix) | quote }}
 {{- end }}
+{{- if .Values.bpa.config.frontend.closeSidebar }}
+  SIDEBAR_CLOSE_ON_STARTUP: {{ .Values.bpa.config.frontend.closeSidebar | quote }}
+{{- end }}
+{{- if .Values.bpa.config.frontend.hideSidebarButton }}
+  SIDEBAR_HIDE_BURGER_BUTTON: {{ .Values.bpa.config.frontend.hideSidebarButton | quote }}
+{{- end }}
