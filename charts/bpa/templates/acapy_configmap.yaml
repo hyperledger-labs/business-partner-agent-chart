@@ -18,9 +18,15 @@ data:
     auto-verify-presentation: {{ .Values.acapy.staticArgs.autoVerifyPresentation }}
     auto-ping-connection: {{ .Values.acapy.staticArgs.autoPingConnection }}
     auto-provision: {{ .Values.acapy.staticArgs.autoProvision }}
+    auto-disclose-features: {{ .Values.acapy.staticArgs.autoDiscloseFeatures }}
+    notify-revocation: {{ .Values.acapy.staticArgs.notifyRevocation }}
+    monitor-revocation-notification: {{ .Values.acapy.staticArgs.monitorRevocationNotification }}
     monitor-ping: {{ .Values.acapy.staticArgs.monitorPing }}
+    enable-undelivered-queue: {{ .Values.acapy.staticArgs.enableUndeliveredQueue }}
+    exch-use-unencrypted-tags: {{ .Values.acapy.staticArgs.exchUseUnencryptedTags }}
+    preserve-exchange-records: {{ .Values.acapy.staticArgs.preserveExchangeRecords }}
     public-invites: {{ .Values.acapy.staticArgs.publicInvites }}
     plugin: 'aries_cloudagent.messaging.jsonld'
     outbound-transport: http
-    wallet-type: 'indy'
+    wallet-type: {{ .Values.acapy.staticArgs.walletType }}
     log-level: {{ .Values.acapy.staticArgs.logLevel }}
