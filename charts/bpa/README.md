@@ -2,7 +2,7 @@
 
 The BPA allows organizations to verify, hold, and issue verifiable credentials.
 
-![Version: 0.9.4](https://img.shields.io/badge/Version-0.9.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-7e67aba](https://img.shields.io/badge/AppVersion-sha--7e67aba-informational?style=flat-square)
+![Version: 0.9.4](https://img.shields.io/badge/Version-0.9.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-5c6f33d](https://img.shields.io/badge/AppVersion-sha--5c6f33d-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -246,6 +246,10 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.imprint.urlOverride | string | `""` |  |
 | bpa.config.ledger.browserUrlOverride | string | `""` |  |
 | bpa.config.logConfigurationFile | string | `"log4j2-prod.xml"` | log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json. |
+| bpa.config.mail | object | `{"apiKey":"","apiSecret":"","username":""}` | Mailjet service integration, requires a developer account with verified sender email and generated api keys |
+| bpa.config.mail.apiKey | string | `""` | Mail service api key |
+| bpa.config.mail.apiSecret | string | `""` | Mail service api secret |
+| bpa.config.mail.username | string | `""` | Mail service verified sender email address |
 | bpa.config.nameOverride | string | `""` | Override name shown in the frontend (may contain whitespaces and so on). Default: Helm release name, capitalized |
 | bpa.config.privacyPolicy.enabled | bool | `false` |  |
 | bpa.config.privacyPolicy.urlOverride | string | `""` |  |

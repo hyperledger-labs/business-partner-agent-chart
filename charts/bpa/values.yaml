@@ -74,6 +74,14 @@ bpa:
       hideSidebarButton: false
     # --  log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json.
     logConfigurationFile: log4j2-prod.xml
+    # -- Mailjet service integration, requires a developer account with verified sender email and generated api keys
+    mail:
+      # -- Mail service verified sender email address
+      username: ""
+      # -- Mail service api key
+      apiKey: ""
+      # -- Mail service api secret
+      apiSecret: ""
 
   imagePullSecrets: []
 
