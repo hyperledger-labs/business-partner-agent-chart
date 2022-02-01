@@ -180,7 +180,7 @@ schemas:
 
 ux:
   # -- The ux preset configuration.
-  # -- Allowed values: bcgov, custom, default
+  # -- Allowed values: custom, default
   # -- When using preset=default, no ux configmaps will be created; app runs with default configuration
   # -- When using preset=custom, you need to populate the config object.
   preset: default
@@ -208,6 +208,7 @@ ux:
 #          font: "#313132"
 #          anchor: "#1A5A96"
 #          anchorHover: "#3B99FC"
+#          icons: "#000000"
 #    favicon:
 #      href: "<url to fav icon>"
 #    navigation:
@@ -215,9 +216,8 @@ ux:
 #        agent:
 #          enabled: true
 #          default: true
-#          src: ""
-#        user:
-#          enabled: false
+#          src: "<url to logo image - need enabled=true default=false>"
+#          showName: true
 #      settings:
 #        location: "top"
 #      about:
@@ -225,15 +225,8 @@ ux:
 #      logout:
 #        enabled: false
 #    header:
-#      title:
-#        prefix: false
 #      logout:
 #        enabled: true
-#      logo:
-#        enabled: false
-#        href: ""
-#        alt: ""
-#        images: []
 
 acapy:
   image:

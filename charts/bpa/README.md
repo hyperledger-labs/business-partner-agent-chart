@@ -315,7 +315,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | schemas.config | object | `{}` |  |
 | schemas.enabled | bool | `true` |  |
 | ux.config | object | `{}` |  |
-| ux.preset | string | `"default"` | The ux preset configuration. -- Allowed values: bcgov, custom, default -- When using preset=default, no ux configmaps will be created; app runs with default configuration -- When using preset=custom, you need to populate the config object. |
+| ux.preset | string | `"default"` | The ux preset configuration. -- Allowed values: custom, default -- When using preset=default, no ux configmaps will be created; app runs with default configuration -- When using preset=custom, you need to populate the config object. |
 
 ## Chart dependencies
 | Repository | Name | Version |
