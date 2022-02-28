@@ -342,6 +342,8 @@ acapy:
     notifyRevocation: true
     monitorRevocationNotification: true
     monitorPing: true
+    emitNewDidcommPrefix: true
+    emitNewDidcommMimeType: true
     enableUndeliveredQueue: true
     exchUseUnencryptedTags: true
     preserveExchangeRecords: false

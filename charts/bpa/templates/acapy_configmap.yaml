@@ -22,6 +22,8 @@ data:
     notify-revocation: {{ .Values.acapy.staticArgs.notifyRevocation }}
     monitor-revocation-notification: {{ .Values.acapy.staticArgs.monitorRevocationNotification }}
     monitor-ping: {{ .Values.acapy.staticArgs.monitorPing }}
+    emit-new-didcomm-prefix: {{ .Values.acapy.staticArgs.emitNewDidcommPrefix }}
+    emit-new-didcomm-mime-type: {{ .Values.acapy.staticArgs.emitNewDidcommMimeType }}
     enable-undelivered-queue: {{ .Values.acapy.staticArgs.enableUndeliveredQueue }}
     exch-use-unencrypted-tags: {{ .Values.acapy.staticArgs.exchUseUnencryptedTags }}
     preserve-exchange-records: {{ .Values.acapy.staticArgs.preserveExchangeRecords }}
