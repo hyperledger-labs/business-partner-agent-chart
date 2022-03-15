@@ -2,7 +2,7 @@
 
 The BPA allows organizations to verify, hold, and issue verifiable credentials.
 
-![Version: 0.9.4](https://img.shields.io/badge/Version-0.9.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-5c6f33d](https://img.shields.io/badge/AppVersion-sha--5c6f33d-informational?style=flat-square)
+![Version: 0.10.0](https://img.shields.io/badge/Version-0.10.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.10.0](https://img.shields.io/badge/AppVersion-0.10.0-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -293,7 +293,6 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | global.ingressSuffix | string | `".stage.economyofthings.io"` | Domain suffix to be used for default hostpaths in ingress |
 | global.ledger | string | `"bosch-test"` | The used ledger. Will be used for default values. Any of: bosch-test, idu, bcovrin-test. |
 | global.nameOverride | string | `""` |  |
-| global.persistence.deployPostgres | bool | `true` | If true, the Postgres chart is deployed |
 | keycloak.clientId | string | `"<your keycloak client id>"` |  |
 | keycloak.clientSecret | string | `"<your keycloak client secret>"` |  |
 | keycloak.config.endsessionUrl | string | `"<your keycloak realm end session url>"` |  |
@@ -304,6 +303,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | keycloak.config.scopes | string | `"openid"` |  |
 | keycloak.enabled | bool | `false` |  |
 | postgresql.containerSecurityContext.enabled | bool | `true` |  |
+| postgresql.enabled | bool | `true` | If true, the Postgres chart is deployed |
 | postgresql.image.tag | int | `12` |  |
 | postgresql.persistence | object | `{"enabled":false,"size":"1Gi","storageClass":"default"}` | Persistent Volume Storage configuration. ref: https://kubernetes.io/docs/user-guide/persistent-volumes |
 | postgresql.persistence.enabled | bool | `false` | Enable PostgreSQL persistence using Persistent Volume Claims. |
