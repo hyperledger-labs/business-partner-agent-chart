@@ -1,7 +1,11 @@
 {{- if .Values.acapy.ingress.enabled -}}
 {{- $fullName := include "acapy.fullname" . -}}
 {{- $svcPort := .Values.acapy.service.httpPort -}}
-apiVersion: networking.k8s.io/v1
+{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
 kind: Ingress
 metadata:
   name: {{ $fullName }}
@@ -31,10 +35,8 @@ spec:
           {{- range .paths }}
           - path: {{ . }}
             backend:
-              service:
-                name: {{ $fullName }}
-                port:
-                  number: {{ $svcPort }}
+              serviceName: {{ $fullName }}
+              servicePort: {{ $svcPort }}
           {{- end }}
     {{- end }}
 {{- else }}
@@ -43,9 +45,7 @@ spec:
         paths:
           - path: /
             backend:
-              service:
-                name: {{ $fullName }}
-                port:
-                  number: {{ $svcPort }}         
+              serviceName: {{ $fullName }}
+              servicePort: {{ $svcPort }}         
 {{- end -}}
 {{- end }}
