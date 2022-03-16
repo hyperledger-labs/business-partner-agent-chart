@@ -41,3 +41,12 @@ data:
 {{- if .Values.bpa.config.frontend.hideSidebarButton }}
   SIDEBAR_HIDE_BURGER_BUTTON: {{ .Values.bpa.config.frontend.hideSidebarButton | quote }}
 {{- end }}
+{{- if .Values.bpa.config.mail.username }}
+  MAIL_USERNAME: {{ .Values.bpa.config.mail.username| quote }}
+{{- end }}
+{{- if .Values.bpa.config.mail.apiKey }}
+  MAILJET_API_KEY: {{ .Values.bpa.config.mail.apiKey | quote }}
+{{- end }}
+{{- if .Values.bpa.config.mail.apiSecret }}
+  MAILJET_API_SECRET: {{ .Values.bpa.config.mail.apiSecret | quote }}
+{{- end }}

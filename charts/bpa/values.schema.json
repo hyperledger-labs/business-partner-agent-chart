@@ -615,7 +615,7 @@
                 },
                 "preset": {
                     "type": "string",
-                    "enum": ["bcgov", "custom", "default"]
+                    "enum": ["custom", "default"]
                 }
             }
         }

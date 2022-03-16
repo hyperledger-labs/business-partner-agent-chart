@@ -2,7 +2,7 @@
 
 The BPA allows organizations to verify, hold, and issue verifiable credentials.
 
-![Version: 0.9.3](https://img.shields.io/badge/Version-0.9.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-7e67aba](https://img.shields.io/badge/AppVersion-sha--7e67aba-informational?style=flat-square)
+![Version: 0.10.0](https://img.shields.io/badge/Version-0.10.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.10.0](https://img.shields.io/badge/AppVersion-0.10.0-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -182,7 +182,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.fullnameOverride | string | `""` |  |
 | acapy.image.pullPolicy | string | `"IfNotPresent"` |  |
 | acapy.image.repository | string | `"bcgovimages/aries-cloudagent"` |  |
-| acapy.image.tag | string | `"py36-1.16-1_0.7.2"` | Overrides the image tag whose default is the chart appVersion. |
+| acapy.image.tag | string | `"py36-1.16-1_0.7.3"` | Overrides the image tag whose default is the chart appVersion. |
 | acapy.imagePullSecrets | list | `[]` |  |
 | acapy.ingress.annotations | object | `{}` |  |
 | acapy.ingress.enabled | bool | `true` |  |
@@ -209,6 +209,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.service.type | string | `"ClusterIP"` |  |
 | acapy.staticArgs.autoAcceptInvites | bool | `true` |  |
 | acapy.staticArgs.autoAcceptRequests | bool | `false` |  |
+| acapy.staticArgs.autoDiscloseFeatures | bool | `true` |  |
 | acapy.staticArgs.autoPingConnection | bool | `true` |  |
 | acapy.staticArgs.autoProvision | bool | `true` |  |
 | acapy.staticArgs.autoRespondCredentialOffer | bool | `false` |  |
@@ -219,9 +220,17 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.staticArgs.autoRespondPresentationRequest | bool | `false` |  |
 | acapy.staticArgs.autoStoreCredential | bool | `true` |  |
 | acapy.staticArgs.autoVerifyPresentation | bool | `true` |  |
+| acapy.staticArgs.emitNewDidcommMimeType | bool | `true` |  |
+| acapy.staticArgs.emitNewDidcommPrefix | bool | `true` |  |
+| acapy.staticArgs.enableUndeliveredQueue | bool | `true` |  |
+| acapy.staticArgs.exchUseUnencryptedTags | bool | `true` |  |
 | acapy.staticArgs.logLevel | string | `"info"` |  |
 | acapy.staticArgs.monitorPing | bool | `true` |  |
+| acapy.staticArgs.monitorRevocationNotification | bool | `true` |  |
+| acapy.staticArgs.notifyRevocation | bool | `true` |  |
+| acapy.staticArgs.preserveExchangeRecords | bool | `false` |  |
 | acapy.staticArgs.publicInvites | bool | `true` |  |
+| acapy.staticArgs.walletType | string | `"indy"` | indy or askar |
 | acapy.tails.baseUrlOverride | string | `""` | Override the otherwise ledger-specifically generated base URL of the external tails server |
 | acapy.tails.enabled | bool | `false` | Set to true to enable revocation (external tails server required) |
 | acapy.tails.uploadUrlOverride | string | `""` | Override the otherwise ledger-specifically generated upload URL of the external tails server |
@@ -239,6 +248,10 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.imprint.urlOverride | string | `""` |  |
 | bpa.config.ledger.browserUrlOverride | string | `""` |  |
 | bpa.config.logConfigurationFile | string | `"log4j2-prod.xml"` | log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json. |
+| bpa.config.mail | object | `{"apiKey":"","apiSecret":"","username":""}` | Mailjet service integration, requires a developer account with verified sender email and generated api keys |
+| bpa.config.mail.apiKey | string | `""` | Mail service api key |
+| bpa.config.mail.apiSecret | string | `""` | Mail service api secret |
+| bpa.config.mail.username | string | `""` | Mail service verified sender email address |
 | bpa.config.nameOverride | string | `""` | Override name shown in the frontend (may contain whitespaces and so on). Default: Helm release name, capitalized |
 | bpa.config.privacyPolicy.enabled | bool | `false` |  |
 | bpa.config.privacyPolicy.urlOverride | string | `""` |  |
@@ -304,7 +317,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | schemas.config | object | `{}` |  |
 | schemas.enabled | bool | `true` |  |
 | ux.config | object | `{}` |  |
-| ux.preset | string | `"default"` | The ux preset configuration. -- Allowed values: bcgov, custom, default -- When using preset=default, no ux configmaps will be created; app runs with default configuration -- When using preset=custom, you need to populate the config object. |
+| ux.preset | string | `"default"` | When using preset=custom, you need to populate the config object. |
 
 ## Chart dependencies
 | Repository | Name | Version |
@@ -335,4 +348,4 @@ docker run --rm --volume "$(pwd):/helm-docs" -u $(id -u) jnorwood/helm-docs:late
 | Jsyro | jason.syrotuck@nttdata.com | https://github.com/Jsyro |
 
 ----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
+Autogenerated from chart metadata using [helm-docs v1.6.0](https://github.com/norwoodj/helm-docs/releases/v1.6.0)

@@ -74,6 +74,14 @@ bpa:
       hideSidebarButton: false
     # --  log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json.
     logConfigurationFile: log4j2-prod.xml
+    # -- Mailjet service integration, requires a developer account with verified sender email and generated api keys
+    mail:
+      # -- Mail service verified sender email address
+      username: ""
+      # -- Mail service api key
+      apiKey: ""
+      # -- Mail service api secret
+      apiSecret: ""
 
   imagePullSecrets: []
 
@@ -172,7 +180,7 @@ schemas:
 
 ux:
   # -- The ux preset configuration.
-  # -- Allowed values: bcgov, custom, default
+  # -- Allowed values: custom, default
   # -- When using preset=default, no ux configmaps will be created; app runs with default configuration
   # -- When using preset=custom, you need to populate the config object.
   preset: default
@@ -200,6 +208,7 @@ ux:
 #          font: "#313132"
 #          anchor: "#1A5A96"
 #          anchorHover: "#3B99FC"
+#          icons: "#000000"
 #    favicon:
 #      href: "<url to fav icon>"
 #    navigation:
@@ -207,9 +216,8 @@ ux:
 #        agent:
 #          enabled: true
 #          default: true
-#          src: ""
-#        user:
-#          enabled: false
+#          src: "<url to logo image - need enabled=true default=false>"
+#          showName: true
 #      settings:
 #        location: "top"
 #      about:
@@ -217,22 +225,15 @@ ux:
 #      logout:
 #        enabled: false
 #    header:
-#      title:
-#        prefix: false
 #      logout:
 #        enabled: true
-#      logo:
-#        enabled: false
-#        href: ""
-#        alt: ""
-#        images: []
 
 acapy:
   image:
     repository: bcgovimages/aries-cloudagent
     pullPolicy: IfNotPresent
     # --  Overrides the image tag whose default is the chart appVersion.
-    tag: py36-1.16-1_0.7.2
+    tag: py36-1.16-1_0.7.3
 
   adminURLApiKey: 2f9729eef0be49608c1cffd49ee3cc4a
 
@@ -337,8 +338,18 @@ acapy:
     autoVerifyPresentation: true
     autoPingConnection: true
     autoProvision: true
+    autoDiscloseFeatures: true
+    notifyRevocation: true
+    monitorRevocationNotification: true
     monitorPing: true
+    emitNewDidcommPrefix: true
+    emitNewDidcommMimeType: true
+    enableUndeliveredQueue: true
+    exchUseUnencryptedTags: true
+    preserveExchangeRecords: false
     publicInvites: true
+    # -- indy or askar
+    walletType: indy
     logLevel: info
 
 postgresql:
