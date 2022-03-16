@@ -2,7 +2,7 @@
 
 The BPA allows organizations to verify, hold, and issue verifiable credentials.
 
-![Version: 0.10.0](https://img.shields.io/badge/Version-0.10.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.10.0](https://img.shields.io/badge/AppVersion-0.10.0-informational?style=flat-square)
+![Version: 0.10.1](https://img.shields.io/badge/Version-0.10.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.10.0](https://img.shields.io/badge/AppVersion-0.10.0-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -293,7 +293,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | global.ingressSuffix | string | `".stage.economyofthings.io"` | Domain suffix to be used for default hostpaths in ingress |
 | global.ledger | string | `"bosch-test"` | The used ledger. Will be used for default values. Any of: bosch-test, idu, bcovrin-test. |
 | global.nameOverride | string | `""` |  |
-| global.persistence.deployPostgres | bool | `true` | If true, the Postgres chart is deployed |
+| global.persistence.existingSecret | bool | `false` | Name of existing secret to use for PostgreSQL passwords |
 | keycloak.clientId | string | `"<your keycloak client id>"` |  |
 | keycloak.clientSecret | string | `"<your keycloak client secret>"` |  |
 | keycloak.config.endsessionUrl | string | `"<your keycloak realm end session url>"` |  |
@@ -304,6 +304,8 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | keycloak.config.scopes | string | `"openid"` |  |
 | keycloak.enabled | bool | `false` |  |
 | postgresql.containerSecurityContext.enabled | bool | `true` |  |
+| postgresql.enabled | bool | `true` | If true, the Postgres chart is deployed |
+| postgresql.fullnameOverride | string | `""` | If prostgres.enabled is set to false this can be used to set the postgresql dns name. defaults to Chart.Name-postgresql otherwise |
 | postgresql.image.tag | int | `12` |  |
 | postgresql.persistence | object | `{"enabled":false,"size":"1Gi","storageClass":"default"}` | Persistent Volume Storage configuration. ref: https://kubernetes.io/docs/user-guide/persistent-volumes |
 | postgresql.persistence.enabled | bool | `false` | Enable PostgreSQL persistence using Persistent Volume Claims. |
@@ -322,7 +324,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 ## Chart dependencies
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami/ | postgresql | 10.3.13 |
+| https://charts.bitnami.com/bitnami/ | postgresql | 10.16.2 |
 
 ## Chart development
 

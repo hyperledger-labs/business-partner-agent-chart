@@ -23,7 +23,6 @@ If release name contains chart name it will be used as a full name.
 {{- end }}
 {{- end }}
 
-
 {{/*
 Create chart name and version as used by the chart label.
 */}}
@@ -116,7 +115,6 @@ Selector acapy labels
 app.kubernetes.io/name: {{ include "global.fullname" . }}-acapy
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
-
 
 {{/*
 generate hosts if not overriden
@@ -213,69 +211,25 @@ generate tails uploadUrl
 Create a default fully qualified app name for the postgres requirement.
 */}}
 {{- define "global.postgresql.fullname" -}}
-{{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
-{{ template "postgresql.primary.fullname" $postgresContext }}
+  {{- if .Values.postgresql.enabled -}}
+    {{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
+    {{ template "postgresql.primary.fullname" $postgresContext }}
+  {{- else -}}
+    {{- $fullname := default (printf "%s-postgresql" .Release.Name) .Values.postgresql.fullnameOverride -}}
+    {{- printf "%s" $fullname | trunc 63 -}}
+  {{- end -}}
 {{- end -}}
 
 {{/*
-Create the name for the database secret.
-*/}}
-{{- define "global.externalDbSecret" -}}
-{{- if .Values.global.persistence.existingSecret -}}
-  {{- .Values.global.persistence.existingSecret -}}
-{{- else -}}
-  {{- template "global.fullname" . -}}-db
-{{- end -}}
-{{- end -}}
-
-{{/*
-Create the name for the password secret key.
+Create the name for the password secret key. TODO currently not used, either delete or migrate key generation to template function
 */}}
 {{- define "global.dbPasswordKey" -}}
 {{- if .Values.global.persistence.existingSecret -}}
   {{- .Values.global.persistence.existingSecretKey -}}
 {{- else -}}
-  password
+  postgresql-password
 {{- end -}}
 {{- end -}}
-
-{{/*
-Create environment variables for database configuration.
-*/}}
-{{- define "global.externalDbConfig" -}}
-- name: DB_VENDOR
-  value: {{ .Values.global.persistence.dbVendor | quote }}
-{{- if eq .Values.global.persistence.dbVendor "POSTGRES" }}
-- name: POSTGRES_PORT_5432_TCP_ADDR
-  value: {{ .Values.global.persistence.dbHost | quote }}
-- name: POSTGRES_PORT_5432_TCP_PORT
-  value: {{ .Values.global.persistence.dbPort | quote }}
-- name: POSTGRES_USER
-  value: {{ .Values.global.persistence.dbUser | quote }}
-- name: POSTGRES_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: {{ template "global.externalDbSecret" . }}
-      key: {{ include "global.dbPasswordKey" . | quote }}
-- name: POSTGRES_DATABASE
-  value: {{ .Values.global.persistence.dbName | quote }}
-{{- else if eq .Values.global.persistence.dbVendor "MYSQL" }}
-- name: MYSQL_PORT_3306_TCP_ADDR
-  value: {{ .Values.global.persistence.dbHost | quote }}
-- name: MYSQL_PORT_3306_TCP_PORT
-  value: {{ .Values.global.persistence.dbPort | quote }}
-- name: MYSQL_USER
-  value: {{ .Values.global.persistence.dbUser | quote }}
-- name: MYSQL_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: {{ template "global.externalDbSecret" . }}
-      key: {{ include "global.dbPasswordKey" . | quote }}
-- name: MYSQL_DATABASE
-  value: {{ .Values.global.persistence.dbName | quote }}
-{{- end }}
-{{- end -}}
-
 
 {{/*
 Return JAVA_OPTS -Dmicronaut.config.files
@@ -376,7 +330,6 @@ If ux is enabled, create a volume for the config maps
 {{- end -}}
 {{- end -}}
 
-
 {{/*
 If schemas or ux is enabled, create a volume mounts for the config maps
 */}}
@@ -437,7 +390,6 @@ Set the Business Partner Agent name
 {{- $name -}}
 {{- end -}}
 
-
 {{/*
 Set the Business Partner Agent Browser Title value.
 */}}
@@ -451,4 +403,3 @@ Set the Business Partner Agent Browser Title value.
 {{- end -}}
 {{- $title -}}
 {{- end -}}
-
