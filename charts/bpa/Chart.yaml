@@ -8,7 +8,6 @@ appVersion: 0.10.0
 
 home: "https://github.com/hyperledger-labs/business-partner-agent-chart"
 sources: ["https://github.com/hyperledger-labs/business-partner-agent-chart"]
-engine: gotpl
 maintainers:
   - email: Frank.Bernhardt@bosch.com
     name: frank-bee
@@ -23,4 +22,5 @@ dependencies:
   - name: postgresql
     version: 10.16.2
     repository: https://charts.bitnami.com/bitnami/
-    condition: persistence.deployPostgres
+    condition: postgresql.enabled
+

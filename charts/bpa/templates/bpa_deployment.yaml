@@ -60,7 +60,7 @@ spec:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "global.postgresql.fullname" . }}
+                  name: {{ template "global.fullname" . }}
                   key: postgresql-password
             {{- include "bpa.keycloak.secret.env.vars" . | nindent 12}}
             - name: JAVA_OPTS

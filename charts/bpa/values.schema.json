@@ -478,7 +478,7 @@
                 "persistence": {
                     "type": "object",
                     "properties": {
-                        "deployPostgres": {
+                        "existingSecret": {
                             "type": "boolean"
                         }
                     }
@@ -526,6 +526,9 @@
         "postgresql": {
             "type": "object",
             "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
                 "containerSecurityContext": {
                     "type": "object",
                     "properties": {

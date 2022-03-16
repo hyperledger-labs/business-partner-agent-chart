@@ -240,44 +240,6 @@ Create the name for the password secret key.
 {{- end -}}
 
 {{/*
-Create environment variables for database configuration.
-*/}}
-{{- define "global.externalDbConfig" -}}
-- name: DB_VENDOR
-  value: {{ .Values.global.persistence.dbVendor | quote }}
-{{- if eq .Values.global.persistence.dbVendor "POSTGRES" }}
-- name: POSTGRES_PORT_5432_TCP_ADDR
-  value: {{ .Values.global.persistence.dbHost | quote }}
-- name: POSTGRES_PORT_5432_TCP_PORT
-  value: {{ .Values.global.persistence.dbPort | quote }}
-- name: POSTGRES_USER
-  value: {{ .Values.global.persistence.dbUser | quote }}
-- name: POSTGRES_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: {{ template "global.externalDbSecret" . }}
-      key: {{ include "global.dbPasswordKey" . | quote }}
-- name: POSTGRES_DATABASE
-  value: {{ .Values.global.persistence.dbName | quote }}
-{{- else if eq .Values.global.persistence.dbVendor "MYSQL" }}
-- name: MYSQL_PORT_3306_TCP_ADDR
-  value: {{ .Values.global.persistence.dbHost | quote }}
-- name: MYSQL_PORT_3306_TCP_PORT
-  value: {{ .Values.global.persistence.dbPort | quote }}
-- name: MYSQL_USER
-  value: {{ .Values.global.persistence.dbUser | quote }}
-- name: MYSQL_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: {{ template "global.externalDbSecret" . }}
-      key: {{ include "global.dbPasswordKey" . | quote }}
-- name: MYSQL_DATABASE
-  value: {{ .Values.global.persistence.dbName | quote }}
-{{- end }}
-{{- end -}}
-
-
-{{/*
 Return JAVA_OPTS -Dmicronaut.config.files
 Always return application.yml add in other files if they are enabled.
 */}}

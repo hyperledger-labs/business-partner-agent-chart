@@ -10,8 +10,8 @@ global:
   ingressSuffix: .stage.economyofthings.io
 
   persistence:
-    # -- If true, the Postgres chart is deployed
-    deployPostgres: true
+    #-- Name of existing secret to use for PostgreSQL passwords
+    existingSecret: false
 
   # -- The used ledger. Will be used for default values. Any of: bosch-test, idu, bcovrin-test.
   ledger: bosch-test
@@ -353,6 +353,9 @@ acapy:
     logLevel: info
 
 postgresql:
+  # -- If true, the Postgres chart is deployed
+  enabled: false
+
   # --  PostgreSQL service configuration
   service:
     port: 5432
