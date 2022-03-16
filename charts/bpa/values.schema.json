@@ -529,6 +529,9 @@
                 "enabled": {
                     "type": "boolean"
                 },
+                "fullNameOverwrite": {
+                    "type": "string"
+                },
                 "containerSecurityContext": {
                     "type": "object",
                     "properties": {

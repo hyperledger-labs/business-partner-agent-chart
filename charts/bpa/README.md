@@ -293,7 +293,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | global.ingressSuffix | string | `".stage.economyofthings.io"` | Domain suffix to be used for default hostpaths in ingress |
 | global.ledger | string | `"bosch-test"` | The used ledger. Will be used for default values. Any of: bosch-test, idu, bcovrin-test. |
 | global.nameOverride | string | `""` |  |
-| global.persistence.existingSecret | bool | `false` |  |
+| global.persistence.existingSecret | bool | `false` | Name of existing secret to use for PostgreSQL passwords |
 | keycloak.clientId | string | `"<your keycloak client id>"` |  |
 | keycloak.clientSecret | string | `"<your keycloak client secret>"` |  |
 | keycloak.config.endsessionUrl | string | `"<your keycloak realm end session url>"` |  |
