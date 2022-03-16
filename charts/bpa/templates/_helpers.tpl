@@ -213,8 +213,13 @@ generate tails uploadUrl
 Create a default fully qualified app name for the postgres requirement.
 */}}
 {{- define "global.postgresql.fullname" -}}
-{{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
-{{ template "postgresql.primary.fullname" $postgresContext }}
+  {{- if .Values.postgresql.enabled -}}
+    {{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
+    {{ template "postgresql.primary.fullname" $postgresContext }}
+  {{- else -}}
+    {{- $fullname := default (printf "%s-postgresql" .Release.Name) .Values.postgresql.fullnameOverride -}}
+    {{- printf "%s" $fullname | trunc 63 -}}
+  {{- end -}}
 {{- end -}}
 
 {{/*

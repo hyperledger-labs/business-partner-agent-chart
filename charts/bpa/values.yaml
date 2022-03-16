@@ -10,7 +10,7 @@ global:
   ingressSuffix: .stage.economyofthings.io
 
   persistence:
-    #-- Name of existing secret to use for PostgreSQL passwords
+    # -- Name of existing secret to use for PostgreSQL passwords
     existingSecret: false
 
   # -- The used ledger. Will be used for default values. Any of: bosch-test, idu, bcovrin-test.
@@ -354,7 +354,10 @@ acapy:
 
 postgresql:
   # -- If true, the Postgres chart is deployed
-  enabled: false
+  enabled: true
+
+  # -- If prostgres.enabled is set to false this can be used to set the postgresql dns name. defaults to Chart.Name-postgresql otherwise
+  fullnameOverride: ""
 
   # --  PostgreSQL service configuration
   service:
