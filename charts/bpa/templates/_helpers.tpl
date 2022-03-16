@@ -23,7 +23,6 @@ If release name contains chart name it will be used as a full name.
 {{- end }}
 {{- end }}
 
-
 {{/*
 Create chart name and version as used by the chart label.
 */}}
@@ -116,7 +115,6 @@ Selector acapy labels
 app.kubernetes.io/name: {{ include "global.fullname" . }}-acapy
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
-
 
 {{/*
 generate hosts if not overriden
@@ -223,24 +221,13 @@ Create a default fully qualified app name for the postgres requirement.
 {{- end -}}
 
 {{/*
-Create the name for the database secret.
-*/}}
-{{- define "global.externalDbSecret" -}}
-{{- if .Values.global.persistence.existingSecret -}}
-  {{- .Values.global.persistence.existingSecret -}}
-{{- else -}}
-  {{- template "global.fullname" . -}}-db
-{{- end -}}
-{{- end -}}
-
-{{/*
-Create the name for the password secret key.
+Create the name for the password secret key. TODO currently not used, either delete or migrate key generation to template function
 */}}
 {{- define "global.dbPasswordKey" -}}
 {{- if .Values.global.persistence.existingSecret -}}
   {{- .Values.global.persistence.existingSecretKey -}}
 {{- else -}}
-  password
+  postgresql-password
 {{- end -}}
 {{- end -}}
 
@@ -343,7 +330,6 @@ If ux is enabled, create a volume for the config maps
 {{- end -}}
 {{- end -}}
 
-
 {{/*
 If schemas or ux is enabled, create a volume mounts for the config maps
 */}}
@@ -404,7 +390,6 @@ Set the Business Partner Agent name
 {{- $name -}}
 {{- end -}}
 
-
 {{/*
 Set the Business Partner Agent Browser Title value.
 */}}
@@ -418,4 +403,3 @@ Set the Business Partner Agent Browser Title value.
 {{- end -}}
 {{- $title -}}
 {{- end -}}
-
