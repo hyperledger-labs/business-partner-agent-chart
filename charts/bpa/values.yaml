@@ -241,9 +241,38 @@ acapy:
   # The agent seed, 32 characters. Will be generated if not defined here
   agentSeed: ""
 
+  walletKey: "123"
+
   labelOverride: ""
 
   readOnlyMode: false
+
+  staticArgs:
+    autoAcceptInvites: true
+    autoAcceptRequests: false
+    autoRespondMessages: false
+    autoRespondCredentialProposal: false
+    autoRespondCredentialOffer: false
+    autoRespondCredentialRequest: false
+    autoRespondPresentationProposal: true
+    autoRespondPresentationRequest: false
+    autoStoreCredential: true
+    autoVerifyPresentation: true
+    autoPingConnection: true
+    autoProvision: true
+    autoDiscloseFeatures: true
+    notifyRevocation: true
+    monitorRevocationNotification: true
+    monitorPing: true
+    emitNewDidcommPrefix: true
+    emitNewDidcommMimeType: true
+    enableUndeliveredQueue: true
+    exchUseUnencryptedTags: true
+    preserveExchangeRecords: false
+    publicInvites: true
+    # -- indy or askar
+    walletType: askar
+    logLevel: info
 
   imagePullSecrets: []
   nameOverride: ""
@@ -324,33 +353,6 @@ acapy:
   tolerations: []
 
   affinity: {}
-
-  staticArgs:
-    autoAcceptInvites: true
-    autoAcceptRequests: false
-    autoRespondMessages: false
-    autoRespondCredentialProposal: false
-    autoRespondCredentialOffer: false
-    autoRespondCredentialRequest: false
-    autoRespondPresentationProposal: true
-    autoRespondPresentationRequest: false
-    autoStoreCredential: true
-    autoVerifyPresentation: true
-    autoPingConnection: true
-    autoProvision: true
-    autoDiscloseFeatures: true
-    notifyRevocation: true
-    monitorRevocationNotification: true
-    monitorPing: true
-    emitNewDidcommPrefix: true
-    emitNewDidcommMimeType: true
-    enableUndeliveredQueue: true
-    exchUseUnencryptedTags: true
-    preserveExchangeRecords: false
-    publicInvites: true
-    # -- indy or askar
-    walletType: askar
-    logLevel: info
 
 postgresql:
   # -- If true, the Postgres chart is deployed
