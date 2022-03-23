@@ -15,7 +15,7 @@ data:
   ACAPY_URL: {{ $acapyUrl | quote }}
   ACAPY_ENDPOINT: {{ $acapyEndpoint | quote }}
   ACAPY_API_KEY: {{ .Values.acapy.adminURLApiKey | quote }}
-  POSTGRESQL_HOST: {{ include "global.postgresql.fullname" . | quote }}
+  BPA_PG_URL: {{ include "bpa.pgUrl" . | quote }}
   POSTGRESQL_USER: {{ .Values.postgresql.postgresqlUsername | quote }}
   BPA_SECURITY_ENABLED: {{ .Values.bpa.config.security.enabled | quote }}
   BPA_LEDGER_BROWSER: {{ include "bpa.ledgerBrowser" . | quote }}
