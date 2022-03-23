@@ -26,6 +26,40 @@ spec:
       {{- end }}
       securityContext:
         {{- toYaml .Values.acapy.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: acapy-provision
+          image: "{{ .Values.acapy.image.repository }}:{{ .Values.acapy.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.acapy.image.pullPolicy }}
+          args: [
+           "-c",
+           "{{ include "acapy.registerLedger" . }} \
+           sleep 15; \
+           aca-py provision \
+           --endpoint https://{{ include "acapy.host" . }} \
+           --wallet-type {{ .Values.acapy.staticArgs.walletType }} \
+           --wallet-storage-type 'postgres_storage' \
+           --wallet-name {{ .Values.postgresql.postgresqlDatabase }} \
+           --wallet-key '123' \
+           --wallet-storage-config '{\"url\":\"{{ include "global.postgresql.fullname" . }}:{{ .Values.postgresql.service.port }}\",\"max_connections\":5}' \
+           --wallet-storage-creds '{\"account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"password\":\"$(POSTGRES_PASSWORD)\",\"admin_account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"admin_password\":\"$(POSTGRES_PASSWORD)\"}' \
+           --seed \"$(WALLET_SEED)\" \
+           --genesis-url '{{ include "bpa.ledgerBrowser" . }}/genesis' \
+           --log-level info \
+           "
+          ]
+          command:
+          - /bin/bash
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "global.postgresql.fullname" . }}
+                  key: postgresql-password
+            - name: WALLET_SEED
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "acapy.fullname" . }}
+                  key: seed
       containers:
         - name: acapy
           securityContext:
@@ -34,9 +68,7 @@ spec:
           imagePullPolicy: {{ .Values.acapy.image.pullPolicy }}
           args: [
            "-c",
-           "{{ include "acapy.registerLedger" . }} \
-           sleep 15; \
-           aca-py start \
+           "aca-py start \
            --auto-provision \
            --arg-file acapy-static-args.yml \
            --inbound-transport http '0.0.0.0' {{ .Values.acapy.service.httpPort }} \
@@ -44,7 +76,7 @@ spec:
            --genesis-url '{{ include "bpa.ledgerBrowser" . }}/genesis' \
            --endpoint https://{{ include "acapy.host" . }} \
            --wallet-storage-type 'postgres_storage' \
-           --wallet-name 'mywallet' \
+           --wallet-name {{ .Values.postgresql.postgresqlDatabase }} \
            --wallet-key '123' \
            --wallet-storage-config '{\"url\":\"{{ include "global.postgresql.fullname" . }}:{{ .Values.postgresql.service.port }}\",\"max_connections\":5}' \
            --wallet-storage-creds '{\"account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"password\":\"$(POSTGRES_PASSWORD)\",\"admin_account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"admin_password\":\"$(POSTGRES_PASSWORD)\"}' \
