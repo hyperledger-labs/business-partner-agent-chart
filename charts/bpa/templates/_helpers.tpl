@@ -89,6 +89,18 @@ generate hosts if not overriden
 {{- end }}
 
 {{/*
+generates the postgresql connection string
+*/}}
+{{- define "bpa.pgUrl" -}}
+{{- $baseUrl := printf "jdbc:postgresql://%s:%d/%s" (include "global.postgresql.fullname" .) (int .Values.postgresql.service.port) .Values.postgresql.postgresqlDatabase -}}
+{{- if .Values.postgresql.tls.enabled -}}
+{{- printf "%s?ssl=true&sslmode=require" $baseUrl -}}
+{{- else }}
+{{- $baseUrl -}}
+{{- end -}}
+{{- end }}
+
+{{/*
 generate ledger browser url
 */}}
 {{- define "bpa.ledgerBrowser" -}}
