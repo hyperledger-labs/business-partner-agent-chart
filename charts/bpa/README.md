@@ -200,8 +200,8 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.openshift.route.wildcardPolicy | string | `"None"` |  |
 | acapy.podAnnotations | object | `{}` |  |
 | acapy.podSecurityContext | object | `{}` |  |
-| acapy.postgresql | object | `{"database":"walletdb"}` | Used for backwards compatibility |
-| acapy.postgresql.database | string | `"walletdb"` | Can be used to overwrite 'postgresql.postgresqlDatabase', if set acapy and bpa backends use separate databases |
+| acapy.postgresql | object | `{"database":"mywallet"}` | Used for backwards compatibility |
+| acapy.postgresql.database | string | `"mywallet"` | Can be used to overwrite 'postgresql.postgresqlDatabase', if set acapy and bpa backends use separate databases |
 | acapy.readOnlyMode | bool | `false` |  |
 | acapy.resources.requests.cpu | string | `"100m"` |  |
 | acapy.resources.requests.memory | string | `"256Mi"` |  |

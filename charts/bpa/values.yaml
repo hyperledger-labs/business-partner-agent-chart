@@ -243,7 +243,7 @@ acapy:
 
   # -- The agent seed, 32 characters. Will be generated if not defined here
   agentSeed: ""
-  
+
   # -- Wallet encryption key, be aware that if this value is changed aca-py needs to be restarted with the '--wallet-rekey' param which is not mapped
   walletKey: "123"
 
