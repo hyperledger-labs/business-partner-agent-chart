@@ -39,7 +39,7 @@ spec:
            --wallet-type {{ .Values.acapy.staticArgs.walletType }} \
            --wallet-storage-type 'postgres_storage' \
            --wallet-name {{ .Values.postgresql.postgresqlDatabase }} \
-           --wallet-key {{ .Values.acapy.walletKey } \
+           --wallet-key {{ .Values.acapy.walletKey }} \
            --wallet-storage-config '{\"url\":\"{{ include "global.postgresql.fullname" . }}:{{ .Values.postgresql.service.port }}\",\"max_connections\":5}' \
            --wallet-storage-creds '{\"account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"password\":\"$(POSTGRES_PASSWORD)\",\"admin_account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"admin_password\":\"$(POSTGRES_PASSWORD)\"}' \
            --seed \"$(WALLET_SEED)\" \
