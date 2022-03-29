@@ -43,6 +43,7 @@ spec:
            --wallet-storage-config '{\"url\":\"{{ include "global.postgresql.fullname" . }}:{{ .Values.postgresql.service.port }}\",\"max_connections\":5}' \
            --wallet-storage-creds '{\"account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"password\":\"$(POSTGRES_PASSWORD)\",\"admin_account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"admin_password\":\"$(POSTGRES_PASSWORD)\"}' \
            --seed \"$(WALLET_SEED)\" \
+           --replace-public-did \
            --genesis-url '{{ include "bpa.ledgerBrowser" . }}/genesis' \
            --log-level info \
            "
