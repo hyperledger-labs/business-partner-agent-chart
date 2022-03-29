@@ -31,6 +31,30 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
+Create a default fully qualified app name for the postgres requirement.
+*/}}
+{{- define "global.postgresql.fullname" -}}
+  {{- if .Values.postgresql.enabled -}}
+    {{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
+    {{ template "postgresql.primary.fullname" $postgresContext }}
+  {{- else -}}
+    {{- $fullname := default (printf "%s-postgresql" .Release.Name) .Values.postgresql.fullnameOverride -}}
+    {{- printf "%s" $fullname | trunc 63 -}}
+  {{- end -}}
+{{- end -}}
+
+{{/*
+Create the name for the password secret key. TODO currently not used, either delete or migrate key generation to template function
+*/}}
+{{- define "global.dbPasswordKey" -}}
+{{- if .Values.global.persistence.existingSecret -}}
+  {{- .Values.global.persistence.existingSecretKey -}}
+{{- else -}}
+  postgresql-password
+{{- end -}}
+{{- end -}}
+
+{{/*
 Create a default fully qualified bpa name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
@@ -226,30 +250,6 @@ determine acapy database name
 {{- define "acapy.database" -}}
 {{ default .Values.postgresql.postgresqlDatabase .Values.acapy.postgresql.database }} 
 {{- end }}
-
-{{/*
-Create a default fully qualified app name for the postgres requirement.
-*/}}
-{{- define "global.postgresql.fullname" -}}
-  {{- if .Values.postgresql.enabled -}}
-    {{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
-    {{ template "postgresql.primary.fullname" $postgresContext }}
-  {{- else -}}
-    {{- $fullname := default (printf "%s-postgresql" .Release.Name) .Values.postgresql.fullnameOverride -}}
-    {{- printf "%s" $fullname | trunc 63 -}}
-  {{- end -}}
-{{- end -}}
-
-{{/*
-Create the name for the password secret key. TODO currently not used, either delete or migrate key generation to template function
-*/}}
-{{- define "global.dbPasswordKey" -}}
-{{- if .Values.global.persistence.existingSecret -}}
-  {{- .Values.global.persistence.existingSecretKey -}}
-{{- else -}}
-  postgresql-password
-{{- end -}}
-{{- end -}}
 
 {{/*
 Return JAVA_OPTS -Dmicronaut.config.files
