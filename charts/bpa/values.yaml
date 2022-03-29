@@ -23,8 +23,6 @@ bpa:
     # --  Overrides the image tag whose default is the chart appVersion.
     tag: ""
 
-  # todo: bpa pg schema als variable
-  # todo aca-py table name als variable in abghängigkeit von schema?
   serviceAccount:
     # -- Specifies whether a service account should be created
     create: true

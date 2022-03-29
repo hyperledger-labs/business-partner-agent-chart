@@ -17,7 +17,7 @@ data:
   ACAPY_API_KEY: {{ .Values.acapy.adminURLApiKey | quote }}
   BPA_PG_URL: {{ include "bpa.pgUrl" . | quote }}
 {{- if (default false .Values.bpa.config.pg.schema) }}
-  BPA_PG_SCHEMA: "bpa"
+  BPA_PG_SCHEMA: {{ .Values.bpa.config.pg.schema | quote }}
 {{- end }}  
   POSTGRESQL_USER: {{ .Values.postgresql.postgresqlUsername | quote }}
   BPA_SECURITY_ENABLED: {{ .Values.bpa.config.security.enabled | quote }}
