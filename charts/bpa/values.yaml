@@ -250,7 +250,7 @@ acapy:
   # -- Used for backwards compatibility
   postgresql:
     # -- Can be used to overwrite 'postgresql.postgresqlDatabase', if set acapy and bpa backends use separate databases
-    database: "walletdb"
+    database: "mywallet"
 
   labelOverride: ""
 
