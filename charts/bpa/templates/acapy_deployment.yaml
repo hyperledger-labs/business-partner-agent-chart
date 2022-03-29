@@ -14,6 +14,12 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/acapy_configmap.yaml") . | sha256sum }}
+        {{- if and (not .Values.postgresql.enabled) (not .Values.global.persistence.existingSecret) }}
+        checksum/configDB: {{ include (print $.Template.BasePath "/db_secret.yaml") . | sha256sum }}
+        {{- end }}
+        {{- if .Values.global.persistence.existingSecret }}
+        rollme: {{ randAlphaNum 5 | quote }}
+        {{- end }}
     {{- with .Values.acapy.podAnnotations }}
         {{- toYaml . | nindent 8 }}
     {{- end }}
