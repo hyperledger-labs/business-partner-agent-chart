@@ -40,6 +40,9 @@ bpa:
     # -- Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given)
     titleOverride: ""
 
+    pg:
+      # -- Sets the database schema the bpa backend should use, defaults to 'publlic' if empty
+      schema: ""
     security:
       # -- Enable login page and endpoint security
       enabled: true
@@ -243,8 +246,13 @@ acapy:
   # -- The agent seed, 32 characters. Will be generated if not defined here
   agentSeed: ""
   
-  # -- Wallet encryption key
+  # -- Wallet encryption key, be aware that if this value is changed aca-py needs to be restarted with the '--wallet-rekey' param which is not mapped
   walletKey: "123"
+
+  # -- Used for backwards compatibility
+  postgresql:
+    # -- Can be used to overwrite 'postgresql.postgresqlDatabase', if set acapy and bpa backends use separate databases
+    database: "walletdb"
 
   labelOverride: ""
 

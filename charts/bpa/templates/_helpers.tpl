@@ -221,6 +221,13 @@ generate tails uploadUrl
 {{- end }}
 
 {{/*
+determine acapy database name
+*/}}
+{{- define "acapy.database" -}}
+{{ default .Values.postgresql.postgresqlDatabase .Values.acapy.postgresql.database }} 
+{{- end }}
+
+{{/*
 Create a default fully qualified app name for the postgres requirement.
 */}}
 {{- define "global.postgresql.fullname" -}}
