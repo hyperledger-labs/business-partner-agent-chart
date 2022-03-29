@@ -11,9 +11,9 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/bpa_configmap.yaml") . | sha256sum }} 
+        checksum/config: {{ include (print $.Template.BasePath "/bpa_configmap.yaml") . | sha256sum }}
         {{- if .Values.keycloak.enabled  }}
-        checksum/configKeycloak: {{ include (print $.Template.BasePath "/bpa_configmap_keycloak.yaml") . | sha256sum }} 
+        checksum/configKeycloak: {{ include (print $.Template.BasePath "/bpa_configmap_keycloak.yaml") . | sha256sum }}
         {{- end }}   
         {{- if .Values.schemas.enabled  }}
         checksum/configSchemas: {{ include (print $.Template.BasePath "/bpa_configmap_schemas.yaml") . | sha256sum }}
@@ -21,7 +21,13 @@ spec:
         {{- if .Values.ux.enabled  }}
         checksum/configUx: {{ include (print $.Template.BasePath "/bpa_configmap_ux.yaml") . | sha256sum }}
         {{- end }}
-    {{- with .Values.bpa.podAnnotations -}}  
+        {{- if and (not .Values.postgresql.enabled) (not .Values.global.persistence.existingSecret) }}
+        checksum/configDB: {{ include (print $.Template.BasePath "/db_secret.yaml") . | sha256sum }}
+        {{- end }}
+        {{- if .Values.global.persistence.existingSecret }}
+        rollme: {{ randAlphaNum 5 | quote }}
+        {{- end }}
+    {{- with .Values.bpa.podAnnotations -}}
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
