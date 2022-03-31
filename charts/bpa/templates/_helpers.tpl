@@ -266,6 +266,9 @@ Always return application.yml add in other files if they are enabled.
 {{- if .Values.keycloak.enabled -}}
 {{- $configFiles = append $configFiles "classpath:security-keycloak.yml" -}}
 {{- end -}}
+{{- if .Values.bpa.config.security.strict -}}
+{{- $configFiles = append $configFiles "classpath:strict-security.yml" -}}
+{{- end -}}
 {{- join "," $configFiles -}}
 {{- end -}}
 

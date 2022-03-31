@@ -44,6 +44,9 @@ data:
 {{- if .Values.bpa.config.frontend.hideSidebarButton }}
   SIDEBAR_HIDE_BURGER_BUTTON: {{ .Values.bpa.config.frontend.hideSidebarButton | quote }}
 {{- end }}
+{{- if and .Values.bpa.config.security.strict .Values.bpa.config.security.allowedHosts }}
+  BPA_ALLOWED_HOSTS: {{ .Values.bpa.config.security.allowedHosts | quote }}
+{{- end -}}
 {{- if .Values.bpa.config.mail.username }}
   MAIL_USERNAME: {{ .Values.bpa.config.mail.username| quote }}
 {{- end }}
