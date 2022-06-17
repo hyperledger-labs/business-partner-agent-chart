@@ -32,3 +32,21 @@ data:
     outbound-transport: http
     wallet-type: {{ .Values.acapy.staticArgs.walletType }}
     log-level: {{ .Values.acapy.staticArgs.logLevel }}
+  genesis-transaction-list.yaml: |
+    - id: BoschTest
+      is_production: {{ include "acapy.writeLedger" (list . (dict "ledger" "bosch-test")) }}
+      is_write: {{ include "acapy.writeLedger" (list . (dict "ledger" "bosch-test")) }}
+      genesis_url: 'https://indy-test.bosch-digital.de/genesis'
+    - id: bcorvinTest
+      is_production: {{ include "acapy.writeLedger" (list . (dict "ledger" "bcovrin-test")) }}
+      is_write: {{ include "acapy.writeLedger" (list . (dict "ledger" "bcovrin-test")) }}
+      genesis_url: 'http://test.bcovrin.vonx.io/genesis'
+    - id: IDUnionTest
+      is_production: {{ include "acapy.writeLedger" (list . (dict "ledger" "idu")) }}
+      is_write: {{ include "acapy.writeLedger" (list . (dict "ledger" "idu")) }}
+      genesis_url: 'https://raw.githubusercontent.com/IDunion/IDunion_TestNet_Genesis/master/pool_transactions_genesis'
+    - id: SovrinBuilderNet
+      is_production: false
+      is_write: false
+      genesis_url: 'https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_builder_genesis'
+

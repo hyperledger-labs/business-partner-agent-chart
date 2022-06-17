@@ -80,7 +80,7 @@ spec:
            --arg-file acapy-static-args.yml \
            --inbound-transport http '0.0.0.0' {{ .Values.acapy.service.httpPort }} \
            --webhook-url http://{{ include "bpa.fullname" . }}:{{ .Values.bpa.service.port }}/log#{{ .Values.bpa.config.webhook.key }}  \
-           --genesis-url '{{ include "bpa.ledgerBrowser" . }}/genesis' \
+           --genesis-transactions-list genesis-transaction-list.yaml \
            --endpoint https://{{ include "acapy.host" . }} \
            --wallet-storage-type 'postgres_storage' \
            --wallet-name {{ include "acapy.database" . }} \
@@ -134,8 +134,7 @@ spec:
             periodSeconds: 10    
           volumeMounts:
           - name: config
-            mountPath: "/home/indy/acapy-static-args.yml"
-            subPath: "acapy-static-args.yml"
+            mountPath: "/home/indy"
             readOnly: true
           resources:
             {{- toYaml .Values.acapy.resources | nindent 12 }}
@@ -146,6 +145,8 @@ spec:
             items:
             - key: "acapy-static-args.yaml"
               path: "acapy-static-args.yml"
+            - key: "genesis-transaction-list.yaml"
+              path: "genesis-transaction-list.yaml"
       {{- with .Values.acapy.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

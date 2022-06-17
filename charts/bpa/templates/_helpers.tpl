@@ -245,6 +245,19 @@ generate tails uploadUrl
 {{- end }}
 
 {{/*
+determine if write ledger
+*/}}
+{{- define "acapy.writeLedger" -}}
+{{- $top := index . 0 -}}
+{{- $ledgerName := index . 1 "ledger" -}}
+{{- if eq $top.Values.global.ledger $ledgerName -}}
+true
+{{- else -}}
+false
+{{- end -}}
+{{- end }}
+
+{{/*
 determine acapy database name
 */}}
 {{- define "acapy.database" -}}
