@@ -250,7 +250,7 @@ determine if write ledger
 {{- define "acapy.writeLedger" -}}
 {{- $top := index . 0 -}}
 {{- $ledgerName := index . 1 "ledger" -}}
-{{- if eq $top.Values.global.ledger $ledgerName -}}
+{{- if and (eq $top.Values.global.ledger $ledgerName) (not $top.Values.acapy.readOnlyMode) -}}
 true
 {{- else -}}
 false
