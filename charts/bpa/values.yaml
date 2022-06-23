@@ -44,6 +44,10 @@ bpa:
     security:
       # -- Enable login page and endpoint security
       enabled: true
+      # -- Enable strict strict security headers
+      strict: true
+      # -- Comma separated list of csp host sources, used to set allowed origins
+      allowedHosts: {}
     bootstrap:
       # -- The name of the default admin user
       username: admin
