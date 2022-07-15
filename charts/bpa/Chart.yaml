@@ -3,12 +3,18 @@ name: bpa
 description: The BPA allows organizations to verify, hold, and issue verifiable credentials.
 type: application
 
-version: 0.11.3
-appVersion: 0.10.0
+version: 0.11.4
+appVersion: 0.11.0
 
 home: "https://github.com/hyperledger-labs/business-partner-agent-chart"
 sources: ["https://github.com/hyperledger-labs/business-partner-agent-chart"]
 maintainers:
+  - email: philipp.etschel@ch.bosch.com
+    name: etschelp
+    url: https://github.com/etschelp
+  - email: tim.schlagenhaufer@bosch.io
+    name: schlagtim
+    url: https://github.com/schlagtim
   - email: Frank.Bernhardt@bosch.com
     name: frank-bee
     url: https://github.com/frank-bee
