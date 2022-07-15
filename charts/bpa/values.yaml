@@ -236,7 +236,7 @@ acapy:
     repository: bcgovimages/aries-cloudagent
     pullPolicy: IfNotPresent
     # --  Overrides the image tag whose default is the chart appVersion.
-    tag: py36-1.16-1_0.7.3
+    tag: py36-1.16-1_0.7.4
 
   adminURLApiKey: 2f9729eef0be49608c1cffd49ee3cc4a
 
@@ -257,7 +257,7 @@ acapy:
   readOnlyMode: false
 
   staticArgs:
-    autoAcceptInvites: true
+    autoAcceptInvites: false
     autoAcceptRequests: false
     autoRespondMessages: false
     autoRespondCredentialProposal: false
@@ -266,7 +266,7 @@ acapy:
     autoRespondPresentationProposal: true
     autoRespondPresentationRequest: false
     autoStoreCredential: true
-    autoVerifyPresentation: true
+    autoVerifyPresentation: false
     autoPingConnection: true
     autoProvision: true
     autoDiscloseFeatures: true

@@ -129,7 +129,7 @@ generates the postgresql connection string
 generate ledger browser url
 */}}
 {{- define "bpa.ledgerBrowser" -}}
-{{- $ledgerBrowser := dict "bosch-test" "https://indy-test.bosch-digital.de" "idu" "https://explorer.idu.network" "bcovrin-test" "http://test.bcovrin.vonx.io" -}}
+{{- $ledgerBrowser := dict "bosch-test" "https://indy-test.idu.network" "idu" "https://explorer.idu.network" "bcovrin-test" "http://test.bcovrin.vonx.io" -}}
 {{ .Values.bpa.config.ledger.browserUrlOverride | default ( get $ledgerBrowser .Values.global.ledger ) }}
 {{- end }}
 
