@@ -129,7 +129,7 @@ generates the postgresql connection string
 generate ledger browser url
 */}}
 {{- define "bpa.ledgerBrowser" -}}
-{{- $ledgerBrowser := dict "bosch-test" "https://indy-test.bosch-digital.de" "idu" "https://explorer.idu.network" "bcovrin-test" "http://test.bcovrin.vonx.io" -}}
+{{- $ledgerBrowser := dict "bosch-test" "https://indy-test.idu.network" "idu" "https://explorer.idu.network" "bcovrin-test" "http://test.bcovrin.vonx.io" -}}
 {{ .Values.bpa.config.ledger.browserUrlOverride | default ( get $ledgerBrowser .Values.global.ledger ) }}
 {{- end }}
 
@@ -242,6 +242,19 @@ generate tails uploadUrl
 {{- define "acapy.tails.uploadUrl" -}}
 {{- $tailsUploadUrl:= dict "bosch-test" "https://tails-dev.vonx.io" "bcovrin-test" "https://tails-test.vonx.io" "idu" "http://idu-tails:6543" -}}
 {{ .Values.acapy.tails.uploadUrlOverride| default ( get $tailsUploadUrl .Values.global.ledger ) }}
+{{- end }}
+
+{{/*
+determine if write ledger
+*/}}
+{{- define "acapy.writeLedger" -}}
+{{- $top := index . 0 -}}
+{{- $ledgerName := index . 1 "ledger" -}}
+{{- if and (eq $top.Values.global.ledger $ledgerName) (not $top.Values.acapy.readOnlyMode) -}}
+true
+{{- else -}}
+false
+{{- end -}}
 {{- end }}
 
 {{/*

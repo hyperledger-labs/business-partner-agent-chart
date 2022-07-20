@@ -2,7 +2,7 @@
 
 The BPA allows organizations to verify, hold, and issue verifiable credentials.
 
-![Version: 0.11.3](https://img.shields.io/badge/Version-0.11.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.11.0](https://img.shields.io/badge/AppVersion-0.11.0-informational?style=flat-square)
+![Version: 0.11.4](https://img.shields.io/badge/Version-0.11.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.11.0](https://img.shields.io/badge/AppVersion-0.11.0-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -182,7 +182,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.fullnameOverride | string | `""` |  |
 | acapy.image.pullPolicy | string | `"IfNotPresent"` |  |
 | acapy.image.repository | string | `"bcgovimages/aries-cloudagent"` |  |
-| acapy.image.tag | string | `"py36-1.16-1_0.7.3"` | Overrides the image tag whose default is the chart appVersion. |
+| acapy.image.tag | string | `"py36-1.16-1_0.7.4"` | Overrides the image tag whose default is the chart appVersion. |
 | acapy.imagePullSecrets | list | `[]` |  |
 | acapy.ingress.annotations | object | `{}` |  |
 | acapy.ingress.enabled | bool | `true` |  |
@@ -209,7 +209,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.service.adminPort | int | `8031` |  |
 | acapy.service.httpPort | int | `8030` |  |
 | acapy.service.type | string | `"ClusterIP"` |  |
-| acapy.staticArgs.autoAcceptInvites | bool | `true` |  |
+| acapy.staticArgs.autoAcceptInvites | bool | `false` |  |
 | acapy.staticArgs.autoAcceptRequests | bool | `false` |  |
 | acapy.staticArgs.autoDiscloseFeatures | bool | `true` |  |
 | acapy.staticArgs.autoPingConnection | bool | `true` |  |
@@ -221,7 +221,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.staticArgs.autoRespondPresentationProposal | bool | `true` |  |
 | acapy.staticArgs.autoRespondPresentationRequest | bool | `false` |  |
 | acapy.staticArgs.autoStoreCredential | bool | `true` |  |
-| acapy.staticArgs.autoVerifyPresentation | bool | `true` |  |
+| acapy.staticArgs.autoVerifyPresentation | bool | `false` |  |
 | acapy.staticArgs.emitNewDidcommMimeType | bool | `true` |  |
 | acapy.staticArgs.emitNewDidcommPrefix | bool | `true` |  |
 | acapy.staticArgs.enableUndeliveredQueue | bool | `true` |  |
