@@ -194,24 +194,11 @@ Return true if a secret object should be created
 {{- end -}}
 
 {{/*
-Return seed
-*/}}
-{{- define "acapy.seed" -}}
-{{- if .Values.acapy.agentSeed -}}
-    {{- .Values.acapy.agentSeed -}}
-{{- else -}}
-    {{- randAlphaNum 32 -}}
-{{- end -}}
-{{- end -}}
-
-{{/*
 Return acapy initialization call
 */}}
 {{- define "acapy.registerLedger" -}}
 {{- if or (eq .Values.global.ledger "bosch-test") (eq .Values.global.ledger "bcovrin-test") -}}
 curl -d '{\"seed\":\"$(WALLET_SEED)\", \"role\":\"TRUST_ANCHOR\", \"alias\":\"{{ include "bpa.fullname" . }}\"}' -X POST {{ include "bpa.ledgerBrowser" . }}/register;
-{{- else if eq .Values.global.ledger "idu" -}}
-identifier=`curl --header 'Content-Type: application/json' -d '{\"seed\":\"$(WALLET_SEED)\", \"role\":\"ENDORSER\", \"send\":true}' -X POST node-agent-registrar.md.svc.cluster.local/register | tr { '\n' | tr , '\n' | tr } '\n' | grep \"identifier\" | awk  -F'\"' '{print $4}'`;
 {{- end -}}
 {{- end -}}
 
@@ -220,9 +207,7 @@ Return acapy label
 */}}
 {{- define "acapy.label" -}}
 {{- if .Values.acapy.labelOverride -}}
-    {{- .Values.acapy.labelOverride }}
-{{- else if eq .Values.global.ledger "idu" -}}
-$identifier   
+    {{- .Values.acapy.labelOverride }} 
 {{- else -}} 
     {{- .Release.Name }}     
 {{- end -}}

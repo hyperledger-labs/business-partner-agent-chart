@@ -3,7 +3,9 @@
 # Declare variables to be passed into your templates.
 
 global:
+  # -- Hostname to be used for default hostpaths in ingress, prefixed with the charts name
   nameOverride: ""
+  # -- Hostname prefix to be used for default hostpaths in ingress
   fullnameOverride: ""
 
   # -- Domain suffix to be used for default hostpaths in ingress
@@ -242,13 +244,14 @@ acapy:
     # --  Overrides the image tag whose default is the chart appVersion.
     tag: py36-1.16-1_0.7.4
 
+  # -- Please change: key used to protect acapy's admin endpoint
   adminURLApiKey: 2f9729eef0be49608c1cffd49ee3cc4a
 
 
-  # -- The agent seed, 32 characters. Will be generated if not defined here
-  agentSeed: ""
+  # -- Please change: the agent seed, 32 characters e.g. a UUID without the dashes. If the ledger is bosch-test or bcovrin-test the seed will be registered automatically. In all other cases this needs to happen manually beforehand.
+  agentSeed: 5a7db011075444a19d9bcaed56ad624a
 
-  # -- Wallet encryption key, be aware that if this value is changed aca-py needs to be restarted with the '--wallet-rekey' param which is not mapped
+  # -- Please change: Wallet encryption key, be aware that if this value is changed later aca-py needs to be restarted with the '--wallet-rekey' param which is not mapped
   walletKey: "123"
 
   # -- Used for backwards compatibility
