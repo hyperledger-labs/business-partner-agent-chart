@@ -49,7 +49,6 @@ spec:
            --wallet-storage-config '{\"url\":\"{{ include "global.postgresql.fullname" . }}:{{ .Values.postgresql.service.port }}\",\"max_connections\":5}' \
            --wallet-storage-creds '{\"account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"password\":\"$(POSTGRES_PASSWORD)\",\"admin_account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"admin_password\":\"$(POSTGRES_PASSWORD)\"}' \
            --seed \"$(WALLET_SEED)\" \
-           --replace-public-did \
            --genesis-url '{{ include "bpa.ledgerBrowser" . }}/genesis' \
            --log-level info \
            "
@@ -76,7 +75,6 @@ spec:
           args: [
            "-c",
            "aca-py start \
-           --auto-provision \
            --arg-file acapy-static-args.yml \
            --inbound-transport http '0.0.0.0' {{ .Values.acapy.service.httpPort }} \
            --webhook-url http://{{ include "bpa.fullname" . }}:{{ .Values.bpa.service.port }}/log#{{ .Values.bpa.config.webhook.key }} \
@@ -87,9 +85,8 @@ spec:
            --wallet-key {{ .Values.acapy.walletKey }} \
            --wallet-storage-config '{\"url\":\"{{ include "global.postgresql.fullname" . }}:{{ .Values.postgresql.service.port }}\",\"max_connections\":5}' \
            --wallet-storage-creds '{\"account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"password\":\"$(POSTGRES_PASSWORD)\"}' \
-           --seed \"$(WALLET_SEED)\" \
            --admin '0.0.0.0' {{ .Values.acapy.service.adminPort }} \
-           --admin-insecure-mode \
+           --admin-api-key {{ .Values.acapy.adminURLApiKey }} \
            --label {{ $acapyLabel }} \
            {{- if .Values.acapy.tails.enabled }}
            --tails-server-base-url {{ include "acapy.tails.baseUrl" . }} \
@@ -115,11 +112,6 @@ spec:
                 secretKeyRef:
                   name: {{ template "global.postgresql.fullname" . }}
                   key: postgresql-password
-            - name: WALLET_SEED
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "acapy.fullname" . }}
-                  key: seed
           livenessProbe:
             httpGet:
               path: /status/live

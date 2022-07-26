@@ -2,7 +2,7 @@
 
 The BPA allows organizations to verify, hold, and issue verifiable credentials.
 
-![Version: 0.11.4](https://img.shields.io/badge/Version-0.11.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.11.0](https://img.shields.io/badge/AppVersion-0.11.0-informational?style=flat-square)
+![Version: 0.11.5](https://img.shields.io/badge/Version-0.11.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.11.0](https://img.shields.io/badge/AppVersion-0.11.0-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -176,9 +176,9 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| acapy.adminURLApiKey | string | `"2f9729eef0be49608c1cffd49ee3cc4a"` |  |
+| acapy.adminURLApiKey | string | `"2f9729eef0be49608c1cffd49ee3cc4a"` | Please change: key used to protect acapy's admin endpoint |
 | acapy.affinity | object | `{}` |  |
-| acapy.agentSeed | string | `""` | The agent seed, 32 characters. Will be generated if not defined here |
+| acapy.agentSeed | string | `"5a7db011075444a19d9bcaed56ad624a"` | Please change: the agent seed, 32 characters e.g. a UUID without the dashes. If the ledger is bosch-test or bcovrin-test the seed will be registered automatically. In all other cases this needs to happen manually beforehand. |
 | acapy.fullnameOverride | string | `""` |  |
 | acapy.image.pullPolicy | string | `"IfNotPresent"` |  |
 | acapy.image.repository | string | `"bcgovimages/aries-cloudagent"` |  |
@@ -237,7 +237,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | acapy.tails.enabled | bool | `false` | Set to true to enable revocation (external tails server required) |
 | acapy.tails.uploadUrlOverride | string | `""` | Override the otherwise ledger-specifically generated upload URL of the external tails server |
 | acapy.tolerations | list | `[]` |  |
-| acapy.walletKey | string | `"123"` | Wallet encryption key, be aware that if this value is changed aca-py needs to be restarted with the '--wallet-rekey' param which is not mapped |
+| acapy.walletKey | string | `"123"` | Please change: Wallet encryption key, be aware that if this value is changed later aca-py needs to be restarted with the '--wallet-rekey' param which is not mapped |
 | bpa.affinity | object | `{}` |  |
 | bpa.config.bootstrap.password | string | `"changeme"` | Default password |
 | bpa.config.bootstrap.username | string | `"admin"` | The name of the default admin user |
