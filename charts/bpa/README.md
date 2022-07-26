@@ -295,10 +295,10 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
 | bpa.serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | bpa.tolerations | list | `[]` |  |
-| global.fullnameOverride | string | `""` |  |
+| global.fullnameOverride | string | `""` | Hostname prefix to be used for default hostpaths in ingress |
 | global.ingressSuffix | string | `".stage.economyofthings.io"` | Domain suffix to be used for default hostpaths in ingress |
 | global.ledger | string | `"bosch-test"` | The used ledger. Will be used for default values. Any of: bosch-test, idu, bcovrin-test. |
-| global.nameOverride | string | `""` |  |
+| global.nameOverride | string | `""` | Hostname to be used for default hostpaths in ingress, prefixed with the charts name |
 | global.persistence.existingSecret | bool | `false` | Name of existing secret to use for PostgreSQL passwords |
 | keycloak.clientId | string | `"<your keycloak client id>"` |  |
 | keycloak.clientSecret | string | `"<your keycloak client secret>"` |  |

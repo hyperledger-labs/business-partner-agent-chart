@@ -3,7 +3,9 @@
 # Declare variables to be passed into your templates.
 
 global:
+  # -- Hostname to be used for default hostpaths in ingress, prefixed with the charts name
   nameOverride: ""
+  # -- Hostname prefix to be used for default hostpaths in ingress
   fullnameOverride: ""
 
   # -- Domain suffix to be used for default hostpaths in ingress
