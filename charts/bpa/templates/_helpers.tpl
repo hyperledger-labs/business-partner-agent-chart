@@ -315,10 +315,21 @@ Are we overriding the UX?
 {{- end -}}
 
 {{/*
-If schemas or ux is enabled, create a volumes for the config maps
+Determine the log configuration file name that should be used
+*/}}
+{{- define "bpa.logFileName" -}}
+{{- if .Values.bpa.config.logging }}
+{{- printf "/home/indy/log4j2.yml" }}
+{{- else }}
+{{- .Values.bpa.config.logConfigurationFile }}
+{{- end }}
+{{- end }}
+
+{{/*
+If custom schemas, ux, or logging configuration is enabled, create a volumes for the config maps
 */}}
 {{- define "bpa.volumes" -}}
-{{- if or (.Values.schemas.enabled) (eq (include "bpa.ux.override" .) "true") -}}
+{{- if or (.Values.schemas.enabled) (.Values.bpa.config.logging) (eq (include "bpa.ux.override" .) "true") -}}
 volumes:
 {{- end -}}
 {{- end -}}
@@ -352,10 +363,24 @@ If ux is enabled, create a volume for the config maps
 {{- end -}}
 
 {{/*
-If schemas or ux is enabled, create a volume mounts for the config maps
+If custom logging config is used, create a volume for the config maps
+*/}}
+{{- define "bpa.volumes.logging" -}}
+{{- if (.Values.bpa.config.logging) -}}
+- name: config-logging
+  configMap:
+    name: {{ template "bpa.fullname" . }}-ux
+    items:
+    - key: "log4j2.yml"
+      path: "log4j2.yml"
+{{- end -}}
+{{- end -}}
+
+{{/*
+If custom schemas, ux, or logging configuration is enabled, create a volume mounts for the config maps
 */}}
 {{- define "bpa.volume.mounts" -}}
-{{- if or (.Values.schemas.enabled) (eq (include "bpa.ux.override" .) "true") -}}
+{{- if or (.Values.schemas.enabled) (.Values.bpa.config.logging) (eq (include "bpa.ux.override" .) "true") -}}
 volumeMounts:
 {{- end -}}
 {{- end -}}
@@ -380,6 +405,18 @@ If ux is enabled, create a volume mount
 - name: config-ux
   mountPath: "/home/indy/ux.yml"
   subPath: "ux.yml"
+  readOnly: true
+{{- end -}}
+{{- end -}}
+
+{{/*
+If custom logging config is enabled, create a volume mount
+*/}}
+{{- define "bpa.volume.mounts.logging" -}}
+{{- if (.Values.bpa.config.logging) -}}
+- name: config-logging
+  mountPath: "/home/indy/log4j2.yml"
+  subPath: "log4j2.yml"
   readOnly: true
 {{- end -}}
 {{- end -}}
