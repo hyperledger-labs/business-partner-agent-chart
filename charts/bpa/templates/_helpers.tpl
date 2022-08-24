@@ -369,7 +369,7 @@ If custom logging config is used, create a volume for the config maps
 {{- if (.Values.bpa.config.logging) -}}
 - name: config-logging
   configMap:
-    name: {{ template "bpa.fullname" . }}-ux
+    name: {{ template "bpa.fullname" . }}-logging
     items:
     - key: "log4j2.yml"
       path: "log4j2.yml"
