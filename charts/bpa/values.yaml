@@ -81,8 +81,12 @@ bpa:
       closeSidebar: false
       # -- Setting this to true hides the sidebar burger button in the frontend. In combination with 'closeSidebar' the sidebar is completely gone.
       hideSidebarButton: false
-    # --  log4j2 configuration file which must be in the classpath. Use log4j2.xml for non-json.
+    # -- log4j2 configuration file which must be in the classpath. Use log4j2.yml for non-json. Will be ignored if logging is set and has values.
     logConfigurationFile: log4j2-prod.xml
+    # -- log configuration overwrite, if set logConfigurationFile will be ignored. Takes an array of logger names and levels. See also log4j2.
+    logging:
+    #  - name: org.hyperledger.bpa
+    #    level: warn
     # -- Mailjet service integration, requires a developer account with verified sender email and generated api keys
     mail:
       # -- Mail service verified sender email address

@@ -1,0 +1,27 @@
+{{- if .Values.bpa.config.logging -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "bpa.fullname" . }}-logging
+  labels:
+    {{- include "bpa.labels" . | nindent 4 }}
+data:
+  log4j2.yml: |-
+    Configuration:
+      status: warn
+      Appenders:
+        Console:
+          name: ConsolePatternAppender
+          target: SYSTEM_OUT
+          PatternLayout:
+            Pattern: "%d{HH:mm:ss.SSS} [%t] %-5level %c{1} - %replace{%msg}{[\r\n]+}{}%n"
+      Loggers:
+        Root:
+          level: warn
+          AppenderRef:
+            ref: ConsolePatternAppender
+{{- if .Values.bpa.config.logging }}
+        Logger:
+{{ toYaml .Values.bpa.config.logging | indent 10 }}
+{{- end -}}
+{{- end -}}

@@ -13,6 +13,7 @@ data:
 {{ toYaml .Values.schemas.config | indent 8 }}
 {{- else if eq .Values.global.ledger "idu" }}
         bank-account:
+          ledgerId: "IDUnionTest"
           defaultAttributeName: "iban"
           id: "UmZ25DANwS6ngGWB4ye4tN:2:BankAccount:0.1"
           label: "Bank Account"
@@ -20,6 +21,7 @@ data:
           - issuerDid: "${bpa.did.prefix}UmZ25DANwS6ngGWB4ye4tN"
             label: "Demo Bank"
         commercial-register:
+          ledgerId: "IDUnionTest"
           defaultAttributeName: "companyName"
           id: "R6WR6n7CQVDjvvmwofHK6S:2:commercialregister:0.1"
           label: "Commercial Register"
@@ -28,6 +30,7 @@ data:
             label: "Commercial Register"
 {{- else if eq .Values.global.ledger "bosch-test" }}
         bank-account:
+          ledgerId: "BoschTest"
           id: "M6Mbe3qx7vB4wpZF4sBRjt:2:bank_account:1.0"
           label: "Bank Account"
           defaultAttributeName: "iban"
@@ -35,6 +38,7 @@ data:
             - issuerDid: "${bpa.did.prefix}M6Mbe3qx7vB4wpZF4sBRjt"
               label: "Demo Bank"
         commercial-register:
+          ledgerId: "BoschTest"
           id: "5mwQSWnRePrZ3oF67C4KqD:2:commercialregister:1.0"
           label: "Commercial Register"
           defaultAttributeName: "companyName"
