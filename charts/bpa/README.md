@@ -2,7 +2,7 @@
 
 The BPA allows organizations to verify, hold, and issue verifiable credentials.
 
-![Version: 0.11.6](https://img.shields.io/badge/Version-0.11.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-cde75be](https://img.shields.io/badge/AppVersion-sha--cde75be-informational?style=flat-square)
+![Version: 0.11.7](https://img.shields.io/badge/Version-0.11.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: sha-1c45cf8](https://img.shields.io/badge/AppVersion-sha--1c45cf8-informational?style=flat-square)
 
 The Business Partner Agent allows to manage and exchange master data between organizations.
 
@@ -266,7 +266,6 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.security.strict | bool | `true` | Enable strict strict security headers |
 | bpa.config.titleOverride | string | `""` | Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given) |
 | bpa.config.web.only | bool | `false` |  |
-| bpa.config.webhook.key | string | `"changeme"` | Optional: secures aca-py to backend webhook communication with an api-key |
 | bpa.image.pullPolicy | string | `"IfNotPresent"` |  |
 | bpa.image.repository | string | `"ghcr.io/hyperledger-labs/business-partner-agent-new"` |  |
 | bpa.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
