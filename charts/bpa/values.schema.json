@@ -467,7 +467,7 @@
                 },
                 "ledger": {
                     "type": "string",
-                    "enum": ["idu", "bosch-test", "bcovrin-test"],
+                    "enum": ["idu", "bcovrin-test"],
                     "description": "The ledger to be configured",
                     "title": "Ledger",
                     "form": true

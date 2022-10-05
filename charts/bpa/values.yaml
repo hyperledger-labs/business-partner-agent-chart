@@ -9,14 +9,14 @@ global:
   fullnameOverride: ""
 
   # -- Domain suffix to be used for default hostpaths in ingress
-  ingressSuffix: .stage.economyofthings.io
+  ingressSuffix: .bpa
 
   persistence:
     # -- Name of existing secret to use for PostgreSQL passwords
     existingSecret: false
 
-  # -- The used ledger. Will be used for default values. Any of: bosch-test, idu, bcovrin-test.
-  ledger: bosch-test
+  # -- The used ledger. Will be used for default values. Any of: idu, bcovrin-test
+  ledger: bcovrin-test
 
 bpa:
   image:
@@ -249,7 +249,7 @@ acapy:
   adminURLApiKey: 2f9729eef0be49608c1cffd49ee3cc4a
 
 
-  # -- Please change: the agent seed, 32 characters e.g. a UUID without the dashes. If the ledger is bosch-test or bcovrin-test the seed will be registered automatically. In all other cases this needs to happen manually beforehand.
+  # -- Please change: the agent seed, 32 characters e.g. a UUID without the dashes. If the ledger is bcovrin-test the seed will be registered automatically. In all other cases this needs to happen manually beforehand.
   agentSeed: 5a7db011075444a19d9bcaed56ad624a
 
   # -- Please change: Wallet encryption key, be aware that if this value is changed later aca-py needs to be restarted with the '--wallet-rekey' param which is not mapped

@@ -33,10 +33,6 @@ data:
     wallet-type: {{ .Values.acapy.staticArgs.walletType }}
     log-level: {{ .Values.acapy.staticArgs.logLevel }}
   genesis-transaction-list.yaml: |
-    - id: BoschTest
-      is_production: {{ include "acapy.writeLedger" (list . (dict "ledger" "bosch-test")) }}
-      is_write: {{ include "acapy.writeLedger" (list . (dict "ledger" "bosch-test")) }}
-      genesis_url: 'https://indy-test.idu.network/genesis'
     - id: bcorvinTest
       is_production: {{ include "acapy.writeLedger" (list . (dict "ledger" "bcovrin-test")) }}
       is_write: {{ include "acapy.writeLedger" (list . (dict "ledger" "bcovrin-test")) }}
