@@ -45,7 +45,8 @@ data:
           restrictions:
             - issuerDid: "${bpa.did.prefix}F6dB7dMVHUQSC64qemnBi7"
               label: "Commercial Register"
-{{- end -}}    
+{{- end -}}
+{{- if not .Values.schemas.config }}
         permanent-resident:
           id: "https://w3id.org/citizenship/v1"
           type: "json_ld"
@@ -57,5 +58,6 @@ data:
             - "familyName"
             - "gender"
             - "birthCountry"
-            - "birthDate"  
+            - "birthDate"
+{{- end -}}
 {{- end -}}
