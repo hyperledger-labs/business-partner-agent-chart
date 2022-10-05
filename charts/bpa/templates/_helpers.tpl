@@ -129,7 +129,7 @@ generates the postgresql connection string
 generate ledger browser url
 */}}
 {{- define "bpa.ledgerBrowser" -}}
-{{- $ledgerBrowser := dict "bosch-test" "https://indy-test.idu.network" "idu" "https://explorer.idu.network" "bcovrin-test" "http://test.bcovrin.vonx.io" -}}
+{{- $ledgerBrowser := dict "idu" "" "bcovrin-test" "http://test.bcovrin.vonx.io" -}}
 {{ .Values.bpa.config.ledger.browserUrlOverride | default ( get $ledgerBrowser .Values.global.ledger ) }}
 {{- end }}
 
@@ -197,7 +197,7 @@ Return true if a secret object should be created
 Return acapy initialization call
 */}}
 {{- define "acapy.registerLedger" -}}
-{{- if or (eq .Values.global.ledger "bosch-test") (eq .Values.global.ledger "bcovrin-test") -}}
+{{- if (eq .Values.global.ledger "bcovrin-test") -}}
 curl -d '{\"seed\":\"$(WALLET_SEED)\", \"role\":\"TRUST_ANCHOR\", \"alias\":\"{{ include "bpa.fullname" . }}\"}' -X POST {{ include "bpa.ledgerBrowser" . }}/register;
 {{- end -}}
 {{- end -}}
@@ -217,7 +217,7 @@ Return acapy label
 generate tails baseUrl
 */}}
 {{- define "acapy.tails.baseUrl" -}}
-{{- $tailsBaseUrl := dict "bosch-test" "https://tails-dev.vonx.io" "bcovrin-test" "https://tails-test.vonx.io" "idu" (printf "https://tails%s" .Values.global.ingressSuffix) -}}
+{{- $tailsBaseUrl := dict "bcovrin-test" "https://tails-test.vonx.io" "idu" (printf "https://tails%s" .Values.global.ingressSuffix) -}}
 {{ .Values.acapy.tails.baseUrlOverride| default ( get $tailsBaseUrl .Values.global.ledger ) }}
 {{- end }}
 
@@ -225,7 +225,7 @@ generate tails baseUrl
 generate tails uploadUrl
 */}}
 {{- define "acapy.tails.uploadUrl" -}}
-{{- $tailsUploadUrl:= dict "bosch-test" "https://tails-dev.vonx.io" "bcovrin-test" "https://tails-test.vonx.io" "idu" "http://idu-tails:6543" -}}
+{{- $tailsUploadUrl:= dict "bcovrin-test" "https://tails-test.vonx.io" "idu" "http://idu-tails:6543" -}}
 {{ .Values.acapy.tails.uploadUrlOverride| default ( get $tailsUploadUrl .Values.global.ledger ) }}
 {{- end }}
 
