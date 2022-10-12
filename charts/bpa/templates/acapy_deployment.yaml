@@ -49,7 +49,7 @@ spec:
            --wallet-storage-config '{\"url\":\"{{ include "global.postgresql.fullname" . }}:{{ .Values.postgresql.service.port }}\",\"max_connections\":5}' \
            --wallet-storage-creds '{\"account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"password\":\"$(POSTGRES_PASSWORD)\",\"admin_account\":\"{{ .Values.postgresql.postgresqlUsername }}\",\"admin_password\":\"$(POSTGRES_PASSWORD)\"}' \
            --seed \"$(WALLET_SEED)\" \
-           --genesis-url '{{ include "bpa.ledgerBrowser" . }}/genesis' \
+           --genesis-transactions-list genesis-transaction-list.yaml \
            --log-level info \
            "
           ]
@@ -66,6 +66,11 @@ spec:
                 secretKeyRef:
                   name: {{ template "acapy.fullname" . }}
                   key: seed
+          volumeMounts:
+          - name: ledger
+            mountPath: "/home/indy/genesis-transaction-list.yaml"
+            subPath: "genesis-transaction-list.yaml"
+            readOnly: true
       containers:
         - name: acapy
           securityContext:
