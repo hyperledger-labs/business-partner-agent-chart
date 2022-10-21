@@ -2,6 +2,41 @@ apiVersion: v1
 entries:
   bpa:
   - apiVersion: v2
+    appVersion: 0.12.0
+    created: "2022-10-21T12:27:35.093886582Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 10.16.2
+    description: The BPA allows organizations to verify, hold, and issue verifiable
+      credentials.
+    digest: 9267bd49314d07550ee05165eb0ee41b1b26160e94234721a2b5600e3d5fd410
+    home: https://github.com/hyperledger-labs/business-partner-agent-chart
+    maintainers:
+    - email: philipp.etschel@ch.bosch.com
+      name: etschelp
+      url: https://github.com/etschelp
+    - email: tim.schlagenhaufer@bosch.io
+      name: schlagtim
+      url: https://github.com/schlagtim
+    - email: Frank.Bernhardt@bosch.com
+      name: frank-bee
+      url: https://github.com/frank-bee
+    - email: jsherman@parcsystems.ca
+      name: usingtechnology
+      url: https://github.com/parc-jason
+    - email: jason.syrotuck@nttdata.com
+      name: Jsyro
+      url: https://github.com/Jsyro
+    name: bpa
+    sources:
+    - https://github.com/hyperledger-labs/business-partner-agent-chart
+    type: application
+    urls:
+    - https://github.com/hyperledger-labs/business-partner-agent-chart/releases/download/bpa-0.12.0/bpa-0.12.0.tgz
+    version: 0.12.0
+  - apiVersion: v2
     appVersion: sha-8caaef8
     created: "2022-10-12T12:22:23.184303505Z"
     dependencies:
@@ -1708,4 +1743,4 @@ entries:
     urls:
     - https://github.com/hyperledger-labs/business-partner-agent-chart/releases/download/bpa-0.3.0-alpha01/bpa-0.3.0-alpha01.tgz
     version: 0.3.0-alpha01
-generated: "2022-10-12T12:22:23.185203701Z"
+generated: "2022-10-21T12:27:35.094702185Z"
