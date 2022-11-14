@@ -80,9 +80,12 @@ spec:
                 -Dmicronaut.config.files={{ include "bpa.config.files" . }}
                 -Dlog4j2.configurationFile={{ include "bpa.logFileName" . }}
                 {{ if .Values.bpa.config.jmx.enabled }}
-                -Dcom.sun.management.jmxremote.port={{ .Values.bpa.config.jmx.port }}
                 -Dcom.sun.management.jmxremote.authenticate=false
                 -Dcom.sun.management.jmxremote.ssl=false
+                -Dcom.sun.management.jmxremote.local.only=false
+                -Dcom.sun.management.jmxremote.port={{ .Values.bpa.config.jmx.port }}
+                -Dcom.sun.management.jmxremote.rmi.port={{ .Values.bpa.config.jmx.port }}
+                -Djava.rmi.server.hostname=127.0.0.1
                 {{ end }}
             {{- include "bpa.application.configmap.env.vars" . | nindent 10}}
             {{- include "bpa.keycloak.configmap.env.vars" . | nindent 12}}
