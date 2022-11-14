@@ -40,6 +40,10 @@ bpa:
     # -- Override title shown in the browser tab. Default: Helm release name, capitalized (or NameOverride if given)
     titleOverride: ""
 
+    jmx:
+      enabled: false
+      port: 9999
+
     pg:
       # -- Sets the database schema the bpa backend should use, defaults to 'publlic' if empty
       schema: ""

@@ -249,6 +249,8 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 | bpa.config.i18n.locale | string | `"en"` |  |
 | bpa.config.imprint.enabled | bool | `false` |  |
 | bpa.config.imprint.urlOverride | string | `""` |  |
+| bpa.config.jmx.enabled | bool | `false` |  |
+| bpa.config.jmx.port | int | `9999` |  |
 | bpa.config.ledger.browserUrlOverride | string | `""` |  |
 | bpa.config.logConfigurationFile | string | `"log4j2-prod.xml"` | log4j2 configuration file which must be in the classpath. Use log4j2.yml for non-json. Will be ignored if logging is set and has values. |
 | bpa.config.logging | string | `nil` | log configuration overwrite, if set logConfigurationFile will be ignored. Takes an array of logger names and levels. See also log4j2. |
