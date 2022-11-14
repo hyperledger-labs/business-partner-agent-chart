@@ -50,6 +50,11 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+            {{ if .Values.bpa.config.jmx.enabled }}
+            - name: jmx
+              containerPort: {{ .Values.bpa.config.jmx.port }}
+              protocol: TCP
+            {{ end }}
           readinessProbe:
             httpGet:
               path: /health/readiness
@@ -74,6 +79,11 @@ spec:
                 -Dbpa.pg.password=$(POSTGRES_PASSWORD)
                 -Dmicronaut.config.files={{ include "bpa.config.files" . }}
                 -Dlog4j2.configurationFile={{ include "bpa.logFileName" . }}
+                {{ if .Values.bpa.config.jmx.enabled }}
+                -Dcom.sun.management.jmxremote.port={{ .Values.bpa.config.jmx.port }}
+                -Dcom.sun.management.jmxremote.authenticate=false
+                -Dcom.sun.management.jmxremote.ssl=false
+                {{ end }}
             {{- include "bpa.application.configmap.env.vars" . | nindent 10}}
             {{- include "bpa.keycloak.configmap.env.vars" . | nindent 12}}
             {{- include "bpa.volume.mounts" . | nindent 10}}
