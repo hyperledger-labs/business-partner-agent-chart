@@ -45,4 +45,12 @@ data:
       is_production: false
       is_write: false
       genesis_url: 'https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_builder_genesis'
+    - id: SuomiTestNet
+      is_production: false
+      is_write: false
+      genesis_url: 'https://minisuomiledger.northeurope.cloudapp.azure.com/genesis'
+    - id: iGrantTestNet
+      is_production: false
+      is_write: false
+      genesis_url: 'https://indy.igrant.io/genesis'
 
