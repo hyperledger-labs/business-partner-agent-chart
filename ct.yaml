@@ -4,5 +4,5 @@ target-branch: main
 chart-dirs:
   - charts
 chart-repos:
-  - bitnami=https://charts.bitnami.com/bitnami
+  - bitnami-full-index=https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
 helm-extra-args: --timeout 600s

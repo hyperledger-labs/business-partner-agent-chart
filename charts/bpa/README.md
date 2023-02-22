@@ -335,7 +335,7 @@ Note: Deleting the PVC's will delete postgresql data as well. Please be cautious
 ## Chart dependencies
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami/ | postgresql | 10.16.2 |
+| https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami | postgresql | 10.16.2 |
 
 ## Chart development
 
