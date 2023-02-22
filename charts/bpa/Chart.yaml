@@ -3,7 +3,7 @@ name: bpa
 description: The BPA allows organizations to verify, hold, and issue verifiable credentials.
 type: application
 
-version: 0.12.3
+version: 0.12.4
 appVersion: sha-c2b76ca
 
 home: "https://github.com/hyperledger-labs/business-partner-agent-chart"
@@ -27,5 +27,5 @@ maintainers:
 dependencies:
   - name: postgresql
     version: 10.16.2
-    repository: https://charts.bitnami.com/bitnami/
+    repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
     condition: postgresql.enabled

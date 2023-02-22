@@ -33,7 +33,7 @@ data:
     wallet-type: {{ .Values.acapy.staticArgs.walletType }}
     log-level: {{ .Values.acapy.staticArgs.logLevel }}
   genesis-transaction-list.yaml: |
-    - id: bcorvinTest
+    - id: bcovrinTest
       is_production: {{ include "acapy.writeLedger" (list . (dict "ledger" "bcovrin-test")) }}
       is_write: {{ include "acapy.writeLedger" (list . (dict "ledger" "bcovrin-test")) }}
       genesis_url: 'http://test.bcovrin.vonx.io/genesis'
@@ -45,4 +45,11 @@ data:
       is_production: false
       is_write: false
       genesis_url: 'https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_builder_genesis'
-
+    - id: SuomiTestNet
+      is_production: false
+      is_write: false
+      genesis_url: 'https://minisuomiledger.northeurope.cloudapp.azure.com/genesis'
+    - id: iGrantTestNet
+      is_production: false
+      is_write: false
+      genesis_url: 'https://indy.igrant.io/genesis'
