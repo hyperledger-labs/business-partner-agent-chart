@@ -30,7 +30,7 @@ data:
             label: "Commercial Register"
 {{- else if eq .Values.global.ledger "bcovrin-test" }}
         bank-account:
-          ledgerId: "bcorvinTest"
+          ledgerId: "bcovrinTest"
           id: "F6dB7dMVHUQSC64qemnBi7:2:bank_account:1.0"
           label: "Bank Account"
           defaultAttributeName: "iban"
@@ -38,7 +38,7 @@ data:
             - issuerDid: "${bpa.did.prefix}F6dB7dMVHUQSC64qemnBi7"
               label: "Demo Bank"
         commercial-register:
-          ledgerId: "bcorvinTest"
+          ledgerId: "bcovrinTest"
           id: "F6dB7dMVHUQSC64qemnBi7:2:commercialregister:1.0"
           label: "Commercial Register"
           defaultAttributeName: "companyName"
