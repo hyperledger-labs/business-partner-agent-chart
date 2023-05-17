@@ -6,8 +6,6 @@ The [Business Partner Agent](https://github.com/hyperledger-labs/business-partne
 
 This chart will install a business partner agent (bpa-core & bpa-acapy) and Postgres.
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/hyperledger-labs/business-partner-agent-chart)
-
 ## TL;DR
 
 ```sh
